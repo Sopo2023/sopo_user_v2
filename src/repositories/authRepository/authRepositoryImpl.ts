@@ -1,12 +1,21 @@
 import { LoginResponse } from "src/types/auth/login.types";
-import { Login } from "./authRepository";
+import { AuthRepository, NewAccessTokenResponse, Login } from "./authRepository";
 import config from "src/config/config.json"
 import axios from "axios";
 
-class authRepository implements authRepository{
+class authRepositoryImpl implements AuthRepository{
     public async login(loginData: Login): Promise<LoginResponse>{
         const { data } = await axios.post(`${config.server}/auth`, loginData);
         return data;
     }
+    public async refreshAccessToken(refreshToken: {
+        refreshToken: string;
+      }): Promise<NewAccessTokenResponse> {
+        const { data } = await axios.post<NewAccessTokenResponse>(
+          `${config.server}/auth/refresh`,
+          refreshToken
+        );
+        return data;
+      }
 }
-export default new authRepository();
+export default new authRepositoryImpl();

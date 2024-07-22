@@ -1,34 +1,28 @@
-import axios, { AxiosRequestConfig } from "axios";
 import CONFIG from "src/config/config.json";
-import { ACCESS_TOKEN_KEY, REQUEST_TOKEN_KEY } from "src/constants/token/token.constants";
-import token from "../token/token";
+import axios, { AxiosRequestConfig } from "axios";
+import requestInterceptor from "./requestHandler";
 import ResponseHandler from "./responseHandler";
-import requestHandler from "./requestHandler"; 
-import Token from "src/libs/token/token";
+import Token from "../token/token";
+import { REQUEST_TOKEN_KEY, ACCESS_TOKEN_KEY } from "src/constants/token/token.constants";
 
-const createAxiosInstance = (config?: AxiosRequestConfig) => {
-const ACCESS_TOKEN=Token.getToken(ACCESS_TOKEN_KEY);
-  const baseConfig: AxiosRequestConfig = {
-    headers: {
-        Authorization: `Bearer ${ACCESS_TOKEN}`
-      }
-  };
-  return axios.create({
-    ...baseConfig,
-    ...config,
-  });
-};
 
-export const SOPOAxios = createAxiosInstance({
+const axiosRequestConfig: AxiosRequestConfig = {
   baseURL: CONFIG.server,
   headers: {
-    [REQUEST_TOKEN_KEY]: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
+    [REQUEST_TOKEN_KEY]: `Bearer ${Token.getToken(ACCESS_TOKEN_KEY)}`,
   },
-});
-
-export const SOPOAxiosSetAccessToken = (newToken: string) => {
-  SOPOAxios.defaults.headers.common[REQUEST_TOKEN_KEY] = `Bearer ${newToken}`;
 };
 
-SOPOAxios.interceptors.request.use(requestHandler as any, (response) => response);
-SOPOAxios.interceptors.response.use((response) => response, ResponseHandler);
+const SOPOAxios = axios.create(axiosRequestConfig);
+
+
+SOPOAxios.interceptors.request.use(requestInterceptor as any, (err) => Promise.reject(err));
+
+SOPOAxios.interceptors.response.use((res) => res, ResponseHandler);
+
+
+export default SOPOAxios;
+
+export const setAccessToken = (token: string) => {
+  SOPOAxios.defaults.headers[REQUEST_TOKEN_KEY] = `Bearer ${token}`;
+};
