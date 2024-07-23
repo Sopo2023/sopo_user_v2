@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from "src/components/common/sidebar/index.style";
+import * as S from "./index.style";
 
-import SopoLogo from "src/assets/sidebar/sopo_logo.svg";
-import HomeIcon from "src/assets/sidebar/home.svg";
-import MentorIcon from "src/assets/sidebar/metometi.svg";
-import PortfolioIcon from "src/assets/sidebar/portfolio.svg";
-import CompetitionIcon from "src/assets/sidebar/competition.svg";
-import LogoutIcon from "src/assets/sidebar/logouticon.svg";
+import SopoLogo from "src/assets/imgs/sidebar/sopo_logo.svg";
+import HomeIcon from "src/assets/imgs/sidebar/home.svg";
+import MentorIcon from "src/assets/imgs/sidebar/metometi.svg";
+import PortfolioIcon from "src/assets/imgs/sidebar/portfolio.svg";
+import CompetitionIcon from "src/assets/imgs/sidebar/competition.svg";
+import LogoutIcon from "src/assets/imgs/sidebar/logouticon.svg";
 
 const Index = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);

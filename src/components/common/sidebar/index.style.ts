@@ -5,6 +5,7 @@ interface MenuItemProps {
 }
 
 export const SideBarWrap = styled.div`
+z-index: 3;
   width: 254px;
   height: 100vh;
   background-color: #f7fff3;

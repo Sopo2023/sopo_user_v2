@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
+import SideBar from 'src/components/common/sidebar';
+import Header from 'src/components/common/header';
+import Layout from 'src/components/layout/layout';
 
-import SideBar from "src/components/common/sidebar"
-
-const index = () => {
+const Index: React.FC = () => {
   return (
-    <SideBar/>
-  )
-}
+    <Layout>
+      <></>
+    </Layout>
+  );
+};
 
-export default index
+export default Index;
