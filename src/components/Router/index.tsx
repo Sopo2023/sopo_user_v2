@@ -9,6 +9,7 @@ import Login from "src/pages/auth/login/page";
 // import Competition from "src/Components/Competition/Competition";
 // import Portfoliosub from "src/Components/Portfoliosub/portfolioSub";
 // import CompetitionSub from "src/Components/compsub/competitionsub";
+import Main from "src/pages/main/page"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const Router = () => {
@@ -16,6 +17,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/main" element={<Main />} />
         {/* <Route path="/" element={<Main />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/Mentor-Mentee" element={<Updown />} />
