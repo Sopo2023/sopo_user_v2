@@ -8,7 +8,7 @@ export interface AuthRepository {
 }
 
 export interface Login {
-  email: string;
+  id: string;
   password: string;
 }
 
