@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import color from "src/styles/color";
+
 
 export const main = styled.main`
   display: flex;
@@ -16,7 +18,7 @@ export const loginMain = styled.div`
   padding: 36px;
   min-width: 485px;
   min-height: 541px;
-  background-color: #fff;
+  background-color: ${color.Background.Normal.Alternative};
   border-radius: 25px;
 `;
 export const vector1 = styled.img`
@@ -69,7 +71,7 @@ export const Header = styled.div`
   display: flex;
   width: 100%;
   height: 100px;
-  color: #000;
+  color: ${color.Label.Strong};
   align-items: center;
   span {
     font-family: Pretendard;
@@ -93,7 +95,7 @@ export const Inputtext = styled.div`
   width: 100%;
   height: 50%;
   span {
-    color: #000;
+    color: ${color.Label.Strong};
     font-family: Pretendard;
     font-size: 16px;
     font-style: normal;
@@ -101,7 +103,7 @@ export const Inputtext = styled.div`
     line-height: 130%;
     p{
       display: inline-block;
-      color: red;
+      color: ${color.Status.Destructive};
     }
   }
 `;
@@ -113,14 +115,14 @@ export const buttonBox = styled.div`
   height: 50px;
   align-items: center;
   span {
-    color: var(--Gray-Gray600, #787878);
+    color: ${color.Label.Disable};
     font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: 130%;
     strong {
-      color: var(--Primary-Color---Green-400, #48ae46);
+      color: ${color.Primary.Light};
       font-family: Pretendard;
       font-size: 14px;
       font-style: normal;

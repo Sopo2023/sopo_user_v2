@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import color from "src/styles/color";
 
 export const Text_Field_Main = styled.div<{$isActive: boolean }>`
   display: flex;
@@ -11,7 +11,7 @@ export const Text_Field_Main = styled.div<{$isActive: boolean }>`
   flex-shrink: 0;
   border-radius: 12px;
   border-color:  ${({ $isActive }) => ($isActive ? "1A9A18"  : "#c4c4c4")}; 
-  border: 1px solid var(--Color-Label-Disable, #c4c4c4);
+  border: 1px solid ${color.Label.Disable};
   background: #fff;
   
   img {
@@ -26,7 +26,7 @@ export const Text_Field_Main = styled.div<{$isActive: boolean }>`
 
 export const Text_Field = styled.input`
   &::placeholder {
-    color: var(--Color-Label-Disable, #c4c4c4);
+    color: ${color.Label.Disable};
 
     font-family: Pretendard;
     font-size: 14px;

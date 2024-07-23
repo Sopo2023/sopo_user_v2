@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import color from "src/styles/color";
 
 export const ButtonBox = styled.button`
   display: flex;
@@ -10,9 +11,9 @@ export const ButtonBox = styled.button`
 
   border: none;
   border-radius: 12px;
-  background: #48ae46;
+  background: ${color.Primary.Light};
 
-  color: var(--Background-Elevated-Normal, #f7fff3);
+  color:  #fff;
 
   font-family: Pretendard;
   font-size: 16px;
