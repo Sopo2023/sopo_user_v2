@@ -1,4 +1,9 @@
-const Main =()=>{
-    return<></>
+import React from 'react'
+
+const index = () => {
+  return (
+    <div>index</div>
+  )
 }
-export default Main;
+
+export default index
