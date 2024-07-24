@@ -4,7 +4,6 @@ import TextField from "src/components/textFields";
 import Button from "src/components/button/index";
 import { Sign } from "src/types/auth/signup.type";
 
-
 interface Props {
   signupData: Sign;
   handleSignupData: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -22,6 +21,7 @@ const SignupFirst = ({
   return (
     <>
       <S.InputContainer>
+        
         <S.InputText>
           <span>
             아이디<p>*</p>

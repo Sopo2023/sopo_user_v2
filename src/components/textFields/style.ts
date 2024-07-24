@@ -4,9 +4,9 @@ import color from "src/styles/color";
 export const Text_Field_Main = styled.div<{ $isActive: boolean }>`
   display: flex;
   /* width: 320px; */
-  height: 35px;
+  height: 48px;
   justify-content: space-between;
-  padding: 10px 20px 10px 10px;
+  padding: 0 10px 0 10px;
   align-items: center;
   flex-shrink: 0;
   border-radius: 12px;
@@ -45,7 +45,7 @@ export const Text_Field = styled.input`
   }
   display: flex;
   width: 80%;
-  height: 20px;
+  height: 100%;
   padding: 10px 20px 10px 10px;
   align-items: center;
   flex-shrink: 0;

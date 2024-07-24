@@ -27,3 +27,25 @@ export const InputText = styled.div`
     }
   }
 `;
+
+export const SignBack = styled.div`
+  position: absolute;
+  gap: 10px;
+  top: 10px;
+  align-items: center;
+  display: flex;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  img {
+    width: 25px;
+    height: 25px;
+  }
+  span {
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; 
+  }
+`;

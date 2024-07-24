@@ -13,7 +13,6 @@ export const useSignup = () => {
     email: "",
     checkNumber: "",
   });
-
   const handleSigUpData = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       const { name, value } = e.target;

@@ -1,5 +1,11 @@
-import styled from "styled-components";
+import styled,{keyframes} from "styled-components";
 import color from "src/styles/color";
+
+const vectorAnmation = keyframes` 
+0%{
+       bottom: -300px;
+}
+`;
 
 export const authBackground = styled.main`
   display: flex;
@@ -10,6 +16,7 @@ export const authBackground = styled.main`
   background-color: #b8e0b7;
 `;
 export const SignMain = styled.div`
+position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,6 +26,7 @@ export const SignMain = styled.div`
   min-height: 541px;
   background-color: ${color.Background.Normal.Alternative};
   border-radius: 25px;
+
 `;
 export const vector1 = styled.img`
   position: absolute;
@@ -27,6 +35,8 @@ export const vector1 = styled.img`
   height: 357px;
   flex-shrink: 0;
   z-index: 3;
+  animation: ${vectorAnmation} 1.5s ease-in-out;
+  animation-fill-mode: forwards;
 `;
 
 export const vector2 = styled.img`
@@ -36,6 +46,8 @@ export const vector2 = styled.img`
   height: 401px;
   flex-shrink: 0;
   z-index: 2;
+  animation: ${vectorAnmation} 1.5s ease-in-out;
+  animation-fill-mode: forwards;
 `;
 
 export const vector3 = styled.img`
@@ -44,6 +56,8 @@ export const vector3 = styled.img`
   width: 100%;
   height: 448px;
   flex-shrink: 0;
+  animation: ${vectorAnmation} 1.5s ease-in-out;
+  animation-fill-mode: forwards;
 `;
 
 export const mainVeiw = styled.div`
@@ -59,6 +73,7 @@ export const LogoVeiw = styled.div`
   align-items: end;
   width: 50%;
   height: 100%;
+  
   img {
     width: 531px;
     height: 455px;

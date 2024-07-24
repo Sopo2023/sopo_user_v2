@@ -3,6 +3,7 @@ import * as S from "./style";
 import TextField from "src/components/textFields";
 import { Sign ,SignupAgree} from "src/types/auth/signup.type";
 import Button from "src/components/button/index";
+import arrowLeft from "src/assets/imgs/Signimg/arrow-left.svg";
 
 
 interface Props {
@@ -13,7 +14,7 @@ interface Props {
     keydownButton: (e: React.KeyboardEvent) => void;
   }
 
-const SignupSecond = ({ signupData,
+const SignupSecond = ({ setSection,signupData,
     handleSignupData,
     keydownButton,
     submitSignupDataSecond,
@@ -21,6 +22,10 @@ const SignupSecond = ({ signupData,
   return (
     <>
       <S.InputContainer>
+        <S.SignBack onClick={()=>setSection("first")}>
+            <img src={arrowLeft} alt="돌아가라 어리석은것" />
+            <span>돌아가기</span>
+        </S.SignBack>
         <S.InputText>
           <span>
             이름<p>*</p>
