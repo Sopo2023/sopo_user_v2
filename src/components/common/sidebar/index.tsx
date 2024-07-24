@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from "./index.style";
+import useSidebar from 'src/hooks/sidebar/useSidebar';
 
 import SopoLogo from "src/assets/imgs/sidebar/sopo_logo.svg";
 import HomeIcon from "src/assets/imgs/sidebar/home.svg";
@@ -10,11 +11,10 @@ import CompetitionIcon from "src/assets/imgs/sidebar/competition.svg";
 import LogoutIcon from "src/assets/imgs/sidebar/logouticon.svg";
 
 const Index = () => {
-  const [activeItem, setActiveItem] = useState<string | null>(null);
   const navigate = useNavigate();
+  const activeItem = useSidebar();
 
   const handleMenuItemClick = (item: string, path: string) => {
-    setActiveItem(item);
     navigate(path);
   };
 
