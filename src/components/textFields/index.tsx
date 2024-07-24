@@ -3,9 +3,9 @@ import { Text_Field, Text_Field_Main } from "./style";
 import deleteButton from "src/assets/imgs/textfield/close_ring_fill.svg";
 import openEye from "src/assets/imgs/textfield/open-eye.svg";
 import closeEye from "src/assets/imgs/textfield/close-eye.svg";
-import { Img } from "../auth/Signup/style";
 
 interface TextFieldProps {
+  name:string;
   text?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
@@ -16,6 +16,7 @@ interface TextFieldProps {
 }
 
 const TextField = ({
+  name,
   onChange,
   placeholder,
   type = "",
@@ -26,10 +27,10 @@ const TextField = ({
   const [showPassword, setShowPassword] = useState(false);
   const [textBox, setTextBox] = useState(false);
   
-
   return (
     <Text_Field_Main style={style} $isActive={textBox}>
       <Text_Field
+        name={name}
         value={value}
         onChange={onChange}
         placeholder={placeholder}

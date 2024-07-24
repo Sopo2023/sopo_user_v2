@@ -1,5 +1,5 @@
 import { LoginResponse } from "src/types/auth/login.types";
-import { AuthRepository, NewAccessTokenResponse, Login } from "./authRepository";
+import { AuthRepository, NewAccessTokenResponse, Login, SignUpParams } from "./authRepository";
 import config from "src/config/config.json"
 import axios from "axios";
 
@@ -8,6 +8,11 @@ class authRepositoryImpl implements AuthRepository{
         const { data } = await axios.post(`${config.server}/auth`, loginData);
         return data;
     }
+    public async signUp(signUpData:SignUpParams ):Promise<void>{
+      const {data} = await axios.post(`${config.server}/sign`,signUpData)
+      return data;
+    }
+    
     public async refreshAccessToken(refreshToken: {
         refreshToken: string;
       }): Promise<NewAccessTokenResponse> {
@@ -17,5 +22,7 @@ class authRepositoryImpl implements AuthRepository{
         );
         return data;
       }
+    
+
 }
 export default new authRepositoryImpl();

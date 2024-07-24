@@ -1,6 +1,5 @@
-
 // import Updown from "src/Components/Updown/updownmain";
-import Login from "src/pages/auth/login/page";
+import Sign from "src/pages/auth/index";
 // import Portfolio from "src/Components/Portfolio/portfolioMain";
 // import Main from "src/Pages/MainPage/mainpage";
 // import Write from "src/Components/Sidewrite/write";
@@ -9,14 +8,14 @@ import Login from "src/pages/auth/login/page";
 // import Competition from "src/Components/Competition/Competition";
 // import Portfoliosub from "src/Components/Portfoliosub/portfolioSub";
 // import CompetitionSub from "src/Components/compsub/competitionsub";
-import Main from "src/pages/main/page"
+import Main from "src/pages/main/page";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/sign" element={<Sign />} />
         <Route path="/main" element={<Main />} />
         {/* <Route path="/" element={<Main />} />
         <Route path="/portfolio" element={<Portfolio />} />
