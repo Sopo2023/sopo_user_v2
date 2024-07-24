@@ -31,7 +31,7 @@ const SignupFirst = ({
             value={signupData.id}
             type="text"
             onChange={handleSignupData}
-            placeholder="아이디을 입력해주세요"
+            placeholder="아이디를 입력해주세요"
             onKeyDown={keydownButton}
             style={{}}
           />
@@ -45,7 +45,7 @@ const SignupFirst = ({
             value={signupData.password}
             type={"password"}
             onChange={handleSignupData}
-            placeholder="비밀번호을 입력해주세요"
+            placeholder="비밀번호를 입력해주세요"
             onKeyDown={keydownButton}
             style={{}}
           />

@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import useSignup from "src/hooks/auth/useSign";
 import { Props } from "src/types/auth/login.types";
-import { LogoVeiw, SignMain, Header } from "../style";
+import { LogoView, SignMain, Header } from "../style";
 import Logo from "src/assets/imgs/Signimg/signup.svg";
 import * as S from "./style";
-import SignupFirst from "./signupFrist";
+import SignupFirst from "./signupFirst";
 import SignupSecond from "./signupSecond";
 import { SIGNUP_SECTION_NAME } from "src/constants/signup/signup.constants";
 
@@ -17,7 +17,6 @@ const Signup = ({ setIsLogin }: Props) => {
       handleSignupData={sign.handleSigUpData}
       submitSignupDataFirst={sign.submitSignupDataFirst}
       keydownButton={sign.firstHandleKeyDown}
-      key="signupFisrtPart"
     />,
     <SignupSecond
       setSection={sign.setSection}
@@ -25,7 +24,6 @@ const Signup = ({ setIsLogin }: Props) => {
       handleSignupData={sign.handleSigUpData}
       submitSignupDataSecond={sign.submitSignupDataSecond}
       keydownButton={sign.firstHandleKeyDown}
-      key="signupSecondPart"
     />,
   ];
 
@@ -46,9 +44,9 @@ const Signup = ({ setIsLogin }: Props) => {
         </S.buttonBox>
       </SignMain>
 
-      <LogoVeiw>
+      <LogoView>
         <img src={Logo} alt="소포 많이 사랑해줘요" />
-      </LogoVeiw>
+      </LogoView>
     </>
   );
 };

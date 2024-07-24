@@ -1,9 +1,7 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { useNavigate } from "react-router-dom";
 import { useLogin } from "src/hooks/auth/useLogin";
 import TextField from "src/components/textFields/index";
 import * as S from "./style";
-import { LogoVeiw, SignMain, Header } from "../style";
+import { LogoView, SignMain, Header } from "../style";
 import Logo from "src/assets/imgs/Signimg/loginLogo.svg";
 import Button from "src/components/button/index";
 import { Props } from "src/types/auth/login.types";
@@ -12,9 +10,9 @@ const LoginComponent = ({ setIsLogin }: Props) => {
   const { ...auth } = useLogin();
   return (
     <>
-      <LogoVeiw>
+      <LogoView>
         <img src={Logo} alt="난 실패작이야.." />
-      </LogoVeiw>
+      </LogoView>
       <SignMain>
         <Header>
           <span>다시 만나 반가워요</span>
@@ -28,7 +26,7 @@ const LoginComponent = ({ setIsLogin }: Props) => {
               name="id"
               value={auth.LoginData.id}
               type="text"
-              onChange={auth.handleSigUpData}
+              onChange={auth.handleSignUpData}
               placeholder="아이디를 입력해주세요"
               onKeyDown={auth.handleKeyDown}
               style={{}}
@@ -42,7 +40,7 @@ const LoginComponent = ({ setIsLogin }: Props) => {
               name="password"
               value={auth.LoginData.password}
               type={"password"}
-              onChange={auth.handleSigUpData}
+              onChange={auth.handleSignUpData}
               placeholder="비밀번호를 입력해주세요"
               onKeyDown={auth.handleKeyDown}
               style={{}}

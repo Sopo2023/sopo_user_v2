@@ -60,7 +60,7 @@ export const vector3 = styled.img`
   animation-fill-mode: forwards;
 `;
 
-export const mainVeiw = styled.div`
+export const mainView = styled.div`
   display: flex;
   width: 1000px;
   height: 565px;
@@ -68,7 +68,7 @@ export const mainVeiw = styled.div`
   z-index: 5;
   justify-content: space-between;
 `;
-export const LogoVeiw = styled.div`
+export const LogoView = styled.div`
   display: flex;
   align-items: end;
   width: 50%;

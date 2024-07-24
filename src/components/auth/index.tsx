@@ -13,14 +13,14 @@ const Auth = () => {
       <S.vector1 src={Vector1} />
       <S.vector2 src={Vector2} />
       <S.vector3 src={Vector3} />
-      <S.mainVeiw>
+      <S.mainView>
         {isLogin ? (
           <Login setIsLogin={setIsLogin} />
         ) : (
           <Signup setIsLogin={setIsLogin} />
         )}
         {}
-      </S.mainVeiw>
+      </S.mainView>
     </S.authBackground>
   );
 };
