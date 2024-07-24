@@ -16,22 +16,16 @@ const Index = () => {
 
   useEffect(() => {
     const path = location.pathname;
-    switch (path) {
-      case '/main':
-        setActiveItem('home');
-        break;
-      case '/seniortojunior':
-        setActiveItem('mentor');
-        break;
-      case '/portfolio':
-        setActiveItem('portfolio');
-        break;
-      case '/competition':
-        setActiveItem('competition');
-        break;
-      default:
-        setActiveItem(null);
-        break;
+    if (path === '/main') {
+      setActiveItem('home');
+    } else if (path === '/seniortojunior') {
+      setActiveItem('mentor');
+    } else if (path.startsWith('/portfolio')) {
+      setActiveItem('portfolio');
+    } else if (path.startsWith('/competition')) {
+      setActiveItem('competition');
+    } else {
+      setActiveItem(null);
     }
   }, [location.pathname]);
 
