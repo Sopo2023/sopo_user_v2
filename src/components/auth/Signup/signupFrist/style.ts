@@ -1,30 +1,19 @@
 import styled from "styled-components";
 import color from "src/styles/color";
 
-
-export const main = styled.main`
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  background-color: #b8e0b7;
-`;
-
-
-export const Input = styled.div`
+export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 210px;
+  height: 300px;
   gap: 16px;
 `;
-export const Inputtext = styled.div`
+export const InputText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  height: 50%;
+  height: 40%;
   span {
     color: ${color.Label.Strong};
     font-family: Pretendard;
@@ -32,13 +21,13 @@ export const Inputtext = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: 130%;
-    p{
+    p {
       display: inline-block;
       color: ${color.Status.Destructive};
     }
   }
 `;
-export const buttonBox = styled.div`
+export const ButtonBx = styled.div`
   display: flex;
   gap: 16px;
   flex-direction: column;

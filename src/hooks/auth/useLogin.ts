@@ -1,4 +1,4 @@
-import React, {FormEvent, useState } from "react";
+import React, {FormEvent, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "src/libs/toast/swal";
 import { useLoginMutation } from "src/queries/auth/queries";
@@ -7,12 +7,15 @@ import {
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
 } from "src/constants/token/token.constants";
+import {Login} from "src/types/auth/login.types"
 
 export const useLogin = () => {
   const navigate = useNavigate();
-  
-  const [id, setId] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [LoginData, setLoginData] = useState<Login>({
+    id: "",
+    password:"",
+  });
+
   const [loading, setLoading] = useState<boolean>(false);
   const [keepLoggedIn, setKeepLoggedIn] = useState<boolean>(false); // 로그인 유지하기 상태
   const LoginMutation = useLoginMutation();
@@ -23,16 +26,28 @@ export const useLogin = () => {
     }
   };
 
+  const handleSigUpData = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>): void => {
+      const {  name, value } = e.target;
+      setLoginData((prev) => ({ ...prev, [name]: value }));
+    },
+    [LoginData]
+  );
+
+  
+
   const handleLogin = async () => {
-    if (id === "" || password === "") {
-      showToast("warning", "아이디와 비밀번호를 모두 입력해주세요");
+    if (LoginData.id === "") {
+      showToast("아이디를 입력해주세요", "INFO");
+      return;
+    }
+
+    if (LoginData.password === "") {
+      showToast("비밀번호를 입력해주세요", "INFO");
       return;
     }
     LoginMutation.mutate(
-      {
-        id: id,
-        password: password,
-      },
+     LoginData,
       {
         onSuccess: (data) => {
           navigate("/");
@@ -48,12 +63,10 @@ export const useLogin = () => {
   };
 
   return {
+    LoginData,
+    handleSigUpData,
     handleKeyDown,
     loading,
-    id,
-    setId,
-    password,
-    setPassword,
     keepLoggedIn,
     handleLogin,
   };

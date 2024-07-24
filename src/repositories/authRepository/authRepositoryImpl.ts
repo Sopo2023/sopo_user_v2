@@ -17,5 +17,7 @@ class authRepositoryImpl implements AuthRepository{
         );
         return data;
       }
+    
+
 }
 export default new authRepositoryImpl();
