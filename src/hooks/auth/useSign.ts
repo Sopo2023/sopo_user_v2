@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from "react";
-import { Sign, SignupAgree } from "src/types/auth/signup.type";
+import { Sign } from "src/types/auth/signup.type";
 import { showToast } from "src/libs/toast/swal";
+import { useSignUpMutation } from "src/queries/auth/queries";
 
 export const useSignup = () => {
+  const SignUpMutation = useSignUpMutation();
   const [section, setSection] = useState("first");
 
   const [signUpData, setsignUpData] = useState<Sign>({
@@ -33,8 +35,8 @@ export const useSignup = () => {
       showToast("error", "양식이 비어있습니다");
       return;
     }
-    if(password !== checkPasswrod){
-      showToast("error", "비밀번호가 다릅니다")
+    if (password !== checkPasswrod) {
+      showToast("error", "비밀번호가 다릅니다");
     }
     setSection("second");
   }, [signUpData]);
@@ -45,6 +47,11 @@ export const useSignup = () => {
       showToast("error", "형식이 비어있습니다");
       return;
     }
+    SignUpMutation.mutate(signUpData, {
+      onSuccess: () => {
+        window.location.reload();
+      },
+    });
   }, [signUpData]);
 
   return {

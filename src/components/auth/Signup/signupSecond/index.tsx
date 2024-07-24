@@ -1,7 +1,7 @@
 import React,{ Dispatch, SetStateAction} from "react";
 import * as S from "./style";
 import TextField from "src/components/textFields";
-import { Sign ,SignupAgree} from "src/types/auth/signup.type";
+import { Sign } from "src/types/auth/signup.type";
 import Button from "src/components/button/index";
 import arrowLeft from "src/assets/imgs/Signimg/arrow-left.svg";
 

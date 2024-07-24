@@ -7,8 +7,3 @@ export interface Sign{
     checkNumber:string;
 }
 
-export interface SignupAgree {
-    first: boolean;
-    second: boolean;
-  }
-  
