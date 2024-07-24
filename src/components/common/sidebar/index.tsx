@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as S from "./index.style";
 
 import SopoLogo from "src/assets/imgs/sidebar/sopo_logo.svg";
@@ -12,6 +12,28 @@ import LogoutIcon from "src/assets/imgs/sidebar/logouticon.svg";
 const Index = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const path = location.pathname;
+    switch (path) {
+      case '/main':
+        setActiveItem('home');
+        break;
+      case '/seniortojunior':
+        setActiveItem('mentor');
+        break;
+      case '/portfolio':
+        setActiveItem('portfolio');
+        break;
+      case '/competition':
+        setActiveItem('competition');
+        break;
+      default:
+        setActiveItem(null);
+        break;
+    }
+  }, [location.pathname]);
 
   const handleMenuItemClick = (item: string, path: string) => {
     setActiveItem(item);
