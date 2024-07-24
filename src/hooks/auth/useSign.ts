@@ -51,6 +51,9 @@ export const useSignup = () => {
       onSuccess: () => {
         window.location.reload();
       },
+      onError: () => {
+        showToast("error", "회원가입 실패");
+      },
     });
   }, [signUpData]);
 
