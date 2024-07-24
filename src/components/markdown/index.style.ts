@@ -29,6 +29,7 @@ export const TitleInput = styled.input`
     font-weight: 700;
     line-height: 20px; 
     margin-bottom: 10px; 
+    border: none;
 `;
 
 export const ButtonContainer = styled.div`
@@ -47,15 +48,73 @@ export const MarkdownButton = styled.button`
     line-height: 20px; /* 200% */
     border: none;
     background: none;
-    padding: 5px 10px;
     cursor: pointer;
     flex: 1 1 auto; 
-    
+
+    display: flex;
+    justify-content: center;
+
     &:hover {
         background: var(--DarkGray-95, #EEE);
         color: black;
     }
 `;
+
+export const ButtonTitleImg = styled.img`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 20px;
+`
+
+export const ButtonBoldImg = styled.img`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7px;
+    height: 20px;
+`
+
+export const ButtonItalicImg = styled.img`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3px;
+    height: 20px;
+`
+
+export const ButtonStrokeImg = styled.img`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 9px;
+    height: 20px;
+`
+
+export const ButtonQuoteImg = styled.img`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10px;
+    height: 10px;
+`
+
+export const ButtonImageImg = styled.img`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13px;
+    height: 13px;
+`
+
+export const ButtonCodeImg = styled.img`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+`
 
 export const TextArea = styled.textarea`
     width: 100%;
@@ -69,6 +128,7 @@ export const TextArea = styled.textarea`
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
+    border: none;
 `;
 
 export const Preview = styled.div`
