@@ -4,14 +4,26 @@ interface MenuItemProps {
   active: boolean;
 }
 
+export const SidebarContainer = styled.div`
+
+    width: 250px; 
+    background: #f7fff3;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    z-index: 2
+`;
+
 export const SideBarWrap = styled.div`
-z-index: 3;
+  z-index: 3;
   width: 254px;
   height: 100vh;
   background-color: #f7fff3;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 `;
 
 export const MainLogo = styled.div`
