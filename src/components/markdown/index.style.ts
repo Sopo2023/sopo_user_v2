@@ -8,41 +8,48 @@ export const ContainerParents = styled.div`
     justify-content: center;
     align-items: center;
     display: flex;
-`
+`;
 
 export const Container = styled.div`
-    width: 1100px;
-    height: 710px;
-    flex-shrink: 0;
-
+    width: 90%;
+    max-width: 1100px;
+    height: 90%;
+    max-height: 710px;
     border-radius: 13px;
     background: #FFF;
     box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
-
     display: flex;
-    
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `;
 
 export const EditorContainer = styled.div`
     width: 50%;
-    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    padding: 10px; 
-    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 export const TitleInput = styled.input`
     color: var(--Neutral-5, #0A0A0A);
-    /* Title1/Bold */
     font-family: Pretendard;
     font-size: 32px;
-    font-style: normal;
     font-weight: 800;
-    line-height: 130%; /* 41.6px */
-    margin-bottom: 10px; 
+    line-height: 130%;
+    margin-bottom: 10px;
     border: none;
     outline: none;
 `;
@@ -51,10 +58,10 @@ export const SepLine = styled.div`
     width: 71px;
     height: 1px;
     background: #000;
-`
+`;
 
 export const ButtonContainer = styled.div`
-    margin: 10px 0; 
+    margin: 10px 0;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
@@ -64,12 +71,10 @@ export const MarkdownButton = styled.button`
     border: none;
     background: none;
     cursor: pointer;
-    flex: 1 1 auto; 
-
+    flex: 1 1 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 18px;
     height: 35px;
 
@@ -80,84 +85,73 @@ export const MarkdownButton = styled.button`
 `;
 
 export const ButtonTitleImg = styled.img`
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 15px;
     height: 20px;
-`
+`;
 
 export const ButtonBoldImg = styled.img`
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 7px;
     height: 20px;
-`
+`;
 
 export const ButtonItalicImg = styled.img`
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 3px;
     height: 20px;
-`
+`;
 
 export const ButtonStrokeImg = styled.img`
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 9px;
     height: 20px;
-`
+`;
 
 export const ButtonQuoteImg = styled.img`
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 10px;
     height: 10px;
-`
+`;
 
 export const ButtonImageImg = styled.img`
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 13px;
     height: 13px;
-`
+`;
 
 export const ButtonCodeImg = styled.img`
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 16px;
     height: 16px;
-`
+`;
 
 export const TextArea = styled.textarea`
     width: 100%;
-    height: calc(100% - 60px); 
-    box-sizing: border-box; 
+    height: calc(100% - 60px);
+    box-sizing: border-box;
     resize: none;
     overflow-y: auto;
     color: var(--Neutral-60, #858585);
     font-family: Pretendard;
     font-size: 13px;
-    font-style: normal;
     font-weight: 400;
     line-height: 20px;
     border: none;
     outline: none;
 `;
 
-export const Preview = styled.div`
+export const PreviewContainer = styled.div`
     width: 50%;
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     border-left: 1px solid #ccc;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     overflow-y: auto;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+`;
+
+export const Preview = styled.div`
+    width: 100%;
+    height: 100%;
 
     h1, h2, h3, h4 {
         color: var(--Neutral-0, #000);
@@ -166,23 +160,23 @@ export const Preview = styled.div`
     }
 
     h1 {
-        font-size: 32px; 
+        font-size: 32px;
         line-height: 130%;
     }
 
     h2 {
         font-size: 28px;
-        line-height: 130%; /* 36.4px */
+        line-height: 130%;
     }
 
     h3 {
         font-size: 24px;
-        line-height: 130%; /* 31.2px */
+        line-height: 130%;
     }
 
     h4 {
         font-size: 20px;
-        line-height: 130%; /* 26px */
+        line-height: 130%;
     }
 
     strong {
@@ -190,22 +184,22 @@ export const Preview = styled.div`
     }
 
     em {
-        font-style: italic; 
-        display: inline-block; 
+        font-style: italic;
+        display: inline-block;
     }
 
     del {
-        text-decoration: line-through; 
+        text-decoration: line-through;
     }
 
     blockquote {
         position: relative;
-        border-left: 0; 
-        background: rgba(243, 243, 243, 0.6); 
+        border-left: 0;
+        background: rgba(243, 243, 243, 0.6);
         padding: 0px 0px 0px 25px;
         margin: 0;
         overflow: hidden;
-        line-height: 1.5; 
+        line-height: 1.5;
         white-space: pre-wrap;
     }
 
@@ -217,7 +211,7 @@ export const Preview = styled.div`
         bottom: 0;
         width: 5px;
         background: #1A9A18;
-        border-radius: 3px 0 0 3px; 
+        border-radius: 3px 0 0 3px;
     }
 `;
 
