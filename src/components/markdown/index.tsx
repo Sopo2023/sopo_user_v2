@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm'; 
+import axios from 'axios';
 
 import * as S from "src/components/markdown/index.style";
 
@@ -20,6 +20,7 @@ const MarkdownEditor: React.FC = () => {
     const [markdownText, setMarkdownText] = useState<string>('');
     const [titleColor, setTitleColor] = useState<string>('var(--Neutral-60, #858585)');
     const [textAreaColor, setTextAreaColor] = useState<string>('var(--Neutral-60, #858585)');
+    const [imageFile, setImageFile] = useState<File | null>(null);
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -31,6 +32,28 @@ const MarkdownEditor: React.FC = () => {
         const value = e.target.value;
         setMarkdownText(value);
         setTextAreaColor(value ? 'black' : 'var(--Neutral-60, #858585)');
+    };
+
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setImageFile(file);
+            const formData = new FormData();
+            formData.append('image', file);
+
+            try {
+                const response = await axios.post('http://localhost:3001/upload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                const { url } = response.data;
+                const imgMarkdown = `![](${url})`;
+                setMarkdownText(markdownText + '\n' + imgMarkdown);
+            } catch (error) {
+                console.error('Error uploading file:', error);
+            }
+        }
     };
 
     const insertMarkdown = (syntax: string) => {
@@ -51,8 +74,6 @@ const MarkdownEditor: React.FC = () => {
             newText = before + syntax + after;
         } else if (syntax === '```') {
             newText = before + syntax + '\n' + selectedText + '\n' + syntax + after;
-        } else if (syntax === 'quote') { // 특수 구문 처리
-            newText = before + `\n> ${selectedText}\n` + after;
         } else {
             newText = before + syntax + selectedText + after;
         }
@@ -74,7 +95,7 @@ const MarkdownEditor: React.FC = () => {
                     placeholder="제목을 입력하세요"
                     style={{ color: titleColor }}
                 />
-                <S.SepLine />
+                <S.SepLine/>
                 <S.ButtonContainer>
                     <S.MarkdownButton onClick={() => insertMarkdown('# ')}>
                         <S.ButtonTitleImg src={H1} />
@@ -97,15 +118,21 @@ const MarkdownEditor: React.FC = () => {
                     <S.MarkdownButton onClick={() => insertMarkdown('~~')}>
                         <S.ButtonStrokeImg src={Stroke} />
                     </S.MarkdownButton>
-                    <S.MarkdownButton onClick={() => insertMarkdown('quote')}>
+                    <S.MarkdownButton onClick={() => insertMarkdown('> ')}>
                         <S.ButtonQuoteImg src={Quote} />
                     </S.MarkdownButton>
-                    <S.MarkdownButton onClick={() => insertMarkdown('![]()')}>
+                    <S.MarkdownButton onClick={() => document.getElementById('file-input')?.click()}>
                         <S.ButtonImageImg src={Img} />
                     </S.MarkdownButton>
                     <S.MarkdownButton onClick={() => insertMarkdown('```')}>
                         <S.ButtonCodeImg src={Code} />
                     </S.MarkdownButton>
+                    <input
+                        id="file-input"
+                        type="file"
+                        style={{ display: 'none' }}
+                        onChange={handleFileChange}
+                    />
                 </S.ButtonContainer>
                 <S.TextArea
                     id="markdown-textarea"
@@ -117,9 +144,7 @@ const MarkdownEditor: React.FC = () => {
             </S.EditorContainer>
             <S.Preview>
                 <h1>{title}</h1>
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    {markdownText}
-                </ReactMarkdown>
+                <ReactMarkdown>{markdownText}</ReactMarkdown>
             </S.Preview>
         </S.Container>
     );
