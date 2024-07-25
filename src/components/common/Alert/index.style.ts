@@ -63,3 +63,26 @@ export const Type = styled.p<TypeProps>`
   line-height: 26px;
   cursor: pointer;
 `;
+
+export const NotificationItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+`;
+
+export const NotificationText = styled.span`
+  color: #333;
+`;
+
+export const ApprovalButton = styled.button`
+  color: #2e7d32;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+`;

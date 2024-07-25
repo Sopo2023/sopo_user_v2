@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import alert from "../asset/alert.svg";
 import * as S from "./index.style";
-import axios from "axios"; // API 호출을 위한 axios
 
 interface Notification {
   id: number;
-  text: string;
+  name: string;
+  title: string;
+  action: string;
   approved?: boolean;
 }
 
@@ -15,58 +16,90 @@ const index = () => {
   const [hasMore, setHasMore] = useState<boolean>(true);
 
   useEffect(() => {
-    fetchNotifications();
+    
+    loadNotifications(activeTab);
   }, [activeTab]);
 
-  const fetchNotifications = async () => {
-    try {
-      const response = await axios.get(`/api/notifications?tab=${activeTab}`);
-      setNotifications(response.data);
-    } catch (error) {
-      console.error("Error fetching notifications", error);
+  const loadNotifications = (tab: string) => {
+   
+    let data: Notification[] = [];
+    if (tab === "내 지원") {
+      data = [
+        {
+          id: 1,
+          name: "김호준",
+          title: "해커톤 같이 나가요",
+          action: "승인됨",
+          approved: true,
+        },
+        {
+          id: 2,
+          name: "신민호",
+          title: "해커톤 같이 나가요",
+          action: "지원완료",
+        },
+        {
+          id: 3,
+          name: "김가영",
+          title: "해커톤 같이 나가요",
+          action: "지원완료",
+        },
+      ];
+    } else if (tab === "내 대회") {
+      data = [
+        {
+          id: 1,
+          name: "김호준",
+          title: "리액트 처음 세팅하는 법",
+          action: "승인하기",
+        },
+        {
+          id: 2,
+          name: "신민호",
+          title: "리액트 처음 세팅하는 법",
+          action: "승인하기",
+        },
+      ];
+    } else if (tab === "내 게시글") {
+      data = [
+        {
+          id: 1,
+          name: "김호준",
+          title: "리액트 처음 세팅하는 법",
+          action: "댓글을 남겼습니다.",
+        },
+        {
+          id: 2,
+          name: "신민호",
+          title: "리액트 처음 세팅하는 법",
+          action: "좋아요를 남겼습니다.",
+        },
+        {
+          id: 3,
+          name: "신민호",
+          title: "안녕하세요 대소고 일학년을 살아가는 법입니다.",
+          action: "좋아요를 남겼습니다.",
+        },
+      ];
     }
-  };
-
-  const loadMoreNotifications = async () => {
-    if (!hasMore) return;
-    try {
-      const response = await axios.get(
-        `/api/notifications?tab=${activeTab}&offset=${notifications.length}`
-      );
-      setNotifications((prevNotifications) => [
-        ...prevNotifications,
-        ...response.data,
-      ]);
-      if (response.data.length === 0) {
-        setHasMore(false);
-      }
-    } catch (error) {
-      console.error("Error loading more notifications", error);
-    }
+    setNotifications(data);
   };
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
     setNotifications([]);
     setHasMore(true);
+    loadNotifications(tab);
   };
 
-  const renderNotification = (notification: Notification) => {
-    return (
-      <div key={notification.id}>
-        <span>{notification.text}</span>
-        {activeTab === "내 대회" && (
-          <button>{notification.approved ? "승인됨" : "승인하기"}</button>
-        )}
-      </div>
+  const handleApproval = (id: number) => {
+    setNotifications((prev) =>
+      prev.map((notification) =>
+        notification.id === id
+          ? { ...notification, action: "승인됨", approved: true }
+          : notification
+      )
     );
-  };
-
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const { scrollHeight, scrollTop, clientHeight } = e.currentTarget;
-    if (scrollHeight - scrollTop === clientHeight) {
-      loadMoreNotifications();
-    }
   };
 
   return (
@@ -97,9 +130,24 @@ const index = () => {
             내 게시글
           </S.Type>
         </S.BodyHead>
-        <div onScroll={handleScroll}>
-          {notifications.map(renderNotification)}
-          {hasMore && <div>Loading more...</div>}
+
+        <div>
+          {notifications.map((notification) => (
+            <S.NotificationItem key={notification.id}>
+              <S.NotificationText>
+                {notification.name} - {notification.title}
+              </S.NotificationText>
+              {notification.approved || activeTab !== "내 대회" ? (
+                <S.NotificationText>{notification.action}</S.NotificationText>
+              ) : (
+                <S.ApprovalButton
+                  onClick={() => handleApproval(notification.id)}
+                >
+                  {notification.action}
+                </S.ApprovalButton>
+              )}
+            </S.NotificationItem>
+          ))}
         </div>
       </S.Padding>
     </S.Layout>
