@@ -15,7 +15,7 @@ import Img from 'src/assets/imgs/markdown/image.svg';
 import Code from 'src/assets/imgs/markdown/code.svg';
 import { useMarkdownEditor } from 'src/hooks/markdowneditor/useMarkdownEditor';
 
-const MarkdownEditor: React.FC = () => {
+const MarkdownEditor = () => {
     const {
         title,
         handleTitleChange,
