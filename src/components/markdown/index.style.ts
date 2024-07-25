@@ -22,15 +22,23 @@ export const EditorContainer = styled.div`
 `;
 
 export const TitleInput = styled.input`
-    color: var(--Neutral-60, #858585);
+    color: var(--Neutral-5, #0A0A0A);
+    /* Title1/Bold */
     font-family: Pretendard;
-    font-size: 20px;
+    font-size: 32px;
     font-style: normal;
-    font-weight: 700;
-    line-height: 20px; 
+    font-weight: 800;
+    line-height: 130%; /* 41.6px */
     margin-bottom: 10px; 
     border: none;
+    outline: none;
 `;
+
+export const SepLine = styled.div`
+    width: 71px;
+    height: 1px;
+    background: #000;
+`
 
 export const ButtonContainer = styled.div`
     margin: 10px 0; 
@@ -40,12 +48,6 @@ export const ButtonContainer = styled.div`
 `;
 
 export const MarkdownButton = styled.button`
-    color: var(--DarkGray-70, #8E8E8E);
-    font-family: Pretendard;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px; /* 200% */
     border: none;
     background: none;
     cursor: pointer;
@@ -53,6 +55,10 @@ export const MarkdownButton = styled.button`
 
     display: flex;
     justify-content: center;
+    align-items: center;
+
+    width: 18px;
+    height: 35px;
 
     &:hover {
         background: var(--DarkGray-95, #EEE);
@@ -129,6 +135,7 @@ export const TextArea = styled.textarea`
     font-weight: 400;
     line-height: 20px;
     border: none;
+    outline: none;
 `;
 
 export const Preview = styled.div`
@@ -139,8 +146,64 @@ export const Preview = styled.div`
     box-sizing: border-box; 
     overflow-y: auto;
 
+    h1, h2, h3, h4 {
+        color: var(--Neutral-0, #000);
+        font-family: Pretendard;
+        font-weight: 700;
+    }
+
     h1 {
+        font-size: 32px; 
+        line-height: 130%;
+    }
+
+    h2 {
+        font-size: 28px;
+        line-height: 130%; /* 36.4px */
+    }
+
+    h3 {
         font-size: 24px;
-        margin-bottom: 10px;
+        line-height: 130%; /* 31.2px */
+    }
+
+    h4 {
+        font-size: 20px;
+        line-height: 130%; /* 26px */
+    }
+
+    strong {
+        font-weight: 700;
+    }
+
+    em {
+        font-style: italic; 
+        display: inline-block; 
+    }
+
+    del {
+        text-decoration: line-through; 
+    }
+
+    blockquote {
+        position: relative;
+        border-left: 0; 
+        background: rgba(243, 243, 243, 0.6); 
+        padding: 0px 0px 0px 25px;
+        margin: 0;
+        overflow: hidden;
+        line-height: 1.5; 
+        white-space: pre-wrap;
+    }
+
+    blockquote::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 5px;
+        background: #1A9A18;
+        border-radius: 3px 0 0 3px; 
     }
 `;
