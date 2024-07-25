@@ -1,9 +1,7 @@
 import React from 'react'
-
+import Main from "src/components/home/main/index";
 const index = () => {
-  return (
-    <div>index</div>
-  )
+  return <Main/>
 }
 
 export default index
