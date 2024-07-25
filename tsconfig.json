@@ -20,5 +20,11 @@
     },
     "baseUrl": "."
   },
-  "include": ["src","@types/images.d.ts","@types/font.d.ts"]
+  "include": [
+    "src",
+    "src/types/react-syntax-highlighter.d.ts",
+    "@types/images.d.ts",
+    "@types/font.d.ts",
+    "@Types/react-app-env.d.ts"
+  ]
 }

@@ -5,7 +5,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   position: absolute;
   width: 100%;
-  height: 80px;
+
   align-items: center;
   justify-content: flex-end;
   background-color: #f7fff3; 
@@ -27,10 +27,11 @@ export const AvatarName = styled.span`
   line-height: 130%; /* 20.8px */
   padding-left: 11px;
 `;
+
 export const AvatarProfile = styled.div`
-display: flex;
-align-items: center;
-width: 100px;
-height: 50px;
-margin-right: 85px;
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  margin-right: 85px;
 `

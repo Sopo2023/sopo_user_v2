@@ -1,7 +1,17 @@
 import styled from "styled-components";
 
+export const ContainerParents = styled.div`
+    background: #F7FFF3;
+    padding-top: 48px;
+    height: calc(100vh - 48px);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+`
+
 export const Container = styled.div`
-    width: 899px;
+    width: 1100px;
     height: 710px;
     flex-shrink: 0;
 
@@ -10,6 +20,9 @@ export const Container = styled.div`
     box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
 
     display: flex;
+    
+    justify-content: center;
+    align-items: center;
 `;
 
 export const EditorContainer = styled.div`
@@ -205,5 +218,21 @@ export const Preview = styled.div`
         width: 5px;
         background: #1A9A18;
         border-radius: 3px 0 0 3px; 
+    }
+`;
+
+export const LanguageSelector = styled.select`
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    font-family: Pretendard;
+    font-size: 13px;
+    color: var(--Neutral-60, #858585);
+    background-color: #fff;
+    margin-bottom: 10px;
+
+    &:focus {
+        border-color: #007bff;
+        outline: none;
     }
 `;
