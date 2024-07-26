@@ -1,12 +1,8 @@
-import React from 'react';
-import Layout from 'src/components/common/layout/layout';
+import React from "react";
+import Main from "src/components/home/main/index";
 
-const Index: React.FC = () => {
-  return (
-    <Layout>
-      <></>
-    </Layout>
-  );
+const Page = () => {
+  return <Main />;
 };
 
-export default Index;
+export default Page;

@@ -1,5 +1,5 @@
 import GlobalStyles from "src/styles/global";
-import Router from "../../Router/index";
+import Router from "../../routers/index";
 import PageTemplate from "../pageTemplate";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
