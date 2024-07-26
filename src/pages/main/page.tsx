@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from 'src/components/common/layout/layout';
 
-const Index: React.FC = () => {
+const Index = () => {
   return (
     <Layout>
       <></>
