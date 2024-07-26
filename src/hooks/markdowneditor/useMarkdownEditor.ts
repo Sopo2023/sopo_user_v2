@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import axios from 'axios';
 
 export const useMarkdownEditor = () => {
     const [title, setTitle] = useState<string>('');
@@ -27,19 +26,6 @@ export const useMarkdownEditor = () => {
             setImageFile(file);
             const formData = new FormData();
             formData.append('image', file);
-
-            try {
-                const response = await axios.post('http://localhost:3001/upload', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
-                const { url } = response.data;
-                const imgMarkdown = `![](${url})`;
-                setMarkdownText(markdownText + '\n' + imgMarkdown);
-            } catch (error) {
-                console.error('Error uploading file:', error);
-            }
         }
     };
 
