@@ -7,7 +7,7 @@ const useSidebar = () => {
 
   useEffect(() => {
     const path = location.pathname;
-    if (path === '/main') {
+    if (path === '/') {
       setActiveItem('home');
     } else if (path === '/seniortojunior') {
       setActiveItem('mentor');

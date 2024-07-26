@@ -1,4 +1,4 @@
-import { ProvidersProps } from "../Provider/type";
+import { ProvidersProps } from "../providers/type";
 const Layout = ({ children }: ProvidersProps) => {
   return <>{children}</>;
 };
