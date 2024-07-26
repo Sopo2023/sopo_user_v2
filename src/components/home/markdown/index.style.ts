@@ -1,8 +1,4 @@
-import styled, { css } from 'styled-components';
-
-interface BackArrowButtonProps {
-  active: boolean;
-}
+import styled from 'styled-components';
 
 export const TitleContainer = styled.div`
     display: flex;
