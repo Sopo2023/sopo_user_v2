@@ -53,16 +53,30 @@ export const useMarkdownEditor = () => {
 
         let newText = '';
 
-        if (syntax === '**' || syntax === '_' || syntax === '~~') {
-            newText = before + syntax + selectedText + syntax + after;
-        } else if (syntax === '> ') {
-            newText = before + syntax + selectedText + after;
-        } else if (syntax === '![]()') {
-            newText = before + syntax + after;
-        } else if (syntax === '```') {
-            newText = before + `\`\`\`${selectedLanguage}\n` + selectedText + '\n```' + after;
-        } else {
-            newText = before + syntax + selectedText + after;
+        switch (syntax) {
+            case '**':
+            case '_':
+            case '~~':
+                newText = before + syntax + selectedText + syntax + after;
+                break;
+            case '> ':
+                newText = before + syntax + selectedText + after;
+                break;
+            case '![]()':
+                newText = before + syntax + after;
+                break;
+            case '```':
+                newText = before + `\`\`\`${selectedLanguage}\n` + selectedText + '\n```' + after;
+                break;
+            case '<br/>':
+                newText = before + '<br/>' + after;
+                break;
+            case '<hr/>':
+                newText = before + '<hr/>' + after;
+                break;
+            default:
+                newText = before + syntax + selectedText + after;
+                break;
         }
 
         setMarkdownText(newText);
