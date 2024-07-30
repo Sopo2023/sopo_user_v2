@@ -5,7 +5,7 @@ export const mainView = styled.main`
   flex-direction: column;
   margin-top: 48px;
   width: 100%;
-  height: 1calc (100% - 48px);
+  height: calc(100% - 48px);
 `;
 export const mainArticle = styled.article`
   display: flex;

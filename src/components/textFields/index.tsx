@@ -22,7 +22,8 @@ const TextField = ({
   type = "",
   onKeyDown,
   style,
-  value
+  value,
+  
 }: TextFieldProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [textBox, setTextBox] = useState(false);
@@ -37,6 +38,7 @@ const TextField = ({
         type={
           type == "password" ? (showPassword ? "text" : "password") : "text"
         }
+        
         onKeyDown={onKeyDown}
       ></Text_Field>
       

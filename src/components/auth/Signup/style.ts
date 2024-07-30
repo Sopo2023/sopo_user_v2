@@ -57,7 +57,7 @@ export const buttonBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 30px;
+  height: 20px;
   align-items: center;
   span {
     color: ${color.Label.Disable};

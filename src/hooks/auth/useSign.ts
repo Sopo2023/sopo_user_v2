@@ -1,22 +1,26 @@
 import React, { useState, useCallback } from "react";
 import { Sign } from "src/types/auth/signup.type";
 import { showToast } from "src/libs/toast/swal";
-import { useSignUpMutation } from "src/queries/auth/queries";
+import { useSignUpMutation,useEmailNumber } from "src/queries/auth/queries";
 
 export const useSignup = () => {
   const SignUpMutation = useSignUpMutation();
+  const EmailMutation = useEmailNumber();
   const [section, setSection] = useState("first");
 
   const [signUpData, setsignUpData] = useState<Sign>({
-    id: "",
-    password: "",
-    checkPasswrod: "",
-    name: "",
-    email: "",
-    checkNumber: "",
+    memberId: "",
+    memberPassword: "",
+    memberChckPassword: "",
+    memberName: "",
+    memberEmail: "",
+    memberSchool:"",
+    authCode: "",
+    memberFcmToken:"",
   });
+  
   const handleSigUpData = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>): void => {
+    (e: React.ChangeEvent<HTMLInputElement |HTMLSelectElement>): void => {
       const { name, value } = e.target;
       setsignUpData((prev) => ({ ...prev, [name]: value }));
     },
@@ -29,26 +33,54 @@ export const useSignup = () => {
     }
   };
   const submitSignupDataFirst = useCallback(async () => {
-    const { id, password, checkPasswrod } = signUpData;
+    const { memberId, memberPassword, memberChckPassword } = signUpData;
 
-    if (id === "" || password === "" || checkPasswrod === "") {
+    if (memberId === "" || memberPassword === "" || memberChckPassword === "") {
       showToast("error", "양식이 비어있습니다");
       return;
     }
-    if (password !== checkPasswrod) {
+    if (memberPassword !== memberChckPassword) {
       showToast("error", "비밀번호가 다릅니다");
     }
     setSection("second");
   }, [signUpData]);
+const [isWaiting, setIsWaiting]=useState(false);
+  const checkEmailAuthCode = ()=>{
+    setIsWaiting(true) 
+    const {  memberEmail,memberSchool } = signUpData;
+    const domain = memberEmail.split('@')[1];
+    if(memberEmail=== ""){
+      showToast("error","이메일을 작성해주세요");
+    }
+    else if(domain !== "dgsw.hs.kr" && memberSchool !=="대구소프트웨어마이스터고"){
+      showToast("error","학교이메일이 다릅니다")
+    }
+    const emailData = {
+      email:memberEmail
+    }
+    
+    EmailMutation.mutate(emailData,{
+      onSuccess:()=>{
+        showToast("success","이메일 인증번호 발송")
+        setIsWaiting(false) 
+      },
+      onError:()=>{
+        showToast("error","인증번호 실패")
+        setIsWaiting(false) 
+      }
+    })
 
+  }
   const submitSignupDataSecond = useCallback(async () => {
-    const { name, email, checkNumber } = signUpData;
-    if (name === "" || email === "" || checkNumber === "") {
+    const { memberName, memberEmail, authCode,memberSchool } = signUpData;
+    if (memberName === "" || memberEmail === "" || authCode === "" || memberSchool==="") {
       showToast("error", "형식이 비어있습니다");
       return;
     }
+    
     SignUpMutation.mutate(signUpData, {
       onSuccess: () => {
+        showToast("success","회원가입 성공")
         window.location.reload();
       },
       onError: () => {
@@ -58,9 +90,11 @@ export const useSignup = () => {
   }, [signUpData]);
 
   return {
-    section,
-    setSection,
+    isWaiting,
     signUpData,
+    section,
+    checkEmailAuthCode,
+    setSection,
     submitSignupDataSecond,
     handleSigUpData,
     firstHandleKeyDown,

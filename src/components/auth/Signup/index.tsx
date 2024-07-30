@@ -24,6 +24,8 @@ const Signup = ({ setIsLogin }: Props) => {
       handleSignupData={sign.handleSigUpData}
       submitSignupDataSecond={sign.submitSignupDataSecond}
       keydownButton={sign.firstHandleKeyDown}
+      chckEmailAuthCode={sign.checkEmailAuthCode}
+      isWaiting={sign.isWaiting}
     />,
   ];
 

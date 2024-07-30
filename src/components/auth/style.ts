@@ -20,7 +20,7 @@ position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
   padding: 36px;
   min-width: 485px;
   min-height: 541px;
