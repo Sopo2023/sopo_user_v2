@@ -9,32 +9,14 @@ import ArrowImg from 'src/assets/imgs/sidebar/logouticon.svg';
 import LastestImg from 'src/assets/imgs/sidebar/lastestImg.svg';
 import SearchIcon from 'src/assets/imgs/postHeader/searchIcon.svg';
 
-interface SearchResult {
-  id: number;
-  title: string;
-}
-
-const fetchSearchResults = async (query: string): Promise<SearchResult[]> => {
-  try {
-    const response = await fetch(`/searchurl?q=${encodeURIComponent(query)}`);
-    //serverulr 넣을 자리 입니둥~. 
-    if (!response.ok) {
-      throw new Error('Network response error');
-    }
-    return response.json();
-  } catch (error) {
-    console.error('Fetch error:', error);
-    return [];
-  }
-};
+import useSearchResults from 'src/hooks/postheader/usePostHeader';
 
 const PostHeader: React.FC = () => {
   const [pageTitleImg, setPageTitleImg] = useState<string>(SeniorToJuniorImg);
   const [pageTitleText, setPageTitleText] = useState<string>('선배가 후배에게');
   const [buttonText, setButtonText] = useState<string>('글쓰기');
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const location = useLocation();
+  const { searchTerm, searchResults, handleSearchChange, handleSearchSubmit } = useSearchResults();
 
   useEffect(() => {
     switch (location.pathname) {
@@ -59,18 +41,6 @@ const PostHeader: React.FC = () => {
         setButtonText('글쓰기');
     }
   }, [location.pathname]);
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleSearchSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); 
-    if (searchTerm.trim()) {
-      const results = await fetchSearchResults(searchTerm);
-      setSearchResults(results);
-    }
-  };
 
   return (
     <S.PageTitle>
