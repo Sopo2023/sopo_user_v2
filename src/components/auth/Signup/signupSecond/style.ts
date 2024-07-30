@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import ExpandDown from "src/assets/imgs/Expand_down.svg";
+import ExpandDown from "src/assets/imgs/Signimg/Expand_down.svg";
 import color from "src/styles/color";
 
 export const InputContainer = styled.div`
