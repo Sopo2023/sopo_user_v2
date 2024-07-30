@@ -1,18 +1,17 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 interface SearchResult {
   id: number;
   title: string;
 }
 
-const fetchSearchResults = async (query: string): Promise<SearchResult[]> => {
+const getSearchResults = async (query: string): Promise<SearchResult[]> => {
   try {
-    const response = await fetch(`/searchurl?q=${encodeURIComponent(query)}`);
-    // 서버 서치 들어갈 자리입니당~~~*^^*
-    if (!response.ok) {
-      throw new Error('Network response error..ㅠㅜㅠㅜㅠㅜ');
-    }
-    return response.json();
+    const response = await axios.get('/searchurl', {
+      params: { q: query },
+    });
+    return response.data;
   } catch (error) {
     console.error('Fetch error:', error);
     return [];
@@ -30,7 +29,7 @@ const useSearchResults = (initialQuery: string = '') => {
   const handleSearchSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (searchTerm.trim()) {
-      const results = await fetchSearchResults(searchTerm);
+      const results = await getSearchResults(searchTerm);
       setSearchResults(results);
     }
   };
