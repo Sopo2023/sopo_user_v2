@@ -27,8 +27,8 @@ const SignupFirst = ({
             아이디<p>*</p>
           </span>
           <TextField
-            name="id"
-            value={signupData.id}
+            name="memberId"
+            value={signupData.memberId}
             type="text"
             onChange={handleSignupData}
             placeholder="아이디를 입력해주세요"
@@ -41,8 +41,8 @@ const SignupFirst = ({
             비밀번호<p>*</p>
           </span>
           <TextField
-            name="password"
-            value={signupData.password}
+            name="memberPassword"
+            value={signupData.memberPassword}
             type={"password"}
             onChange={handleSignupData}
             placeholder="비밀번호를 입력해주세요"
@@ -55,8 +55,8 @@ const SignupFirst = ({
             비밀번호 확인<p>*</p>
           </span>
           <TextField
-            name="checkPasswrod"
-            value={signupData.checkPasswrod}
+            name="memberChckPassword"
+            value={signupData.memberChckPassword}
             type={"password"}
             onChange={handleSignupData}
             placeholder="비밀번호을 입력해주세요"
