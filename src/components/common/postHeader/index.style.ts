@@ -56,7 +56,6 @@ export const ButtonText = styled.button`
     align-items: center;
 
     color: var(--DarkGray-60, #787878);
-    font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
