@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import alert from "src/assets/imgs/alarm/alert.svg";
+import alert from "src/assets/imgs/main/alert.svg";
 import * as S from "./index.style";
 
 interface Notification {
