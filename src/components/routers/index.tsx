@@ -6,7 +6,7 @@ import Seniortojunior from "src/pages/seniortojunior/page";
 import Portfolio from "src/pages/portfolio/page";
 import Competition from "src/pages/competition/page";
 import NotFound from "../common/notfound";
-
+import ProfilePage from "src/pages/profile/page";
 const Router = () => {
   return (
     <Routes>
@@ -15,6 +15,7 @@ const Router = () => {
       <Route path="/write" element={<Wirte />} />
       <Route path="/seniortojunior" element={<Seniortojunior />} />
       <Route path="/portfolio" element={<Portfolio />} />
+      <Route path="/profile" element={<ProfilePage/>}/>
       <Route path="/competition" element={<Competition />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

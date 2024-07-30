@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import alert from "../asset/alert.svg";
+import alert from "src/assets/imgs/alarm/alert.svg";
 import * as S from "./index.style";
 
 interface Notification {
@@ -10,7 +10,7 @@ interface Notification {
   approved?: boolean;
 }
 
-const index = () => {
+const Alarm = () => {
   const [activeTab, setActiveTab] = useState<string>("내 지원");
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
@@ -154,4 +154,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Alarm;

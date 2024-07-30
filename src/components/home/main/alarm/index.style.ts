@@ -10,15 +10,15 @@ const slideIn = keyframes`
 `;
 
 export const Layout = styled.div`
-  width: 650px;
+  width: 620px;
   height: 270px;
   border-radius: 13px;
   background: #fff;
   box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
 `;
 export const Padding = styled.div`
-  width: 590px;
-  height: 230px;
+  width: 90%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 20px 40px 30px 25px;
