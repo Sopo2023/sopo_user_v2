@@ -1,6 +1,8 @@
 import GlobalStyles from "src/styles/global";
-import Router from "../../Router/index";
+import Router from "../../routers/index";
+import PageTemplate from "../pageTemplate";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter } from "react-router-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,8 +20,13 @@ const Provider = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyles />
-      <Router />
+      <BrowserRouter>
+        <PageTemplate>
+          <Router />
+        </PageTemplate>
+      </BrowserRouter>
     </QueryClientProvider>
   );
 };
+
 export default Provider;

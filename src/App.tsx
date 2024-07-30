@@ -1,4 +1,4 @@
-import Provider from "./components/common/Provider";
+import Provider from "./components/common/providers";
 
 function App() {
   return <Provider/>;

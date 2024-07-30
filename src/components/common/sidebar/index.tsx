@@ -21,14 +21,14 @@ const Index = () => {
   return (
     <S.SidebarContainer>
       <S.SideBarWrap>
-        <S.MainLogo onClick={() => handleMenuItemClick('home', '/main')}>
+        <S.MainLogo onClick={() => handleMenuItemClick('home', '/')}>
           <S.SopoLogoImg src={SopoLogo} alt='error' />
           <S.MainTitle>소포</S.MainTitle>
         </S.MainLogo>
         <S.Menu>
           <S.MenuItem
             active={activeItem === 'home'}
-            onClick={() => handleMenuItemClick('home', '/main')}
+            onClick={() => handleMenuItemClick('home', '/')}
           >
             <S.MenuIcon src={HomeIcon} alt='error' />
             <S.MenuText>홈</S.MenuText>

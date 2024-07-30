@@ -1,12 +1,9 @@
-import React from 'react';
-import Layout from 'src/components/common/layout/layout';
+import React from "react";
+import Main from "src/components/home/main/index";
 
-const Index = () => {
-  return (
-    <Layout>
-      <></>
-    </Layout>
-  );
+
+const Page = () => {
+  return <Main />;
 };
 
-export default Index;
+export default Page;
