@@ -101,16 +101,20 @@ export const SearchBox = styled.form`
 `;
 
 export const SearchInput = styled.input`
-    color: var(--Secondly-Color---LightGray-600, #C5C5C5);
+    color: #000;
     font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
-    line-height: 130%; /* 18.2px */
+    line-height: 130%; 
     border: none;
     outline: none;
     flex-grow: 1;
     min-width: 0; 
+
+    ::placeholder {
+        color: #C5C5C5;
+    }
 `;
 
 export const SearchIconImg = styled.img`
