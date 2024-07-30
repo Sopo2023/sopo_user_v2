@@ -11,7 +11,7 @@ import SearchIcon from 'src/assets/imgs/postHeader/searchIcon.svg';
 
 import useSearchResults from 'src/hooks/postheader/usePostHeader';
 
-const PostHeader: React.FC = () => {
+const PostHeader = () => {
   const [pageTitleImg, setPageTitleImg] = useState<string>(SeniorToJuniorImg);
   const [pageTitleText, setPageTitleText] = useState<string>('선배가 후배에게');
   const [buttonText, setButtonText] = useState<string>('글쓰기');
