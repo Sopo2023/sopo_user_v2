@@ -1,9 +1,7 @@
 import React from 'react';
-import SideBar from 'src/components/common/sidebar';
-import Header from 'src/components/common/header';
-import Layout from 'src/components/layout/layout';
+import Layout from 'src/components/common/layout/layout';
 
-const Index: React.FC = () => {
+const Index = () => {
   return (
     <Layout>
       <></>

@@ -9,6 +9,7 @@ import Sign from "src/pages/auth/index";
 // import Portfoliosub from "src/Components/Portfoliosub/portfolioSub";
 // import CompetitionSub from "src/Components/compsub/competitionsub";
 import Main from "src/pages/main/page";
+import Wirte from "src/pages/wirte/page";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const Router = () => {
@@ -17,6 +18,7 @@ const Router = () => {
       <Routes>
         <Route path="/sign" element={<Sign />} />
         <Route path="/main" element={<Main />} />
+        <Route path="/wirte" element={<Wirte />} />
         {/* <Route path="/" element={<Main />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/Mentor-Mentee" element={<Updown />} />
