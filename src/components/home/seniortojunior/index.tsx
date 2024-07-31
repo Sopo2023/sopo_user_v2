@@ -47,6 +47,7 @@ const Seniortojunior = () => {
                             date={post.date}
                             reaction={post.reaction}
                             author={post.author}
+                            style={{}}
                         />
                     ))}
                 </S.PostsGrid>

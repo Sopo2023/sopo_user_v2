@@ -9,11 +9,12 @@ interface PostItemProps {
     date: string;
     reaction: string;
     author: string;
+    style:React.CSSProperties;
 }
 
-const PostItem = ({ title, content, date, reaction, author }: PostItemProps) => {
+const PostItem = ({ title, content, date, reaction, author,style }: PostItemProps) => {
     return (
-        <S.PostContainer>
+        <S.PostContainer style={style}>
             <S.PostImage />
             <S.PostContentWrapper>
                 <S.PostTitle>{title}</S.PostTitle>
