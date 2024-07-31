@@ -11,7 +11,8 @@ export const ContainerParents = styled.div`
 
 export const Container = styled.div`
     width: 90%;
-    max-width: 1100px;
+    max-width: 1700px;
+    min-width: 1100px;
     height: auto;
     max-height: 90%;
     border-radius: 13px;
