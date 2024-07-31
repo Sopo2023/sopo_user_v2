@@ -13,19 +13,22 @@ const Signup = ({ setIsLogin }: Props) => {
 
   const signupComponents: ReactNode[] = [
     <SignupFirst
-      signupData={sign.signUpData}
-      handleSignupData={sign.handleSigUpData}
+      signupData={sign.signupData}
+      handleSignupData={sign.handleSignupData}
       submitSignupDataFirst={sign.submitSignupDataFirst}
       keydownButton={sign.firstHandleKeyDown}
+      key="signupFirst"
     />,
     <SignupSecond
       setSection={sign.setSection}
-      signupData={sign.signUpData}
-      handleSignupData={sign.handleSigUpData}
+      signupData={sign.signupData}
+      handleSignupData={sign.handleSignupData}
       submitSignupDataSecond={sign.submitSignupDataSecond}
-      keydownButton={sign.firstHandleKeyDown}
+      keydownButton={sign.secondHandleKeyDown}
+      emailKeydownButton={sign.emailKeydownButton}
       chckEmailAuthCode={sign.checkEmailAuthCode}
       isWaiting={sign.isWaiting}
+      key="signupSecond"
     />,
   ];
 

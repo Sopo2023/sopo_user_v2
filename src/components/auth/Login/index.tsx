@@ -23,8 +23,8 @@ const LoginComponent = ({ setIsLogin }: Props) => {
               아이디 <p>*</p>
             </span>
             <TextField
-              name="id"
-              value={auth.LoginData.id}
+              name="memberId"
+              value={auth.LoginData.memberId}
               type="text"
               onChange={auth.handleSignUpData}
               placeholder="아이디를 입력해주세요"
@@ -37,8 +37,8 @@ const LoginComponent = ({ setIsLogin }: Props) => {
               비밀번호 <p>*</p>
             </span>
             <TextField
-              name="password"
-              value={auth.LoginData.password}
+              name="memberPassword"
+              value={auth.LoginData.memberPassword}
               type={"password"}
               onChange={auth.handleSignUpData}
               placeholder="비밀번호를 입력해주세요"
