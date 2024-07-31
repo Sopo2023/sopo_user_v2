@@ -13,8 +13,8 @@ const Header = () => {
   };
 
   return (
-    <S.HeaderContainer onClick={handleHeaderClick}>
-      <S.AvatarProfile>
+    <S.HeaderContainer >
+      <S.AvatarProfile onClick={handleHeaderClick}>
         <S.AvatarImg src={AvatarImg} alt="error" />
         <S.AvatarName>{username}</S.AvatarName>
       </S.AvatarProfile>

@@ -55,10 +55,10 @@ const SignupSecond = ({
           </span>
           <S.selectButton
             name="memberSchool"
-       
+            value={signupData.memberSchool}
             onChange={handleSignupData}
           >
-            <option value="" selected>학교를 선택해주세요</option>
+            <option value="" selected >학교를 선택해주세요</option>
             <option value="대구소프트웨어마이스터고">
               대구소프트웨어마이스터고
             </option>
@@ -101,11 +101,13 @@ const SignupSecond = ({
               {" "}
               이메일 인증번호<p>*</p>
             </span>
+            <p>
             {isWaiting === "전송중"
               ? "이메일 전송중.."
               : isWaiting === "전송성공"
               ? "이메일 전송성공"
               : ""}
+              </p>
           </S.emailPostField>
           <TextField
             name="authCode"
