@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import axios from 'axios';
 
 export const useMarkdownEditor = () => {
     const [title, setTitle] = useState<string>('');
@@ -27,19 +26,6 @@ export const useMarkdownEditor = () => {
             setImageFile(file);
             const formData = new FormData();
             formData.append('image', file);
-
-            try {
-                const response = await axios.post('http://localhost:3001/upload', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
-                const { url } = response.data;
-                const imgMarkdown = `![](${url})`;
-                setMarkdownText(markdownText + '\n' + imgMarkdown);
-            } catch (error) {
-                console.error('Error uploading file:', error);
-            }
         }
     };
 
@@ -53,16 +39,30 @@ export const useMarkdownEditor = () => {
 
         let newText = '';
 
-        if (syntax === '**' || syntax === '_' || syntax === '~~') {
-            newText = before + syntax + selectedText + syntax + after;
-        } else if (syntax === '> ') {
-            newText = before + syntax + selectedText + after;
-        } else if (syntax === '![]()') {
-            newText = before + syntax + after;
-        } else if (syntax === '```') {
-            newText = before + `\`\`\`${selectedLanguage}\n` + selectedText + '\n```' + after;
-        } else {
-            newText = before + syntax + selectedText + after;
+        switch (syntax) {
+            case '**':
+            case '_':
+            case '~~':
+                newText = before + syntax + selectedText + syntax + after;
+                break;
+            case '> ':
+                newText = before + syntax + selectedText + after;
+                break;
+            case '![]()':
+                newText = before + syntax + after;
+                break;
+            case '```':
+                newText = before + `\`\`\`${selectedLanguage}\n` + selectedText + '\n```' + after;
+                break;
+            case '<br/>':
+                newText = before + '<br/>' + after;
+                break;
+            case '<hr/>':
+                newText = before + '<hr/>' + after;
+                break;
+            default:
+                newText = before + syntax + selectedText + after;
+                break;
         }
 
         setMarkdownText(newText);
