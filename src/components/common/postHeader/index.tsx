@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as S from 'src/components/common/postHeader/index.style';
 
 import SeniorToJuniorImg from 'src/assets/imgs/sidebar/metometi.svg';
@@ -16,6 +16,7 @@ const PostHeader = () => {
   const [pageTitleText, setPageTitleText] = useState<string>('선배가 후배에게');
   const [buttonText, setButtonText] = useState<string>('글쓰기');
   const location = useLocation();
+  const navigate = useNavigate(); 
   const { searchTerm, searchResults, handleSearchChange, handleSearchSubmit } = useSearchResults();
 
   useEffect(() => {
@@ -42,6 +43,10 @@ const PostHeader = () => {
     }
   }, [location.pathname]);
 
+  const handleButtonClick = () => {
+    navigate(`${location.pathname}/write`);
+  };
+
   return (
     <S.PageTitle>
       <S.ImgWrap>
@@ -67,7 +72,7 @@ const PostHeader = () => {
           <S.SearchIconImg src={SearchIcon} />
         </S.SearchIconWrap>
       </S.SearchBox>
-      <S.StartWirteButton>
+      <S.StartWirteButton onClick={handleButtonClick}>
         {buttonText}
       </S.StartWirteButton>
 
