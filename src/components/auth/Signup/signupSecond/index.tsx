@@ -11,10 +11,11 @@ interface Props {
   handleSignupData: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
+  emailKeydownButton: (e: React.KeyboardEvent) => void;
   submitSignupDataSecond: () => void;
   keydownButton: (e: React.KeyboardEvent) => void;
-  chckEmailAuthCode:()=>void
-  isWaiting:boolean;
+  chckEmailAuthCode: () => void;
+  isWaiting: string;
 }
 
 const SignupSecond = ({
@@ -24,9 +25,9 @@ const SignupSecond = ({
   keydownButton,
   submitSignupDataSecond,
   chckEmailAuthCode,
+  emailKeydownButton,
   isWaiting,
 }: Props) => {
-  
   return (
     <>
       <S.InputContainer>
@@ -54,9 +55,10 @@ const SignupSecond = ({
           </span>
           <S.selectButton
             name="memberSchool"
-            value={signupData.memberSchool}
+       
             onChange={handleSignupData}
           >
+            <option value="" selected>학교를 선택해주세요</option>
             <option value="대구소프트웨어마이스터고">
               대구소프트웨어마이스터고
             </option>
@@ -68,6 +70,9 @@ const SignupSecond = ({
             </option>
             <option value="대덕소프트웨어마이스터고">
               대덕소프트웨어마이스터고
+            </option>
+            <option value="기타" >
+              기타
             </option>
           </S.selectButton>
         </S.InputText>
@@ -82,21 +87,25 @@ const SignupSecond = ({
               type="text"
               onChange={handleSignupData}
               placeholder="이메일을 입력해주세요"
-              onKeyDown={keydownButton}
+              onKeyDown={emailKeydownButton}
               style={{ width: "70%" }}
             />
-             <S.emailNumberButton onClick={chckEmailAuthCode}><span>인증하기</span></S.emailNumberButton>
+            <S.emailNumberButton onClick={chckEmailAuthCode}>
+              <span>인증하기</span>
+            </S.emailNumberButton>
           </S.emailTextField>
-          
         </S.InputText>
         <S.InputText>
           <S.emailPostField>
-          <span>
-            {" "}
-            이메일 인증번호<p>*</p>
-            
-          </span>
-          {isWaiting ? "이메일 전송중.." :null}
+            <span>
+              {" "}
+              이메일 인증번호<p>*</p>
+            </span>
+            {isWaiting === "전송중"
+              ? "이메일 전송중.."
+              : isWaiting === "전송성공"
+              ? "이메일 전송성공"
+              : ""}
           </S.emailPostField>
           <TextField
             name="authCode"

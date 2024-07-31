@@ -12,8 +12,8 @@ import {Login} from "src/types/auth/login.types"
 export const useLogin = () => {
   const navigate = useNavigate();
   const [LoginData, setLoginData] = useState<Login>({
-    id: "",
-    password:"",
+    memberId: "",
+    memberPassword:"",
   });
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -37,12 +37,12 @@ export const useLogin = () => {
   
 
   const handleLogin = async () => {
-    if (LoginData.id === "") {
+    if (LoginData.memberId === "") {
       showToast("아이디를 입력해주세요", "INFO");
       return;
     }
 
-    if (LoginData.password === "") {
+    if (LoginData.memberPassword === "") {
       showToast("비밀번호를 입력해주세요", "INFO");
       return;
     }
