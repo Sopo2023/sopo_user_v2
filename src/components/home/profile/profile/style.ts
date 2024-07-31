@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const profileWrap = styled.main`
     display: flex;
@@ -17,22 +17,23 @@ export const mainWrap = styled.main`
     background: #fff;
     box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
     display: flex;
-    justify-content: center;
+    flex-direction: column; 
+    align-items: center; 
     padding: 15px;
 `;
 
 export const TitleWrap = styled.div`
     display: flex;
     align-items: center;
-    width: 100vw;
+    width: 100%; 
     height: 10vh;
-    margin-top: 5vh;
-    margin-left: 5vw;
+    margin-top: 4vh;
+    padding-left: 5vw; 
 `;
 
 export const AvatarContainer = styled.div`
-    position: relative; // 상대 위치 설정
-    margin-right: 1.25rem; // 프로필 정보와의 간격
+    position: relative;
+    margin-right: 1.25rem;
 `;
 
 export const Avatar = styled.img`
@@ -59,47 +60,92 @@ export const ButtonContainer = styled.div`
 `;
 
 export const EditButton = styled.button`
-    background-color: #4CAF50; 
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
     cursor: pointer;
 
     &:hover {
-        background-color: #45a049; 
+        background-color: #45a049;
     }
 `;
 
 export const SettingsButton = styled.button`
-    background-color: #F3F3F3; 
+    background-color: #F3F3F3;
     color: #1A9A18;
     border: none;
     border-radius: 5px;
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
     cursor: pointer;
 
     &:hover {
-        background-color: #EEEEEE; 
+        background-color: #EEEEEE;
     }
 `;
 
 export const PencilIconContainer = styled.div`
     background-color: #178415;
-    width: 1.7rem;  
+    width: 1.7rem;
     height: 1.7rem;
-    border-radius: 50%; 
+    border-radius: 50%;
     position: absolute;
-    bottom: 0.18rem; 
+    bottom: 0.18rem;
     right: 0;
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const PencilIcon = styled.img`
-    width: 1rem;  
-    height: 1rem; 
+    width: 1rem;
+    height: 1rem;
     cursor: pointer;
     z-index: 1;
+`;
+
+export const SelectWrap = styled.div`
+    width: 100%;
+    height: 10vh;
+    display: flex; 
+    align-items: center; 
+    padding-left: 0.1vw; 
+`;
+
+export const Span = styled.span<{ isSelected: boolean }>`
+    cursor: pointer;
+    position: relative;
+    color: ${({ isSelected }) => (isSelected ? "#178415" : "#808080")};
+    font-weight: ${({ isSelected }) => (isSelected ? "bold" : "normal")};
+    font-size: 20px;
+    margin-left: 50px;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: ${({ isSelected }) => (isSelected ? "100%" : "0")};
+        height: 2px;
+        background: #136D11;
+        transition: width 0.4s;
+    }
+`;
+
+export const emptyWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6rem;
+    text-align: center;
+    
+    img {
+        margin-bottom: 1.5rem;
+    }
+
+    span {
+        color: #808080;
+        font-size: 1.5rem;
+    }
 `;

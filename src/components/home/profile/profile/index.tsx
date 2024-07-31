@@ -1,9 +1,31 @@
-import React from "react";
+import React, {useState} from "react";
 import * as S from "./style";
 import AvatarImg from "src/assets/imgs/header/AvatarImg.svg";
 import Pencil from "src/assets/imgs/profile/write.svg";
+import Empty from "src/assets/imgs/profile/Empty.svg";
 
 const Profile = () => {
+    const [selected, setSelected] = useState(0);
+
+    const handleSelect = (index: number) => {
+        setSelected(index);
+    };
+
+    const renderEmptyMessage = () => {
+        switch (selected) {
+            case 0:
+                return "게시물이 없습니다.";
+            case 1:
+                return "저장된 포트폴리오가 없습니다.";
+            case 2:
+                return "참가한 대회가 없습니다.";
+            case 3:
+                return "저장된 북마크가 없습니다.";
+            default:
+                return "";
+        }
+    };
+
     return (
         <S.profileWrap>
             <S.mainWrap>
@@ -22,7 +44,21 @@ const Profile = () => {
                         </S.ButtonContainer>
                     </S.ProfileInfo>
                 </S.TitleWrap>
-
+                <S.SelectWrap>
+                    {["선배가 후배에게", "포트폴리오", "대회", "북마크"].map((text, index) => (
+                        <S.Span
+                            key={index}
+                            isSelected={selected === index}
+                            onClick={() => handleSelect(index)}
+                        >
+                            {text}
+                        </S.Span>
+                    ))}
+                </S.SelectWrap>
+                <S.emptyWrap>
+                    <img src={Empty} alt="빈 이미지"/>
+                    <span>{renderEmptyMessage()}</span>
+                </S.emptyWrap>
             </S.mainWrap>
         </S.profileWrap>
     );
