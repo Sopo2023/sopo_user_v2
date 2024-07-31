@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const TitleContainer = styled.div`
     display: flex;
-    /* align-items: center; */
-    flex-wrap: wrap;  
-`
+    align-items: center;
+    width: 100%; 
+    padding: 0 10px; 
+    box-sizing: border-box;
+`;
 
 export const MarkImg = styled.div`
     width: 29px;
@@ -15,14 +17,14 @@ export const MarkImg = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 10px;
-`
+    margin-right: 10px;
+`;
 
 export const PageImg = styled.img`
     width: 15px;
     height: 15px;
     filter: invert(1);
-`
+`;
 
 export const PageTitle = styled.span`
     color: #000;
@@ -30,10 +32,10 @@ export const PageTitle = styled.span`
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
-    line-height: 26px;
-    text-align: center; 
-    flex: 1;
-`
+    line-height: 26px; 
+    margin-left: 10px;
+    flex: 1; 
+`;
 
 export const ContainerParents = styled.div`
     background: #F7FFF3;
