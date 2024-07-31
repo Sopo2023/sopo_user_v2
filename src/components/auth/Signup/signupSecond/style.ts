@@ -120,4 +120,7 @@ export const emailPostField = styled.div`
       color: ${color.Status.Destructive};
     }
   }
+  p{
+    color: ${color.Primary.Light};
+  }
 `;

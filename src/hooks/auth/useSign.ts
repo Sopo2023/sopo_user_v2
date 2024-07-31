@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import { Sign } from "src/types/auth/signup.type";
 import { showToast } from "src/libs/toast/swal";
 import { useSignUpMutation, useEmailNumber } from "src/queries/auth/queries";
+import { AxiosError } from "axios";
 
 export const useSignup = () => {
   const SignUpMutation = useSignUpMutation();
@@ -22,8 +23,9 @@ export const useSignup = () => {
   const handleSignupData = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
       const { name, value } = e.target;
+      
       setsignupData((prev) => ({ ...prev, [name]: value }));
-      console.log(signupData);
+      
     },
     [signupData]
   );
@@ -95,7 +97,9 @@ export const useSignup = () => {
         setIsWaiting("전송성공");
       },
       onError: () => {
+        setIsWaiting("");
         showToast("error", "인증번호 실패");
+        
       },
     });
   };

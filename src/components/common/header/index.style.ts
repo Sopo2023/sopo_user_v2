@@ -1,3 +1,4 @@
+import color from "src/styles/color";
 import styled from "styled-components";
 
 
@@ -31,7 +32,9 @@ export const AvatarName = styled.span`
 export const AvatarProfile = styled.div`
   display: flex;
   align-items: center;
-  width: 100px;
+  justify-content: center;
+  min-width: 130px;
   height: 50px;
   margin-right: 85px;
+  cursor: pointer;
 `
