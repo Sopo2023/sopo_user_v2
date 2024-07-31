@@ -4,11 +4,13 @@ export const post = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 899px;
+  width: 90%;
   height: 346px;
   background-color: #fff;
   border-radius: 13px;
   padding: 10px;
+  background: #fff;
+  box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
 `;
 export const titleContainer = styled.div`
   display: flex;
@@ -35,6 +37,6 @@ export const contentContainer = styled.main`
   display: flex;
   width: 100%;
   height: 100%;
-  padding: 9px;
-
+  padding: 5px;
+  gap: 21px;
 `;
