@@ -1,3 +1,4 @@
+import color from "src/styles/color";
 import styled, { keyframes, css } from "styled-components";
 
 const slideIn = keyframes`
@@ -9,40 +10,37 @@ const slideIn = keyframes`
   }
 `;
 
-export const Layout = styled.div`
+export const layout = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 620px;
   height: 270px;
+  gap: 10px;
+  padding: 20px 30px;
   border-radius: 13px;
   background: #fff;
   box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
 `;
-export const Padding = styled.div`
-  width: 90%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 40px 30px 25px;
-`;
-export const Head = styled.div`
-  width: 70px;
-  height: 30px;
+export const head = styled.div`
+  width: 100%;
+  height: 40px;
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  img {
+    width: 30px;
+    height: 30px;
+  }
 `;
-export const HeadImg = styled.img`
-  width: 30px;
-  height: 30px;
-`;
-export const HeadText = styled.p`
+
+export const headText = styled.p`
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
   line-height: 26px;
 `;
-export const BodyHead = styled.div`
+export const bodyHead = styled.div`
   width: 200px;
   height: 30px;
   display: flex;
@@ -50,11 +48,7 @@ export const BodyHead = styled.div`
   align-items: center;
 `;
 
-interface TypeProps {
-  isActive: boolean;
-}
-
-export const Type = styled.p<TypeProps>`
+export const Type = styled.p<{ isActive: boolean }>`
   color: ${(props) => (props.isActive ? "#0e0e0e" : "#797979")};
   font-family: Pretendard;
   font-size: 13px;
@@ -63,26 +57,48 @@ export const Type = styled.p<TypeProps>`
   line-height: 26px;
   cursor: pointer;
 `;
-
+export const NotificationView = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 586px;
+  height: 100%;
+`;
 export const NotificationItem = styled.div`
   display: flex;
+  width: 100%;
+  height: 36px;
+  align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  margin: 5px 0;
+  padding: 5px 15px;
   background-color: #f1f1f1;
   border-radius: 4px;
-`;
 
-export const NotificationText = styled.span`
-  color: #333;
+  span {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px;
+    p {
+      color: ${color.Primary.Heavy};
+      display: inline-block;
+    }
+  }
 `;
 
 export const ApprovalButton = styled.button`
-  color: #2e7d32;
+  color: #1e9f27;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
   background-color: transparent;
   border: none;
+
   cursor: pointer;
   &:hover {
-    text-decoration: underline;
+   font-weight: 900;
   }
 `;

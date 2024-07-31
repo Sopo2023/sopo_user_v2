@@ -10,7 +10,7 @@ export const mainView = styled.main`
 export const mainArticle = styled.article`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   height: 50%;
 `;
 export const cardMain = styled.div`
