@@ -6,11 +6,9 @@ import * as S from "src/pages/wirte/page.style"
 
 const Index: React.FC = () => {
   return (
-    <Layout>
         <S.MarkdownEditorWrap>
             <MarkdownEditor />
         </S.MarkdownEditorWrap>
-    </Layout>
   );
 };
 
