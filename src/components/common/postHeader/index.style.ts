@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const PageTitle = styled.div`
     display: flex;
     align-items: center;
-    padding: 41px 36px;
+    padding: 20px 30px 0px 30px;
     box-sizing: border-box;
     width: 100%;
     justify-content: space-between;
