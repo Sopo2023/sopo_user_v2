@@ -1,11 +1,53 @@
-import React, { useState, useEffect } from "react";
-import * as S from 'src/components/home/seniortojunior/index.style';
+import React, { useState } from "react";
+import * as S from './index.style';
 import PostHeader from 'src/components/common/postHeader/index';
 import PostItem from 'src/components/post/senior-to-junior/index';
 import posts from 'src/constants/postDummyData/index'; 
+import styled from 'styled-components';
 
 const ITEMS_PER_PAGE = 6;
 const MAX_PAGES = 5; 
+
+const PaginationWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    list-style-type: none;
+
+    button {
+        padding: 10px;
+        margin: 0 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        color: #777;
+
+        &:disabled {
+            color: #e0e0e0;
+            cursor: not-allowed;
+        }
+    }
+
+    .page-number {
+        padding: 10px;
+        margin: 0 5px;
+        cursor: pointer;
+        color: #555;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.active {
+            background-color: #4caf50;
+            color: white;
+        }
+    }
+`;
 
 const Seniortojunior = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -50,11 +92,23 @@ const Seniortojunior = () => {
                         />
                     ))}
                 </S.PostsGrid>
-                <S.Pagination>
-                    <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
-                    <span>Page {currentPage} of {displayTotalPages}</span>
-                    <button onClick={handleNextPage} disabled={currentPage === displayTotalPages}>Next</button>
-                </S.Pagination>
+                <S.PaginationWrapper>
+                    <button onClick={handlePrevPage} disabled={currentPage === 1}>
+                        &larr;
+                    </button>
+                    {[...Array(displayTotalPages)].map((_, index) => (
+                        <div
+                            key={index}
+                            className={`page-number ${currentPage === index + 1 ? 'active' : ''}`}
+                            onClick={() => setCurrentPage(index + 1)}
+                        >
+                            {index + 1}
+                        </div>
+                    ))}
+                    <button onClick={handleNextPage} disabled={currentPage === displayTotalPages}>
+                        &rarr;
+                    </button>
+                </S.PaginationWrapper>
             </S.Container>
         </S.ContainerParents>
     );
