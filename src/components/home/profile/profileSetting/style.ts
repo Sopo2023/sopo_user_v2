@@ -8,6 +8,7 @@ export const ProfileWrap = styled.main`
     height: calc(100% - 4.44vh);
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 `;
 
 export const MainWrap = styled.main`
@@ -20,6 +21,7 @@ export const MainWrap = styled.main`
     flex-direction: column;
     align-items: center;
     padding: 15px;
+    overflow: hidden;/
 `;
 
 export const TitleWrap = styled.div`
@@ -29,6 +31,8 @@ export const TitleWrap = styled.div`
     height: 10vh;
     margin-top: 4vh;
     padding-left: 5vw;
+    padding-right: 5vw;
+    box-sizing: border-box;
     position: relative;
 `;
 
@@ -72,6 +76,7 @@ export const UserName = styled.h2`
     font-size: 1.5em;
     font-weight: bold;
     margin: 0;
+    word-wrap: break-word;
 `;
 
 export const ReturnIcon = styled.img`
@@ -89,8 +94,11 @@ export const DetailWrap = styled.div`
     margin-top: 4vh;
     background-color: #F7F7F7;
     border-radius: 13px;
-    align-items: center;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
 `;
 
 export const SectionTitle = styled.span`
@@ -106,7 +114,8 @@ export const Detail = styled.div`
     display: flex;
     align-items: center;
     padding: 0.5rem 1rem;
-    margin-left: 4vw;
+    width: 100%;
+    box-sizing: border-box;
 `;
 
 export const DetailLabel = styled.span`
@@ -114,24 +123,29 @@ export const DetailLabel = styled.span`
     font-weight: bold;
     color: #333;
     width: 20%;
+    white-space: nowrap; 
+    margin-left: 5vw;
 `;
 
 export const DetailContainer = styled.div`
     display: flex;
     align-items: center;
-    width: 75%; 
+    width: 80%;
     justify-content: space-between;
     border-bottom: 1px solid #ddd;
-    padding: 0.5rem 0; 
-    margin: 1rem 0; 
-    text-align: center; 
+    padding: 0.5rem 0;
+    margin: 1rem 0;
+    box-sizing: border-box;
 `;
 
 export const DetailValue = styled.span`
     font-size: 1em;
     color: #666;
-    width: 70%;
-    display: flex;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 0.2vw;
 `;
 
 export const EditButton = styled.button`
@@ -141,9 +155,10 @@ export const EditButton = styled.button`
     cursor: pointer;
     font-size: 1em;
     font-weight: bold;
-    width: 20%;
-    text-align: center; 
-    padding: 0.5rem 0; 
+    flex-shrink: 0;
+    padding: 0.5rem 0;
+    text-align: center;
+    margin-right: 4rem;
     display: flex;
     justify-content: center;
 `;
