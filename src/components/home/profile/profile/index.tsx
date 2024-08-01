@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 import AvatarImg from "src/assets/imgs/header/AvatarImg.svg";
 import Pencil from "src/assets/imgs/profile/write.svg";
 import Empty from "src/assets/imgs/profile/Empty.svg";
 
-const Profile = () => {
+interface ProfileProps {
+    onEdit: () => void;
+}
+
+const Profile: React.FC<ProfileProps> = ({ onEdit }) => {
     const [selected, setSelected] = useState(0);
 
     const handleSelect = (index: number) => {
@@ -39,7 +43,7 @@ const Profile = () => {
                     <S.ProfileInfo>
                         <S.UserName>이해준</S.UserName>
                         <S.ButtonContainer>
-                            <S.EditButton>프로필 수정</S.EditButton>
+                            <S.EditButton onClick={onEdit}>프로필 수정</S.EditButton>
                             <S.SettingsButton>프로필 설정</S.SettingsButton>
                         </S.ButtonContainer>
                     </S.ProfileInfo>
