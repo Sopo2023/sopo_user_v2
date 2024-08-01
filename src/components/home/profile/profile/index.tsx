@@ -6,9 +6,10 @@ import Empty from "src/assets/imgs/profile/Empty.svg";
 
 interface ProfileProps {
     onEdit: () => void;
+    onSetting: () => void;
 }
 
-const Profile: React.FC<ProfileProps> = ({ onEdit }) => {
+const Profile: React.FC<ProfileProps> = ({ onEdit, onSetting }) => {
     const [selected, setSelected] = useState(0);
 
     const handleSelect = (index: number) => {
@@ -44,7 +45,7 @@ const Profile: React.FC<ProfileProps> = ({ onEdit }) => {
                         <S.UserName>이해준</S.UserName>
                         <S.ButtonContainer>
                             <S.EditButton onClick={onEdit}>프로필 수정</S.EditButton>
-                            <S.SettingsButton>프로필 설정</S.SettingsButton>
+                            <S.SettingsButton onClick={onSetting}>프로필 설정</S.SettingsButton>
                         </S.ButtonContainer>
                     </S.ProfileInfo>
                 </S.TitleWrap>
