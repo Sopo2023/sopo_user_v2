@@ -4,7 +4,7 @@ import SOPOAxios from "src/libs/axios/customAxios";
 
 class ProfileRepositoryimpl implements ProfileRepository{
     public async getProfileInfo(): Promise<profileType> {
-        const { data } = await SOPOAxios.get("/member");
+        const { data } = await SOPOAxios.get("/profile");
         return data;
     }
     public async patchProfile(pramsData:patchProfileParam):Promise<void>{

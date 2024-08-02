@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const post = styled.main`
   display: flex;
+  overflow-x: hidden;
   flex-direction: column;
   justify-content: center;
   width: 90%;

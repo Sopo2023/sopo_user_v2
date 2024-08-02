@@ -3,6 +3,7 @@ import Router from "../../routers/index";
 import PageTemplate from "../pageTemplate";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
+import { ReactQueryDevtools } from "react-query-devtools";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -11,7 +12,6 @@ const queryClient = new QueryClient({
       retryOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-      staleTime: 1000,
     },
   },
 });
@@ -25,6 +25,7 @@ const Provider = () => {
           <Router />
         </PageTemplate>
       </BrowserRouter>
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 };

@@ -20,7 +20,7 @@ class authRepositoryImpl implements AuthRepository{
         refreshToken: string;
       }): Promise<NewAccessTokenResponse> {
         const { data } = await axios.post<NewAccessTokenResponse>(
-          `${config.server}/auth/refresh`,
+          `${config.server}/re_provide`,
           refreshToken
         );
         return data;

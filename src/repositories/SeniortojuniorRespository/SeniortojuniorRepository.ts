@@ -1,8 +1,9 @@
 import { SeniortojuniorResponse, SeniortojuniorTypes } from "src/types/seniortojunior/seniortojunior.type";
 
 export interface SeniortojuniorRepository{
-    getSeniortojunior():Promise<SeniortojuniorResponse>
+    getSeniortojunior(pageParms:pageParms):Promise<SeniortojuniorResponse>
 }
-// export interface SeniortojuniorPrpos{
-//     page:
-// }
+export interface pageParms{
+    page:number;
+    size:number;
+}
