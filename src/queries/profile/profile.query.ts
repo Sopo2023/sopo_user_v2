@@ -17,8 +17,8 @@ export const useGetProfileList = () => {
   >({
     queryKey: [sopoQueryKey.profile.getProfile],
     queryFn: () => profileRepositoryImpl.getProfileInfo(),
-    staleTime: 10 * 60 * 1000,
-    cacheTime: 10 * 60 * 1000,
+    staleTime: 1 * 5 * 1000,
+    cacheTime: 1 * 5 * 1000,
   });
   return useGetProfile;
 };

@@ -8,6 +8,8 @@ import {
   REFRESH_TOKEN_KEY,
 } from "src/constants/token/token.constants";
 import {Login} from "src/types/auth/login.types"
+import { useAtom } from "jotai";
+import { tokenValidAtom } from "src/store/token/token.atom";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -34,7 +36,7 @@ export const useLogin = () => {
     [LoginData]
   );
 
-  
+  const [, setTokenValid] = useAtom(tokenValidAtom);
 
   const handleLogin = async () => {
     if (LoginData.memberId === "") {
@@ -50,6 +52,7 @@ export const useLogin = () => {
      LoginData,
       {
         onSuccess: (data) => {
+          setTokenValid(true);
           navigate("/");
           showToast("success", "로그인 성공");
           token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);

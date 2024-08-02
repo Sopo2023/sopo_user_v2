@@ -4,7 +4,9 @@ import note from "src/assets/imgs/main/metometi.svg";
 import PostItem from "src/components/post/senior-to-junior";
 import posts from "src/constants/postDummyData/index";
 
+
 const SeniortojuniorPost = () => {
+
   return (
     <S.post>
       <S.titleContainer>

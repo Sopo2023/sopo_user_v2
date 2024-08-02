@@ -7,8 +7,7 @@ import AvatarImg from "src/assets/imgs/header/AvatarImg.svg";
 const Header = () => {
   const navigate = useNavigate();
   const { data } = useGetProfileList();
-
-
+  
   const handleHeaderClick = () => {
     navigate("/profile");
   };

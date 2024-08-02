@@ -7,8 +7,7 @@ import {
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
 } from "src/constants/token/token.constants";
-import { useQueryClient } from "react-query";
-
+import { tokenValidAtom } from "src/store/token/token.atom";
 
 let isRefreshing = false;
 let refreshSubscribers: ((accessToken: string) => void)[] = [];
@@ -22,52 +21,52 @@ const addRefreshSubscriber = (callback: (accessToken: string) => void) => {
 };
 
 const ResponseHandler = async (error: AxiosError) => {
-  
   if (error.response) {
     const {
       config: originalRequest,
       response: { status },
     } = error;
 
-  const usingAccessToken = Token.getToken(ACCESS_TOKEN_KEY);
-  const usingRefreshToken = Token.getToken(REFRESH_TOKEN_KEY);
+    const usingAccessToken = Token.getToken(ACCESS_TOKEN_KEY);
+    const usingRefreshToken = Token.getToken(REFRESH_TOKEN_KEY);
 
-  if (
-    status === 401 &&
-    usingAccessToken!== undefined &&
-    usingRefreshToken!== undefined &&
-    !isRefreshing
-  ) {
-    isRefreshing = true;
+    if (
+      status === 401 &&
+      usingAccessToken !== undefined &&
+      usingRefreshToken !== undefined &&
+      !isRefreshing
+    ) {
+      isRefreshing = true;
+      try {
+        const { data: newAccessToken } =
+          await AuthRepositoryImpl.refreshAccessToken({
+            refreshToken: usingRefreshToken,
+          });
+        console.log("Refresh");
 
-    try {
-   
-      const { accessToken: newAccessToken } =
-        await AuthRepositoryImpl.refreshAccessToken({
-          refreshToken: usingRefreshToken,
+        SOPOAxios.defaults.headers.common[
+          REQUEST_TOKEN_KEY
+        ] = `Bearer ${newAccessToken}`;
+
+        Token.setToken(ACCESS_TOKEN_KEY, newAccessToken.accessToken);
+
+        isRefreshing = false;
+        onTokenRefreshed(newAccessToken.accessToken);
+
+        return new Promise((resolve) => {
+          addRefreshSubscriber((accessToken: string) => {
+            originalRequest!.headers![
+              REQUEST_TOKEN_KEY
+            ] = `Bearer ${accessToken}`;
+            resolve(SOPOAxios(originalRequest!));
+          });
         });
-      SOPOAxios.defaults.headers.common[
-        REQUEST_TOKEN_KEY
-      ] = `Bearer ${newAccessToken}`;
-      
-      Token.setToken(ACCESS_TOKEN_KEY, newAccessToken);
-
-      isRefreshing = false;
-      onTokenRefreshed(newAccessToken);
-      
-      return new Promise((resolve) => {
-        addRefreshSubscriber((accessToken: string) => {
-          originalRequest!.headers![REQUEST_TOKEN_KEY] = `Bearer ${accessToken}`;
-          resolve(SOPOAxios(originalRequest!));
-        });
-      });
-    } catch (error) {
-      console.error("Failed to refresh access token:", error);
-      Token.clearToken();
-      window.alert("세션이 만료되었습니다.");
-      window.location.href = "/login";
+      } catch (error) {
+        console.error("Failed to refresh access token:", error);
+        Token.clearToken();
+        window.location.href = "/sign";
+      }
     }
-  }
   }
 
   return Promise.reject(error);

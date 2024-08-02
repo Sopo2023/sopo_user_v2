@@ -16,7 +16,9 @@ export interface emailRespose{
 }
 
 export interface NewAccessTokenResponse  {
-  accessToken: string
+  data:{
+    accessToken: string
+  }
 };
 
 export interface SignUpParams extends Sign{};
