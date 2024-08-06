@@ -33,7 +33,7 @@ export const head = styled.div`
   }
 `;
 
-export const headText = styled.p`
+export const headText = styled.span`
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
@@ -41,16 +41,17 @@ export const headText = styled.p`
   line-height: 26px;
 `;
 export const bodyHead = styled.div`
-  width: 200px;
+  width: 40%;
   height: 30px;
   display: flex;
   gap: 30px;
   align-items: center;
 `;
 
-export const Type = styled.p<{ isActive: boolean }>`
+export const Type = styled.span<{ isActive: boolean }>`
   color: ${(props) => (props.isActive ? "#0e0e0e" : "#797979")};
   font-family: Pretendard;
+  width: 60px;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;

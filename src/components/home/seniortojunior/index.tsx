@@ -45,7 +45,7 @@ const Seniortojunior = () => {
                             title={post.title}
                             content={post.content}
                             date={post.date}
-                            reaction={post.reaction}
+                            reaction={0}
                             author={post.author}
                             style={{}}
                         />
