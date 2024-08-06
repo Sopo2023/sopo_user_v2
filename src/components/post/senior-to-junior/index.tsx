@@ -7,7 +7,7 @@ interface PostItemProps {
     title: string;
     content: string;
     date: string;
-    reaction: string;
+    reaction: number;
     author: string;
     style:React.CSSProperties;
 }
