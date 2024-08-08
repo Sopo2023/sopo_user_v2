@@ -41,3 +41,11 @@ export const contentContainer = styled.main`
   padding: 5px;
   gap: 21px;
 `;
+export const nullcontainer=styled.section`
+display: flex;
+justify-content:center ;
+align-items: center;
+width: 100%;
+height: 100%;
+cursor: pointer;
+`
