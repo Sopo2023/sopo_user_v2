@@ -4,7 +4,7 @@ import PageTemplate from "../pageTemplate";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import { ReactQueryDevtools } from "react-query-devtools";
-
+import AuthCheck from "../HOF/authcheck";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -21,9 +21,11 @@ const Provider = () => {
     <QueryClientProvider client={queryClient}>
       <GlobalStyles />
       <BrowserRouter>
+      <AuthCheck>
         <PageTemplate>
           <Router />
         </PageTemplate>
+        </AuthCheck>
       </BrowserRouter>
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>

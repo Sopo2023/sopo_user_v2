@@ -5,7 +5,7 @@ import {SeniortojuniorRepository ,pageParms} from "./SeniortojuniorRepository";
 class SeniortojuniorRepositoryImpl implements SeniortojuniorRepository{
     public async getSeniortojunior(pageParms:pageParms):Promise<SeniortojuniorResponse>{
         try {
-            const { data } = await SOPOAxios.get("/board/all",{params:pageParms});
+            const { data } = await SOPOAxios.get("/board",{params:pageParms});
             return data;
           } catch (error) {
             console.error(error);
