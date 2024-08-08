@@ -7,7 +7,6 @@ import {
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
 } from "src/constants/token/token.constants";
-import { tokenValidAtom } from "src/store/token/token.atom";
 
 let isRefreshing = false;
 let refreshSubscribers: ((accessToken: string) => void)[] = [];
@@ -42,7 +41,6 @@ const ResponseHandler = async (error: AxiosError) => {
           await AuthRepositoryImpl.refreshAccessToken({
             refreshToken: usingRefreshToken,
           });
-        console.log("Refresh");
 
         SOPOAxios.defaults.headers.common[
           REQUEST_TOKEN_KEY
@@ -62,9 +60,7 @@ const ResponseHandler = async (error: AxiosError) => {
           });
         });
       } catch (error) {
-        console.error("Failed to refresh access token:", error);
         Token.clearToken();
-        window.location.href = "/sign";
       }
     }
   }
