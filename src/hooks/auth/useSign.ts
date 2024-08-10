@@ -3,22 +3,14 @@ import { Sign } from "src/types/auth/signup.type";
 import { showToast } from "src/libs/toast/swal";
 import { useSignUpMutation, useEmailNumber } from "src/queries/auth/queries";
 import { AxiosError } from "axios";
+import { SIGNUP_DATA } from "src/constants/signup/signup.constants";
 
 export const useSignup = () => {
   const SignUpMutation = useSignUpMutation();
   const EmailMutation = useEmailNumber();
   const [section, setSection] = useState("first");
 
-  const [signupData, setsignupData] = useState<Sign>({
-    memberId: "",
-    memberPassword: "",
-    memberChckPassword: "",
-    memberName: "",
-    memberEmail: "",
-    memberSchool: "",
-    authCode: "",
-    memberFcmToken: "",
-  });
+  const [signupData, setsignupData] = useState<Sign>(SIGNUP_DATA);
 
   const handleSignupData = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
@@ -43,8 +35,14 @@ export const useSignup = () => {
   const submitSignupDataFirst = useCallback(async () => {
     const { memberId, memberPassword, memberChckPassword } = signupData;
 
-    if (memberId === "" || memberPassword === "" || memberChckPassword === "") {
-      showToast("error", "양식이 비어있습니다");
+    if (memberId === ""  ) {
+      showToast("error", "아이디가 비었습니다");
+      return;
+    }else if( memberPassword === ""){
+      showToast("error", "비밀번호가 비었습니다");
+      return;
+    }else if(memberChckPassword === ""){
+      showToast("error", "확인 비밀번호가 비었습니다");
       return;
     }
     if (memberPassword !== memberChckPassword) {
@@ -113,12 +111,20 @@ export const useSignup = () => {
   const submitSignupDataSecond = useCallback(async () => {
     const { memberName, memberEmail, authCode, memberSchool } = signupData;
     if (
-      memberName === "" ||
-      memberEmail === "" ||
-      authCode === "" ||
-      memberSchool === ""
+      memberName === "" 
     ) {
       showToast("error", "형식이 비어있습니다");
+      return;
+    }else if(   memberEmail === "" ){
+      showToast("error", "이메일이 비었습니다");
+      return;
+    }
+    else if(   authCode === "" ){
+      showToast("error", "인증코드가 비었습니다");
+      return;
+    }
+    else if(   memberSchool === ""){
+      showToast("error", "학교가 비었습니다");
       return;
     }
 
