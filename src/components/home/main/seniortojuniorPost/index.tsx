@@ -2,15 +2,15 @@ import React from "react";
 import * as S from "./style";
 import note from "src/assets/imgs/main/metometi.svg";
 import PostItem from "src/components/post/senior-to-junior";
-import { useNavigate } from "react-router-dom";
 import {SeniortojuniorResponse, SeniortojuniorTypes} from "src/types/seniortojunior/seniortojunior.type";
 import {tokenCheck} from "src/libs/tokenCheck/tokenCheck";
+import SignNavigate from "src/components/common/signNavigate";
+
 interface prpos {
   post:SeniortojuniorResponse | undefined
 }
 const SeniortojuniorPost = (post:prpos) => {
   
-  const navigate = useNavigate();
   const { getTokenCheck } = tokenCheck();
   return (
     <S.post>
@@ -29,8 +29,7 @@ const SeniortojuniorPost = (post:prpos) => {
             author={""}
             style={{ width: "240px" }}
           />
-        )): <S.nullcontainer>
-          <span onClick={()=>navigate("/sign")}>로그인하러 가기</span></S.nullcontainer>}
+        )):<SignNavigate/>}
       </S.contentContainer>
     </S.post>
   );

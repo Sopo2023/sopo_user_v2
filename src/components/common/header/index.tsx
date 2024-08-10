@@ -3,21 +3,22 @@ import { useNavigate } from "react-router-dom";
 import * as S from "src/components/common/header/index.style";
 import { useGetProfileList } from "src/queries/profile/profile.query";
 import AvatarImg from "src/assets/imgs/header/AvatarImg.svg";
+import {tokenCheck} from "src/libs/tokenCheck/tokenCheck";
+import SignNavigate from "../signNavigate";
 
 const Header = () => {
   const navigate = useNavigate();
   const { data } = useGetProfileList();
-  
-  const handleHeaderClick = () => {
-    navigate("/profile");
-  };
+  const { getTokenCheck } = tokenCheck();
+
 
   return (
     <S.HeaderContainer>
-      <S.AvatarProfile onClick={handleHeaderClick}>
+      {getTokenCheck()?  <S.AvatarProfile onClick={()=> navigate("/profile")}>
         <S.AvatarImg src={AvatarImg} alt="error" />
         <S.AvatarName>{data?.data.memberName}</S.AvatarName>
-      </S.AvatarProfile>
+      </S.AvatarProfile>:<S.AvatarProfile> <SignNavigate/></S.AvatarProfile>}
+     
     </S.HeaderContainer>
   );
 };

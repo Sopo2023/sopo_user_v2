@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import alert from "src/assets/imgs/main/alert.svg";
 import * as S from "./style";
-
+import {tokenCheck} from "src/libs/tokenCheck/tokenCheck";
+import SignNavigate from "src/components/common/signNavigate";
 interface Notification {
   id: number;
   name: string;
@@ -14,7 +15,7 @@ const Alarm = () => {
   const [activeTab, setActiveTab] = useState<string>("내 지원");
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
-
+  const { getTokenCheck } = tokenCheck();
   useEffect(() => {
     loadNotifications(activeTab);
   }, [activeTab]);
@@ -128,7 +129,7 @@ const Alarm = () => {
       </S.bodyHead>
 
       <S.NotificationView>
-        {notifications.slice(0,3).map((notification) => (
+        {getTokenCheck() ? notifications.slice(0,3).map((notification) => (
           <S.NotificationItem key={notification.id}>
             <span>
               <p>{notification.name}</p> - {notification.title}
@@ -141,7 +142,7 @@ const Alarm = () => {
               </S.ApprovalButton>
             )}
           </S.NotificationItem>
-        ))}
+        )) :<SignNavigate/>}
       </S.NotificationView>
     </S.layout>
   );
