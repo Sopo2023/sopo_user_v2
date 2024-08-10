@@ -10,6 +10,8 @@ import {
 import {Login} from "src/types/auth/login.types"
 import { useAtom } from "jotai";
 import { tokenValidAtom } from "src/store/token/token.atom";
+import { AxiosError } from "axios";
+import errorHandler from "src/utils/error/errorHandler";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -58,8 +60,9 @@ export const useLogin = () => {
           token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
           token.setToken(REFRESH_TOKEN_KEY, data.data.refreshToken);
         },
-        onError: () => {
-          showToast("error", "로그인 실패");
+        onError: (error) => {
+          const errorCode = error as AxiosError;
+          showToast("error", errorHandler.loginError(errorCode.response?.status!));
         },
       }
     );
