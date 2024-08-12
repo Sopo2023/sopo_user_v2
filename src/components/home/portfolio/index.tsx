@@ -5,11 +5,7 @@ import PostHeader from 'src/components/common/postHeader/index'
 
 const Seniortojunior = () => {
     return (
-        <S.ContainerParents>
-            <S.Container>
-                <PostHeader/>
-            </S.Container>
-        </S.ContainerParents>
+        <></>
     );
 };
 

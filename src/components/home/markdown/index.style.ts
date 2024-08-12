@@ -3,7 +3,10 @@ import styled from 'styled-components';
 export const TitleContainer = styled.div`
     display: flex;
     align-items: center;
-`
+    width: 100%; 
+    padding: 0 10px; 
+    box-sizing: border-box;
+`;
 
 export const MarkImg = styled.div`
     width: 29px;
@@ -15,14 +18,13 @@ export const MarkImg = styled.div`
     justify-content: center;
     align-items: center;
     margin-right: 10px;
-    margin-left: 10px;
-`
+`;
 
 export const PageImg = styled.img`
     width: 15px;
     height: 15px;
     filter: invert(1);
-`
+`;
 
 export const PageTitle = styled.span`
     color: #000;
@@ -30,8 +32,10 @@ export const PageTitle = styled.span`
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
-    line-height: 26px; /* 130% */
-`
+    line-height: 26px; 
+    margin-left: 10px;
+    flex: 1; 
+`;
 
 export const ContainerParents = styled.div`
     background: #F7FFF3;
@@ -41,6 +45,7 @@ export const ContainerParents = styled.div`
     justify-content: center;
     align-items: center;
     display: flex;
+    overflow-x: auto; 
 `;
 
 export const Container = styled.div`
@@ -55,10 +60,11 @@ export const Container = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: stretch;
-    min-width: 353px; 
+    min-width: 353px;
 
     @media (max-width: 768px) {
         flex-direction: column;
+        height: auto; 
     }
 `;
 
@@ -74,7 +80,7 @@ export const EditorContainer = styled.div`
 
     @media (max-width: 768px) {
         width: 100%;
-        min-width: 353px;
+        padding: 20px;
     }
 `;
 
@@ -90,14 +96,12 @@ export const BackArrowButton = styled.button`
     border: none;
     border-radius: 100%;
     background: none;
-    
+    margin-right: 10px;
 
-    &:hover{
+    &:hover {
         background: #F3F3F3;
     }
 `
-
-
 
 export const TitleInput = styled.input`
     color: var(--Neutral-5, #0A0A0A);
@@ -189,19 +193,7 @@ export const TextArea = styled.textarea`
     line-height: 20px;
     border: none;
     outline: none;
-`;
-
-export const SaveBar = styled.div`
-    display: flex;
-    align-items: center;
-    width: 420px;
-    height: 50px;
-    flex-shrink: 0;
-    border-radius: 13px;
-    background: #FFF;
-    box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
-    padding: 0 10px; 
-`
+    `;
 
 export const GoOutButton = styled.button`
     display: flex;
@@ -210,13 +202,38 @@ export const GoOutButton = styled.button`
     background: none;
     border: none;
 `
-
+    
 export const LeftArrow = styled.img`
     width: 15px;
     height: 12px;
     transform: scaleX(-1);
     margin-left: 20px;
 `
+export const SaveBar = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 420px; 
+    height: auto; 
+    border-radius: 13px;
+    background: #FFF;
+    box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
+    padding: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap; 
+    gap: px;
+    box-sizing: border-box;
+    position: sticky; 
+    bottom: 0;
+    z-index: 10;
+
+    @media (max-width: 768px) {
+        flex-direction: column; 
+        align-items: stretch; 
+    }
+`;
+
+
 
 export const GoOutText = styled.span`
     color: #828282;
@@ -235,6 +252,7 @@ export const SaveButton = styled.div`
     display: flex;
     margin-left: auto;
     gap: 10px; 
+    flex-wrap: wrap; 
 `
 
 export const TemporarySave = styled.button`
@@ -295,7 +313,7 @@ export const PreviewTitle = styled.div`
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
-    line-height: 20px; /* 142.857% */
+    line-height: 20px; 
 `
 
 export const Preview = styled.div`
@@ -303,14 +321,13 @@ export const Preview = styled.div`
     height: 100%;
 
     h1, h2, h3, h4 {
-        color: var(--Neutral-0, #000);
-        font-family: Pretendard;
-        font-weight: 700;
+    color: var(–Neutral-0, #000);
+    font-family: Pretendard;
+    font-weight: 700;
     }
-
     h1 {
-        font-size: 32px;
-        line-height: 130%;
+    font-size: 32px;
+    line-height: 130%;
     }
 
     h2 {
@@ -361,8 +378,7 @@ export const Preview = styled.div`
         width: 5px;
         background: #1A9A18;
         border-radius: 3px 0 0 3px;
-    }
-`;
+    }`;
 
 export const LanguageSelector = styled.select`
     border: 1px solid #ccc;
@@ -370,10 +386,9 @@ export const LanguageSelector = styled.select`
     padding: 5px;
     font-family: Pretendard;
     font-size: 13px;
-    color: var(--Neutral-60, #858585);
+    color: var(–Neutral-60, #858585);
     background-color: #fff;
     margin-bottom: 10px;
-
     &:focus {
         border-color: #007bff;
         outline: none;
@@ -381,18 +396,17 @@ export const LanguageSelector = styled.select`
 `;
 
 export const RealTitle = styled.div`
-    color: var(--Neutral-0, #000);
-    font-family: Pretendard;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 130%;
-
+    color: var(--Neutral-0, #000); 
+    font-family: Pretendard; 
+    font-weight: 700; 
+    font-size: 32px; 
+    line-height: 130%; 
     padding: 25px 0px;
 `
 
 export const ContextSepLine = styled.div`
-    width: 71px;
-    height: 1px;
-    background: #000;
+    width: 71px; 
+    height: 1px; 
+    background: #000; 
     margin-bottom: 30px;
 `

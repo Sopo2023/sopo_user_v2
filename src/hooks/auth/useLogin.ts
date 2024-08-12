@@ -8,12 +8,16 @@ import {
   REFRESH_TOKEN_KEY,
 } from "src/constants/token/token.constants";
 import {Login} from "src/types/auth/login.types"
+import { useAtom } from "jotai";
+import { tokenValidAtom } from "src/store/token/token.atom";
+import { AxiosError } from "axios";
+import errorHandler from "src/utils/error/errorHandler";
 
 export const useLogin = () => {
   const navigate = useNavigate();
   const [LoginData, setLoginData] = useState<Login>({
-    id: "",
-    password:"",
+    memberId: "",
+    memberPassword:"",
   });
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -34,15 +38,15 @@ export const useLogin = () => {
     [LoginData]
   );
 
-  
+  const [, setTokenValid] = useAtom(tokenValidAtom);
 
   const handleLogin = async () => {
-    if (LoginData.id === "") {
+    if (LoginData.memberId === "") {
       showToast("아이디를 입력해주세요", "INFO");
       return;
     }
 
-    if (LoginData.password === "") {
+    if (LoginData.memberPassword === "") {
       showToast("비밀번호를 입력해주세요", "INFO");
       return;
     }
@@ -50,13 +54,15 @@ export const useLogin = () => {
      LoginData,
       {
         onSuccess: (data) => {
+          setTokenValid(true);
           navigate("/");
           showToast("success", "로그인 성공");
           token.setToken(ACCESS_TOKEN_KEY, data.data.accessToken);
           token.setToken(REFRESH_TOKEN_KEY, data.data.refreshToken);
         },
-        onError: () => {
-          showToast("error", "로그인 실패");
+        onError: (error) => {
+          const errorCode = error as AxiosError;
+          showToast("error", errorHandler.loginError(errorCode.response?.status!));
         },
       }
     );

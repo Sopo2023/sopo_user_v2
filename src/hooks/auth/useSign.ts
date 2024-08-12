@@ -1,26 +1,26 @@
 import React, { useState, useCallback } from "react";
 import { Sign } from "src/types/auth/signup.type";
 import { showToast } from "src/libs/toast/swal";
-import { useSignUpMutation } from "src/queries/auth/queries";
+import { useSignUpMutation, useEmailNumber } from "src/queries/auth/queries";
+import { AxiosError } from "axios";
+import { SIGNUP_DATA } from "src/constants/signup/signup.constants";
+import errorHandler from "src/utils/error/errorHandler";
 
 export const useSignup = () => {
   const SignUpMutation = useSignUpMutation();
+  const EmailMutation = useEmailNumber();
   const [section, setSection] = useState("first");
 
-  const [signUpData, setsignUpData] = useState<Sign>({
-    id: "",
-    password: "",
-    checkPasswrod: "",
-    name: "",
-    email: "",
-    checkNumber: "",
-  });
-  const handleSigUpData = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const [signupData, setsignupData] = useState<Sign>(SIGNUP_DATA);
+
+  const handleSignupData = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
       const { name, value } = e.target;
-      setsignUpData((prev) => ({ ...prev, [name]: value }));
+      
+      setsignupData((prev) => ({ ...prev, [name]: value }));
+      
     },
-    [signUpData]
+    [signupData]
   );
 
   const firstHandleKeyDown = (e: React.KeyboardEvent) => {
@@ -28,41 +28,131 @@ export const useSignup = () => {
       submitSignupDataFirst();
     }
   };
+  const secondHandleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      submitSignupDataSecond();
+    }
+  };
   const submitSignupDataFirst = useCallback(async () => {
-    const { id, password, checkPasswrod } = signUpData;
+    const { memberId, memberPassword, memberChckPassword } = signupData;
 
-    if (id === "" || password === "" || checkPasswrod === "") {
-      showToast("error", "양식이 비어있습니다");
+    if (memberId === ""  ) {
+      showToast("error", "아이디가 비었습니다");
+      return;
+    }else if( memberPassword === ""){
+      showToast("error", "비밀번호가 비었습니다");
+      return;
+    }else if(memberChckPassword === ""){
+      showToast("error", "확인 비밀번호가 비었습니다");
       return;
     }
-    if (password !== checkPasswrod) {
+    if (memberPassword !== memberChckPassword) {
       showToast("error", "비밀번호가 다릅니다");
     }
     setSection("second");
-  }, [signUpData]);
+  }, [signupData]);
 
-  const submitSignupDataSecond = useCallback(async () => {
-    const { name, email, checkNumber } = signUpData;
-    if (name === "" || email === "" || checkNumber === "") {
-      showToast("error", "형식이 비어있습니다");
+  const [isWaiting, setIsWaiting] = useState<string>("");
+
+  const checkEmailAuthCode = () => {
+    setIsWaiting("전송중");
+    const { memberEmail, memberSchool } = signupData;
+    const domain = memberEmail.split("@")[1];
+    if (memberEmail === "") {
+      showToast("error", "이메일을 작성해주세요");
+    } else if (
+      domain !== "dgsw.hs.kr" &&
+      memberSchool !== "대구소프트웨어마이스터고"
+    ) {
+      showToast("error", "학교이메일이 다릅니다");
+      setIsWaiting("전송실패");
       return;
-    }
-    SignUpMutation.mutate(signUpData, {
+    } 
+    // else if (
+    //   domain !== "bssm.hs.kr" &&
+    //   memberSchool !== "부산소프트웨어마이스터고"
+    // ) {
+    //   showToast("error", "학교이메일이 다릅니다");
+    //   setIsWaiting("전송실패");
+    //   return;
+    // } else if (
+    //   domain !== "gsm.gen.hs.kr" &&
+    //   memberSchool !== "광주소프트웨어마이스터고"
+    // ) {
+    //   showToast("error", "학교이메일이 다릅니다");
+    //   setIsWaiting("전송실패");
+    //   return;
+    // } else if (
+    //   domain !== "dsmhs.djsch.kr" &&
+    //   memberSchool !== "대덕소프트웨어마이스터고"
+    // ) {
+    //   showToast("error", "학교이메일이 다릅니다");
+    //   setIsWaiting("전송실패");
+    //   return;
+    // }
+    const email = memberEmail;
+    EmailMutation.mutate(email, {
       onSuccess: () => {
-        window.location.reload();
+        setIsWaiting("전송성공");
       },
-      onError: () => {
-        showToast("error", "회원가입 실패");
+      onError: (error) => {
+        setIsWaiting("");
+        const errorCode = error as AxiosError;
+        
+        showToast("error", errorHandler.signEmailError(errorCode.response?.status!));
+        
       },
     });
-  }, [signUpData]);
+  };
+
+  const emailKeydownButton = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      checkEmailAuthCode();
+    }
+  };
+
+  const submitSignupDataSecond = useCallback(async () => {
+    const { memberName, memberEmail, authCode, memberSchool } = signupData;
+    if (
+      memberName === "" 
+    ) {
+      showToast("error", "형식이 비어있습니다");
+      return;
+    }else if(   memberEmail === "" ){
+      showToast("error", "이메일이 비었습니다");
+      return;
+    }
+    else if(   authCode === "" ){
+      showToast("error", "인증코드가 비었습니다");
+      return;
+    }
+    else if(   memberSchool === ""){
+      showToast("error", "학교가 비었습니다");
+      return;
+    }
+
+    SignUpMutation.mutate(signupData, {
+      onSuccess: () => {
+        showToast("success", "회원가입 성공");
+        window.location.reload();
+      },
+      onError: (error) => {
+        const errorCode = error as AxiosError;
+        showToast("error", errorHandler.signupError(errorCode.response?.status!));
+      },
+    });
+  }, [signupData]);
 
   return {
+    isWaiting,
+    signupData,
     section,
+    emailKeydownButton,
+    secondHandleKeyDown,
+    checkEmailAuthCode,
     setSection,
-    signUpData,
     submitSignupDataSecond,
-    handleSigUpData,
+    handleSignupData,
     firstHandleKeyDown,
     submitSignupDataFirst,
   };

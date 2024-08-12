@@ -9,3 +9,7 @@ export const useSignUpMutation = ()=>{
   const mutation = useMutation(AuthRepositoryImpl.signUp);
   return mutation;
 }
+export const useEmailNumber = ()=>{
+  const mutation = useMutation(AuthRepositoryImpl.emailNumber);
+  return mutation;
+}

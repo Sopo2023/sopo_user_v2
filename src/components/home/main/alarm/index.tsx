@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import alert from "src/assets/imgs/alarm/alert.svg";
-import * as S from "./index.style";
-
+import alert from "src/assets/imgs/main/alert.svg";
+import * as S from "./style";
+import {tokenCheck} from "src/libs/tokenCheck/tokenCheck";
+import SignNavigate from "src/components/common/signNavigate";
 interface Notification {
   id: number;
   name: string;
@@ -14,14 +15,12 @@ const Alarm = () => {
   const [activeTab, setActiveTab] = useState<string>("내 지원");
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
-
+  const { getTokenCheck } = tokenCheck();
   useEffect(() => {
-    
     loadNotifications(activeTab);
   }, [activeTab]);
 
   const loadNotifications = (tab: string) => {
-   
     let data: Notification[] = [];
     if (tab === "내 지원") {
       data = [
@@ -103,54 +102,49 @@ const Alarm = () => {
   };
 
   return (
-    <S.Layout>
-      <S.Padding>
-        <S.Head>
-          <S.HeadImg src={alert} alt="alert" />
-          <S.HeadText>알림</S.HeadText>
-        </S.Head>
+    <S.layout>
+      <S.head>
+        <img src={alert} alt="alert" />
+        <S.headText>알림</S.headText>
+      </S.head>
+      <S.bodyHead>
+        <S.Type
+          isActive={activeTab === "내 지원"}
+          onClick={() => handleTabChange("내 지원")}
+        >
+          내 지원
+        </S.Type>
+        <S.Type
+          isActive={activeTab === "내 대회"}
+          onClick={() => handleTabChange("내 대회")}
+        >
+          내 대회
+        </S.Type>
+        <S.Type
+          isActive={activeTab === "내 게시글"}
+          onClick={() => handleTabChange("내 게시글")}
+        >
+          내 게시글
+        </S.Type>
+      </S.bodyHead>
 
-        <S.BodyHead>
-          <S.Type
-            isActive={activeTab === "내 지원"}
-            onClick={() => handleTabChange("내 지원")}
-          >
-            내 지원
-          </S.Type>
-          <S.Type
-            isActive={activeTab === "내 대회"}
-            onClick={() => handleTabChange("내 대회")}
-          >
-            내 대회
-          </S.Type>
-          <S.Type
-            isActive={activeTab === "내 게시글"}
-            onClick={() => handleTabChange("내 게시글")}
-          >
-            내 게시글
-          </S.Type>
-        </S.BodyHead>
-
-        <div>
-          {notifications.map((notification) => (
-            <S.NotificationItem key={notification.id}>
-              <S.NotificationText>
-                {notification.name} - {notification.title}
-              </S.NotificationText>
-              {notification.approved || activeTab !== "내 대회" ? (
-                <S.NotificationText>{notification.action}</S.NotificationText>
-              ) : (
-                <S.ApprovalButton
-                  onClick={() => handleApproval(notification.id)}
-                >
-                  {notification.action}
-                </S.ApprovalButton>
-              )}
-            </S.NotificationItem>
-          ))}
-        </div>
-      </S.Padding>
-    </S.Layout>
+      <S.NotificationView>
+        {getTokenCheck() ? notifications.slice(0,3).map((notification) => (
+          <S.NotificationItem key={notification.id}>
+            <span>
+              <p>{notification.name}</p> - {notification.title}
+            </span>
+            {notification.approved || activeTab !== "내 대회" ? (
+              <span>{notification.action}</span>
+            ) : (
+              <S.ApprovalButton onClick={() => handleApproval(notification.id)}>
+                {notification.action}
+              </S.ApprovalButton>
+            )}
+          </S.NotificationItem>
+        )) :<SignNavigate/>}
+      </S.NotificationView>
+    </S.layout>
   );
 };
 

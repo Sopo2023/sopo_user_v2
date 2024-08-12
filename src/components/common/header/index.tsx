@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "src/components/common/header/index.style";
-
+import { useGetProfileList } from "src/queries/profile/profile.query";
 import AvatarImg from "src/assets/imgs/header/AvatarImg.svg";
+import {tokenCheck} from "src/libs/tokenCheck/tokenCheck";
+import SignNavigate from "../signNavigate";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('username'); 
+  const { data } = useGetProfileList();
+  const { getTokenCheck } = tokenCheck();
 
-  const handleHeaderClick = () => {
-    navigate('/profile');
-  };
 
   return (
-    <S.HeaderContainer onClick={handleHeaderClick}>
-      <S.AvatarProfile>
+    <S.HeaderContainer>
+      {getTokenCheck()?  <S.AvatarProfile onClick={()=> navigate("/profile")}>
         <S.AvatarImg src={AvatarImg} alt="error" />
-        <S.AvatarName>{username}</S.AvatarName>
-      </S.AvatarProfile>
+        <S.AvatarName>{data?.data.memberName}</S.AvatarName>
+      </S.AvatarProfile>:<S.AvatarProfile> <SignNavigate/></S.AvatarProfile>}
+     
     </S.HeaderContainer>
   );
 };

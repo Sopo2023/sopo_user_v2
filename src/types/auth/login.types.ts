@@ -12,6 +12,6 @@ export interface Props {
 }
 
 export interface Login{
-  id:string;
-  password:string;
+  memberId:string;
+  memberPassword:string;
 }

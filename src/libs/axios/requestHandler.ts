@@ -9,8 +9,6 @@ import token from "../token/token";
 const requestHandler = (config: AxiosRequestConfig): AxiosRequestConfig => {
   if (token.getToken(REFRESH_TOKEN_KEY) === undefined 
   ) {
-    alert("세션 만료")
-    window.location.href = "/login";
     return config;
   }
 

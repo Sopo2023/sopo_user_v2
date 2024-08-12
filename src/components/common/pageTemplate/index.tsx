@@ -23,6 +23,7 @@ export const LayoutContainer = styled.div`
   display: flex;
   user-select: none;
   background-color: #f7fff3;
+  overflow: hidden;
 `;
 
 export const MainContent = styled.div`
