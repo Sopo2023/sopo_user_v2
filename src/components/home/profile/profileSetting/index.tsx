@@ -55,6 +55,15 @@ const ProfileSetting: React.FC<ProfileEditProps> = ({ onCancel }) => {
                         </S.DetailContainer>
                     </S.Detail>
                 </S.DetailWrap>
+                <div className="alarmSetting">
+                    <span>정보수신동의</span>
+                    <div className="alarmDetail">
+                        <span>SOPO가 보내는 이메일을 받겠습니다.</span>
+                    </div>
+                    <div className="alarmDetail">
+                        <span>SOPO가 보내는 푸시알림을 앱으로 받겠습니다.</span>
+                    </div>
+                </div>
             </S.MainWrap>
         </S.ProfileWrap>
     );

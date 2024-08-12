@@ -8,7 +8,9 @@ export const ProfileWrap = styled.main`
     height: calc(100% - 4.44vh);
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    //overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 `;
 
 export const MainWrap = styled.main`
