@@ -5,7 +5,7 @@ import {
   SeniortojuniorResponse,
 } from "src/types/seniortojunior/seniortojunior.type";
 import SeniortojuniorRepositoryImpl from "src/repositories/SeniortojuniorRespository/SeniortojuniorRepositoryImpl";
-import { pageParms } from "src/repositories/SeniortojuniorRespository/SeniortojuniorRepository";
+import { pageParms } from "src/types/util/pageParms.type";
 
 export const useGetSeniortojuniorList = (pageParms:pageParms) => {
   const useGetSeniortojunior = useQuery<

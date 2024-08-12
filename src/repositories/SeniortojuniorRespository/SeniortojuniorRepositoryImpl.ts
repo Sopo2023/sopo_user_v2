@@ -1,6 +1,7 @@
 import SOPOAxios from "src/libs/axios/customAxios";
 import { SeniortojuniorResponse } from "src/types/seniortojunior/seniortojunior.type";
-import {SeniortojuniorRepository ,pageParms} from "./SeniortojuniorRepository";
+import {SeniortojuniorRepository } from "./SeniortojuniorRepository";
+import { pageParms } from "src/types/util/pageParms.type";
 
 class SeniortojuniorRepositoryImpl implements SeniortojuniorRepository{
     public async getSeniortojunior(pageParms:pageParms):Promise<SeniortojuniorResponse>{
