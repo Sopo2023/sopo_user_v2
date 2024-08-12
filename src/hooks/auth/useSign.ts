@@ -4,6 +4,7 @@ import { showToast } from "src/libs/toast/swal";
 import { useSignUpMutation, useEmailNumber } from "src/queries/auth/queries";
 import { AxiosError } from "axios";
 import { SIGNUP_DATA } from "src/constants/signup/signup.constants";
+import errorHandler from "src/utils/error/errorHandler";
 
 export const useSignup = () => {
   const SignUpMutation = useSignUpMutation();
@@ -94,9 +95,11 @@ export const useSignup = () => {
       onSuccess: () => {
         setIsWaiting("전송성공");
       },
-      onError: () => {
+      onError: (error) => {
         setIsWaiting("");
-        showToast("error", "인증번호 실패");
+        const errorCode = error as AxiosError;
+        
+        showToast("error", errorHandler.signEmailError(errorCode.response?.status!));
         
       },
     });
@@ -133,8 +136,9 @@ export const useSignup = () => {
         showToast("success", "회원가입 성공");
         window.location.reload();
       },
-      onError: () => {
-        showToast("error", "회원가입 실패");
+      onError: (error) => {
+        const errorCode = error as AxiosError;
+        showToast("error", errorHandler.signupError(errorCode.response?.status!));
       },
     });
   }, [signupData]);
