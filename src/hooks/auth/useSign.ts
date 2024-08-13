@@ -48,6 +48,7 @@ export const useSignup = () => {
     }
     if (memberPassword !== memberChckPassword) {
       showToast("error", "비밀번호가 다릅니다");
+      return;
     }
     setSection("second");
   }, [signupData]);
