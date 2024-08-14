@@ -7,6 +7,7 @@ export const Container = styled.main`
     display: flex;
     justify-content: center;
     align-items: center;
+ 
 `
 export const competitionVeiw = styled.div`
 width: 90%;
@@ -23,7 +24,7 @@ width: 90%;
     min-width: 353px;
     padding: 20px;
     box-sizing: border-box;
-
+    overflow: hidden;
     @media (max-width: 768px) {
         padding: 15px;
     }
