@@ -2,7 +2,7 @@ import { LoginResponse, Login } from "src/types/auth/login.types";
 import { Sign } from "src/types/auth/signup.type";
 
 export interface AuthRepository {
-  login(loginData: LoginParmas): Promise<LoginResponse>;
+  login(loginData: LoginParams): Promise<LoginResponse>;
   signUp(signUpData:SignUpParams): Promise<void>;
   emailNumber(email:string):Promise<emailRespose>;
   refreshAccessToken(refreshToken: {
@@ -10,7 +10,7 @@ export interface AuthRepository {
   }): Promise<NewAccessTokenResponse>;
 }
 
-export interface LoginParmas extends Login{}
+export interface LoginParams extends Login{}
 export interface emailRespose{
   authCode:string;
 }
