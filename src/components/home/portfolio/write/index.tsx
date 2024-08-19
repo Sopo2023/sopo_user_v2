@@ -4,7 +4,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useMarkdownEditor } from 'src/hooks/markdowneditor/useMarkdownEditor';
 import { useNavigate, useLocation } from 'react-router-dom';
-import * as S from 'src/components/home/markdown/index.style';
+import * as S from 'src/components/home/portfolio/write/index.style';
 
 import H1 from 'src/assets/imgs/markdown/H1.svg';
 import H2 from 'src/assets/imgs/markdown/H2.svg';
@@ -28,10 +28,8 @@ const MarkdownEditor = () => {
 
     const handleBackArrowClick = () => {
         const path = location.pathname.split('/')[1];
-        if (path === 'seniortojunior') {
-            navigate('/seniortojunior');
-        } else if (path === 'contest') {
-            navigate('/contest');
+        if (path === 'portfolio') {
+            navigate('/portfolio');
         } else {
             navigate('/');
         }
@@ -53,6 +51,8 @@ const MarkdownEditor = () => {
     const getPageTitle = () => {
         const path = location.pathname.split('/')[1];
         switch (path) {
+            case 'portfolio':
+                return '포트폴리오';
             case 'seniortojunior':
                 return '선배가 후배에게';
             case 'contest':
@@ -65,6 +65,8 @@ const MarkdownEditor = () => {
     const getPageIcon = () => {
         const path = location.pathname.split('/')[1];
         switch (path) {
+            case 'portfolio':
+                return Portfolio;
             case 'seniortojunior':
                 return MentoMenti;
             case 'contest':
@@ -94,58 +96,7 @@ const MarkdownEditor = () => {
                         style={{ color: titleColor }}
                     />
                     <S.SepLine />
-                    <S.ButtonContainer>
-                        <S.MarkdownButton onClick={() => insertMarkdown('# ')}>
-                            <S.ButtonTitleImg src={H1} />
-                        </S.MarkdownButton>
-                        <S.MarkdownButton onClick={() => insertMarkdown('## ')}>
-                            <S.ButtonTitleImg src={H2} />
-                        </S.MarkdownButton>
-                        <S.MarkdownButton onClick={() => insertMarkdown('### ')}>
-                            <S.ButtonTitleImg src={H3} />
-                        </S.MarkdownButton>
-                        <S.MarkdownButton onClick={() => insertMarkdown('#### ')}>
-                            <S.ButtonTitleImg src={H4} />
-                        </S.MarkdownButton>
-                        <S.MarkdownButton onClick={() => insertMarkdown('**')}>
-                            <S.ButtonBoldImg src={Bold} />
-                        </S.MarkdownButton>
-                        <S.MarkdownButton onClick={() => insertMarkdown('_')}>
-                            <S.ButtonItalicImg src={Italic} />
-                        </S.MarkdownButton>
-                        <S.MarkdownButton onClick={() => insertMarkdown('~~')}>
-                            <S.ButtonStrokeImg src={Stroke} />
-                        </S.MarkdownButton>
-                        <S.MarkdownButton onClick={() => insertMarkdown('> ')}>
-                            <S.ButtonQuoteImg src={Quote} />
-                        </S.MarkdownButton>
-                        <S.MarkdownButton onClick={() => document.getElementById('file-input')?.click()}>
-                            <S.ButtonImageImg src={Img} />
-                        </S.MarkdownButton>
-                        <S.MarkdownButton onClick={() => insertMarkdown('```')}>
-                            <S.ButtonCodeImg src={Code} />
-                        </S.MarkdownButton>
-                        <input
-                            id="file-input"
-                            type="file"
-                            style={{ display: 'none' }}
-                            onChange={handleFileChange}
-                        />
-                    </S.ButtonContainer>
-                    <S.LanguageSelector
-                        value={selectedLanguage}
-                        onChange={(e) => setSelectedLanguage(e.target.value)}
-                    >
-                        <option value="javascript">JavaScript</option>
-                        <option value="python">Python</option>
-                        <option value="java">Java</option>
-                        <option value="c">C</option>
-                        <option value="cpp">C++</option>
-                        <option value="ruby">Ruby</option>
-                        <option value="go">Go</option>
-                        <option value="html">HTML</option>
-                        <option value="css">CSS</option>
-                    </S.LanguageSelector>
+                    
                     <S.TextArea
                         id="markdown-textarea"
                         value={markdownText}

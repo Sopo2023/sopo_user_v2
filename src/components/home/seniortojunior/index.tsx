@@ -8,47 +8,6 @@ import styled from 'styled-components';
 const ITEMS_PER_PAGE = 6;
 const MAX_PAGES = 5; 
 
-const PaginationWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0;
-    list-style-type: none;
-
-    button {
-        padding: 10px;
-        margin: 0 5px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 16px;
-        color: #777;
-
-        &:disabled {
-            color: #e0e0e0;
-            cursor: not-allowed;
-        }
-    }
-
-    .page-number {
-        padding: 10px;
-        margin: 0 5px;
-        cursor: pointer;
-        color: #555;
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &.active {
-            background-color: #4caf50;
-            color: white;
-        }
-    }
-`;
-
 const Seniortojunior = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
 

@@ -80,8 +80,8 @@ export const PaginationWrapper = styled.div`
         margin: 0 5px;
         cursor: pointer;
         border-radius: 50%;
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
