@@ -11,7 +11,8 @@ export const ContainerParents = styled.div`
 
 export const Container = styled.div`
     width: 90%;
-    max-width: 1100px;
+    max-width: 1700px;
+    min-width: 1100px;
     height: auto;
     max-height: 90%;
     border-radius: 13px;
@@ -52,34 +53,50 @@ export const PostsGrid = styled.div`
     }
 `;
 
-export const Pagination = styled.div`
+export const PaginationWrapper = styled.div`
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px 20px;
-    box-sizing: border-box;
-    border-top: 1px solid #E0E0E0;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    list-style-type: none;
 
     button {
-        padding: 8px 16px;
-        cursor: pointer;
-        background-color: #f0f0f0;
+        padding: 10px;
+        margin: 0 5px;
+        background: none;
         border: none;
-        border-radius: 4px;
-        transition: background-color 0.3s;
-
-        &:hover {
-            background-color: #ddd;
-        }
+        cursor: pointer;
+        font-size: 16px;
+        color: #777;
 
         &:disabled {
+            color: #e0e0e0;
             cursor: not-allowed;
-            background-color: #e0e0e0;
         }
     }
-    
-    span {
-        align-self: center;
-        font-size: 14px;
+
+    .page-number {
+        padding: 10px;
+        margin: 0 5px;
+        cursor: pointer;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFF;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px; 
+        font-style: normal; 
+        font-weight: 700; 
+        line-height: normal; 
+        /* background-color: #555;  */
+        color: #000;
+
+        &.active {
+            background-color: #0D6B23; 
+            color: white;
+        }
     }
 `;
