@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import * as S from './index.style';
 import PostHeader from 'src/components/common/postHeader/index';
 import PostItem from 'src/components/post/senior-to-junior/index';
-import posts from 'src/constants/postDummyData/index'; 
-import styled from 'styled-components';
+import posts from 'src/constants/postDummyData/index';
+import Pagination from 'src/components/common/page/index';
 
 const ITEMS_PER_PAGE = 6;
 const MAX_PAGES = 5; 
@@ -35,6 +35,10 @@ const Seniortojunior = () => {
         }
     };
 
+    const handlePageClick = (page: number) => {
+        setCurrentPage(page);
+    };
+
     return (
         <S.ContainerParents>
             <S.Container>
@@ -51,23 +55,14 @@ const Seniortojunior = () => {
                         />
                     ))}
                 </S.PostsGrid>
-                <S.PaginationWrapper>
-                    <button onClick={handlePrevPage} disabled={currentPage === 1}>
-                        &larr;
-                    </button>
-                    {[...Array(displayTotalPages)].map((_, index) => (
-                        <div
-                            key={index}
-                            className={`page-number ${currentPage === index + 1 ? 'active' : ''}`}
-                            onClick={() => setCurrentPage(index + 1)}
-                        >
-                            {index + 1}
-                        </div>
-                    ))}
-                    <button onClick={handleNextPage} disabled={currentPage === displayTotalPages}>
-                        &rarr;
-                    </button>
-                </S.PaginationWrapper>
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    displayTotalPages={displayTotalPages}
+                    onNextPage={handleNextPage}
+                    onPrevPage={handlePrevPage}
+                    onPageClick={handlePageClick}
+                />
             </S.Container>
         </S.ContainerParents>
     );
