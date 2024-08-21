@@ -3,12 +3,14 @@ import * as S from "src/components/home/profile/profileSetting/style";
 import ReturnImg from "src/assets/imgs/profile/delete.svg";
 import AvatarImg from "src/assets/imgs/header/AvatarImg.svg";
 import Pencil from "src/assets/imgs/profile/write.svg";
+import { useGetProfileList } from "src/queries/profile/profile.query";
 
 interface ProfileEditProps {
     onCancel: () => void;
 }
 
 const ProfileSetting: React.FC<ProfileEditProps> = ({ onCancel }) => {
+    const { data } = useGetProfileList();
     return (
         <S.ProfileWrap>
             <S.MainWrap>
@@ -20,7 +22,7 @@ const ProfileSetting: React.FC<ProfileEditProps> = ({ onCancel }) => {
                         </S.PencilIconContainer>
                     </S.AvatarContainer>
                     <S.ProfileInfo>
-                        <S.UserName>hae_jun7388</S.UserName>
+                        <S.UserName>{data?.data.memberId}</S.UserName>
                     </S.ProfileInfo>
                     <S.ReturnIcon src={ReturnImg} alt="돌아가기 이미지" onClick={onCancel} />
                 </S.TitleWrap>
@@ -29,21 +31,21 @@ const ProfileSetting: React.FC<ProfileEditProps> = ({ onCancel }) => {
                     <S.Detail>
                         <S.DetailLabel>학교</S.DetailLabel>
                         <S.DetailContainer>
-                            <S.DetailValue>대구소프트웨어마이스터고등학교</S.DetailValue>
+                            <S.DetailValue>{data?.data.memberSchool}</S.DetailValue>
                             <S.EditButton>수정</S.EditButton>
                         </S.DetailContainer>
                     </S.Detail>
                     <S.Detail>
                         <S.DetailLabel>이름</S.DetailLabel>
                         <S.DetailContainer>
-                            <S.DetailValue>이해준</S.DetailValue>
+                            <S.DetailValue>{data?.data.memberName}</S.DetailValue>
                             <S.EditButton>수정</S.EditButton>
                         </S.DetailContainer>
                     </S.Detail>
                     <S.Detail>
                         <S.DetailLabel>이메일</S.DetailLabel>
                         <S.DetailContainer>
-                            <S.DetailValue>hae_jun7388@gmail.com</S.DetailValue>
+                            <S.DetailValue>{data?.data.memberEmail}</S.DetailValue>
                             <S.EditButton>수정</S.EditButton>
                         </S.DetailContainer>
                     </S.Detail>

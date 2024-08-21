@@ -4,5 +4,6 @@ export interface profileType {
     memberName: string;
     memberEmail: string;
     memberSchool: string;
+    memberPassword: string;
   };
 }

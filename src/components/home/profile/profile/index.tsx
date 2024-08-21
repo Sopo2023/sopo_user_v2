@@ -3,6 +3,7 @@ import * as S from "./style";
 import AvatarImg from "src/assets/imgs/header/AvatarImg.svg";
 import Pencil from "src/assets/imgs/profile/write.svg";
 import Empty from "src/assets/imgs/profile/Empty.svg";
+import { useGetProfileList } from "src/queries/profile/profile.query";
 
 interface ProfileProps {
     onEdit: () => void;
@@ -11,6 +12,7 @@ interface ProfileProps {
 
 const Profile: React.FC<ProfileProps> = ({ onEdit, onSetting }) => {
     const [selected, setSelected] = useState(0);
+    const { data } = useGetProfileList();
 
     const handleSelect = (index: number) => {
         setSelected(index);
@@ -42,7 +44,7 @@ const Profile: React.FC<ProfileProps> = ({ onEdit, onSetting }) => {
                         </S.PencilIconContainer>
                     </S.AvatarContainer>
                     <S.ProfileInfo>
-                        <S.UserName>이해준</S.UserName>
+                        <S.UserName>{data?.data.memberName}</S.UserName>
                         <S.ButtonContainer>
                             <S.EditButton onClick={onEdit}>프로필 수정</S.EditButton>
                             <S.SettingsButton onClick={onSetting}>프로필 설정</S.SettingsButton>
