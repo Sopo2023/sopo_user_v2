@@ -2,18 +2,18 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from "./index.style";
 import useSidebar from 'src/hooks/sidebar/useSidebar';
-
 import SopoLogo from "src/assets/imgs/sidebar/sopo_logo.svg";
 import HomeIcon from "src/assets/imgs/sidebar/home.svg";
 import MentorIcon from "src/assets/imgs/sidebar/metometi.svg";
 import PortfolioIcon from "src/assets/imgs/sidebar/portfolio.svg";
 import CompetitionIcon from "src/assets/imgs/sidebar/competition.svg";
 import LogoutIcon from "src/assets/imgs/sidebar/logouticon.svg";
+import useLogout from 'src/hooks/auth/useLogout';
 
 const Index = () => {
   const navigate = useNavigate();
   const activeItem = useSidebar();
-
+  const { logOut } = useLogout();
   const handleMenuItemClick = (item: string, path: string) => {
     navigate(path);
   };
@@ -57,7 +57,7 @@ const Index = () => {
         </S.Menu>
         <S.Logout>
           <S.LogoutIconImg src={LogoutIcon} alt='error' />
-          <S.LogoutText>로그아웃</S.LogoutText>
+          <S.LogoutText onClick={logOut}>로그아웃</S.LogoutText>
         </S.Logout>
       </S.SideBarWrap>
     </S.SidebarContainer>
