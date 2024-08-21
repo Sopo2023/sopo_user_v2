@@ -8,9 +8,10 @@ import SignNavigate from "../signNavigate";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { data } = useGetProfileList();
   const { getTokenCheck } = tokenCheck();
-
+  const { data } = useGetProfileList({suspense:true});
+ 
+    
 
   return (
     <S.HeaderContainer>
