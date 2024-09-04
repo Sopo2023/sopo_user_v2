@@ -3,13 +3,7 @@ import * as S from "./style";
 import { ModalProps } from "src/types/profile/Modal.type";
 import { buttonWrap, cancelButton, Input, pwTitle, saveButton, Select } from "./style";
 import { useGetProfileList } from "src/queries/profile/profile.query";
-
-const schoolOptions = [
-    "대덕소프트웨어마이스터고등학교",
-    "부산소프트웨어마이스터고등학교",
-    "대구소프트웨어마이스터고등학교",
-    "광주소프트웨어마이스터고등학교"
-];
+import { schoolOptions } from "src/constants/profile/schoolOptions";
 
 const Modal = ({ isOpen, onClose, title, value, onSave }: ModalProps) => {
     const [inputValue, setInputValue] = useState(value);
