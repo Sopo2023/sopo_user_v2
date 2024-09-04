@@ -47,7 +47,7 @@ const ProfileEdit: React.FC<ProfileEditProps> = ({ onCancel }) => {
                         <S.DetailLabel>학교</S.DetailLabel>
                         <S.DetailContainer>
                             <S.DetailValue>{data?.data.memberSchool}</S.DetailValue>
-                            <S.EditButton onClick={() => handleEditClick("학교", data?.data.memberSchool || "")}>
+                            <S.EditButton onClick={() => handleEditClick("학교", data?.data.memberSchool || "학교 정보가 존재하지 않습니다.")}>
                                 수정
                             </S.EditButton>
                         </S.DetailContainer>
@@ -56,7 +56,7 @@ const ProfileEdit: React.FC<ProfileEditProps> = ({ onCancel }) => {
                         <S.DetailLabel>이름</S.DetailLabel>
                         <S.DetailContainer>
                             <S.DetailValue>{data?.data.memberName}</S.DetailValue>
-                            <S.EditButton onClick={() => handleEditClick("이름", data?.data.memberName || "")}>
+                            <S.EditButton onClick={() => handleEditClick("이름", data?.data.memberName || "이름이 올바르지 않습니다.")}>
                                 수정
                             </S.EditButton>
                         </S.DetailContainer>
@@ -65,7 +65,7 @@ const ProfileEdit: React.FC<ProfileEditProps> = ({ onCancel }) => {
                         <S.DetailLabel>이메일</S.DetailLabel>
                         <S.DetailContainer>
                             <S.DetailValue>{data?.data.memberEmail}</S.DetailValue>
-                            <S.EditButton onClick={() => handleEditClick("이메일", data?.data.memberEmail || "")}>
+                            <S.EditButton onClick={() => handleEditClick("이메일", data?.data.memberEmail || "이메일이 존재하지 않습니다.")}>
                                 수정
                             </S.EditButton>
                         </S.DetailContainer>
