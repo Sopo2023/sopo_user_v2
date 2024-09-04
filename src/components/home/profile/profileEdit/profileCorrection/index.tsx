@@ -11,7 +11,7 @@ const schoolOptions = [
     "광주소프트웨어마이스터고등학교"
 ];
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, value, onSave }) => {
+const Modal = ({ isOpen, onClose, title, value, onSave }: ModalProps) => {
     const [inputValue, setInputValue] = useState(value);
     const [selectedSchool, setSelectedSchool] = useState(schoolOptions[0]);
     const [password, setPassword] = useState("");
@@ -58,7 +58,17 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, value, onSave }) 
                             placeholder="새로운 이름 입력"
                         />
                     </>
-                ) : title === "비밀번호" ? (
+                ) :  title === "이메일" ? (
+                    <>
+                        <S.Title>새로운 이메일을 입력해주세요</S.Title>
+                        <Input
+                            type="text"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            placeholder="새로운 이메일을 입력"
+                        />
+                    </>
+                ) :title === "비밀번호" ? (
                     <>
                         <S.Title>새로운 비밀번호를 입력해주세요</S.Title>
                         <Input
@@ -78,7 +88,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, value, onSave }) 
                     </>
                 )}
 
-                {title === "학교" || title === "이름" || title === "비밀번호" ? (
+                {title === "학교" || title === "이름" || title === "이메일" || title === "비밀번호" ? (
                     <>
                         <S.pwTitle>기존의 비밀번호를 입력해주세요</S.pwTitle>
                         <Input
