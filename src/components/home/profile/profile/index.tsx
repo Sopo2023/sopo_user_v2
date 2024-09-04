@@ -4,6 +4,7 @@ import AvatarImg from "src/assets/imgs/header/AvatarImg.svg";
 import Pencil from "src/assets/imgs/profile/write.svg";
 import Empty from "src/assets/imgs/profile/Empty.svg";
 import { useGetProfileList } from "src/queries/profile/profile.query";
+import { renderEmptyMessage } from "src/utils/profile/renderEmptyMessage";
 
 interface ProfileProps {
     onEdit: () => void;
@@ -16,21 +17,6 @@ const Profile: React.FC<ProfileProps> = ({ onEdit, onSetting }) => {
 
     const handleSelect = (index: number) => {
         setSelected(index);
-    };
-
-    const renderEmptyMessage = () => {
-        switch (selected) {
-            case 0:
-                return "게시물이 없습니다.";
-            case 1:
-                return "저장된 포트폴리오가 없습니다.";
-            case 2:
-                return "참가한 대회가 없습니다.";
-            case 3:
-                return "저장된 북마크가 없습니다.";
-            default:
-                return "";
-        }
     };
 
     return (
@@ -64,7 +50,7 @@ const Profile: React.FC<ProfileProps> = ({ onEdit, onSetting }) => {
                 </S.SelectWrap>
                 <S.emptyWrap>
                     <img src={Empty} alt="빈 이미지"/>
-                    <span>{renderEmptyMessage()}</span>
+                    <span>{renderEmptyMessage(selected)}</span>
                 </S.emptyWrap>
             </S.mainWrap>
         </S.profileWrap>
