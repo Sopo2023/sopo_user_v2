@@ -1,30 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "src/components/home/profile/profileEdit/style";
 import ReturnImg from "src/assets/imgs/profile/delete.svg";
 import AvatarImg from "src/assets/imgs/header/AvatarImg.svg";
 import Pencil from "src/assets/imgs/profile/write.svg";
-import { useGetProfileList } from "src/queries/profile/profile.query";
 import Modal from "src/components/home/profile/profileEdit/profileCorrection/index";
+import useProfileEdit from "src/hooks/profile/useProfileEdit";
 
 interface ProfileEditProps {
     onCancel: () => void;
 }
 
 const ProfileEdit: React.FC<ProfileEditProps> = ({ onCancel }) => {
-    const { data } = useGetProfileList();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [currentField, setCurrentField] = useState<string | null>(null);
-    const [currentValue, setCurrentValue] = useState<string>("");
-
-    const handleEditClick = (field: string, value: string) => {
-        setCurrentField(field);
-        setCurrentValue(value);
-        setIsModalOpen(true);
-    };
-
-    const handleSave = (newValue: string) => {
-        console.log(`${currentField} 수정됨: ${newValue}`);
-    };
+    const {
+        data,
+        isModalOpen,
+        currentField,
+        currentValue,
+        handleEditClick,
+        handleSave,
+        setIsModalOpen,
+    } = useProfileEdit();
 
     return (
         <S.ProfileWrap>
