@@ -1,7 +1,8 @@
 import React from "react";
-import Profile from "src/components/home/profile";
+import MainProfile from "src/components/home/profile/index";
 
-const ProfilePage=()=>{
-return <Profile/>
-}
+const ProfilePage: React.FC = () => {
+    return <MainProfile />;
+};
+
 export default ProfilePage;

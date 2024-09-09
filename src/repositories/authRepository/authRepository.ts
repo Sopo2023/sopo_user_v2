@@ -10,6 +10,7 @@ export interface AuthRepository {
   }): Promise<NewAccessTokenResponse>;
 }
 
+
 export interface LoginParmas extends Login{}
 export interface emailRespose{
   authCode:string;
