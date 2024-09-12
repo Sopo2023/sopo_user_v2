@@ -64,7 +64,7 @@ export const selectButton = styled.select`
   background: url(${ExpandDown}) no-repeat right 10px center;
   background-size: 24px 24px;
   color: ${color.Label.Disable};
-
+  
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;

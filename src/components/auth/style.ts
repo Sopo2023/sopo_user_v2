@@ -22,8 +22,11 @@ position: relative;
   align-items: center;
   gap: 24px;
   padding: 36px;
-  min-width: 485px;
+  min-width: 350px;
   min-height: 541px;
+  @media only screen and (min-width: 800px){
+    min-width: 480px;
+  }
   background-color: ${color.Background.Normal.Alternative};
   border-radius: 25px;
 
@@ -62,10 +65,16 @@ export const vector3 = styled.img`
 
 export const mainView = styled.div`
   display: flex;
-  width: 1000px;
+  width: 1000px; 
+  
   height: 565px;
   gap: 10px;
   z-index: 5;
+  @media only screen and (max-width: 800px){
+    justify-content: center; 
+    align-items: center;
+  }
+  
   justify-content: space-between;
 `;
 export const LogoView = styled.div`
@@ -73,7 +82,10 @@ export const LogoView = styled.div`
   align-items: end;
   width: 50%;
   height: 100%;
-  
+  @media only screen and (max-width: 800px){
+    display: none;
+  }
+ 
   img {
     width: 531px;
     height: 455px;
