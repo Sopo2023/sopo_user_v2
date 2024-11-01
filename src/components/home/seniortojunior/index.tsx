@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as S from 'src/components/home/seniortojunior/index.style';
 import PostHeader from 'src/components/common/postHeader/index';
 import PostItem from 'src/components/post/senior-to-junior/index';
+import Pagination from 'src/components/common/pageNation/index';
 import posts from 'src/constants/postDummyData/index'; 
 
 const ITEMS_PER_PAGE = 6;
@@ -17,21 +18,8 @@ const Seniortojunior = () => {
     const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
     const displayTotalPages = Math.min(totalPages, MAX_PAGES);
 
-    const handleNextPage = () => {
-        if (currentPage < displayTotalPages) {
-            setCurrentPage(currentPage + 1);
-        } else {
-            alert(
-                "소포 검색은 최상의 검색결과를 제공하기 위해, 검색결과를 5페이지까지만 제공하고 있습니다.\n" +
-                "5페이지 내에서 원하는 검색결과를 찾지 못한 경우, 더욱 구체적인 검색어를 입력해 검색해주세요."
-            );
-        }
-    };
-
-    const handlePrevPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
     };
 
     return (
@@ -51,11 +39,11 @@ const Seniortojunior = () => {
                         />
                     ))}
                 </S.PostsGrid>
-                <S.Pagination>
-                    <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
-                    <span>Page {currentPage} of {displayTotalPages}</span>
-                    <button onClick={handleNextPage} disabled={currentPage === displayTotalPages}>Next</button>
-                </S.Pagination>
+                <Pagination 
+                    currentPage={currentPage} 
+                    totalPages={displayTotalPages} 
+                    onPageChange={handlePageChange} 
+                />
             </S.Container>
         </S.ContainerParents>
     );
