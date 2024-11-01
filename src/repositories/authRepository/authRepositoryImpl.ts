@@ -2,7 +2,7 @@ import { LoginResponse } from "src/types/auth/login.types";
 import { 
   AuthRepository, 
   NewAccessTokenResponse,
-  LoginParams,
+  LoginParmas,
   SignUpParams, 
   emailRespose 
 } from "./authRepository";
@@ -10,7 +10,7 @@ import config from "src/config/config.json";
 import axios from "axios";
 
 class authRepositoryImpl implements AuthRepository {
-  public async login(loginData: LoginParams): Promise<LoginResponse> {
+  public async login(loginData: LoginParmas): Promise<LoginResponse> {
     try {
       const { data } = await axios.post(`${config.server}/auth/sign_in`, loginData);
       return data;
