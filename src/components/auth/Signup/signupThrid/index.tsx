@@ -52,7 +52,9 @@ return(
               style={{ width: "70%" }}
             />
             <Auth.emailNumberButton onClick={chckEmailAuthCode}>
-              <span>인증하기</span>
+              <span>{isWaiting === "전송중" ? "이메일 전송중": isWaiting === "전송성공"
+              ? "이메일 전송성공"
+              : "인증하기" }</span>
             </Auth.emailNumberButton>
           </Auth.emailTextField>
         </Auth.InputText>
@@ -62,13 +64,6 @@ return(
               {" "}
               이메일 인증번호<p>*</p>
             </span>
-            <p>
-            {isWaiting === "전송중"
-              ? "이메일 전송중.."
-              : isWaiting === "전송성공"
-              ? "이메일 전송성공"
-              : ""}
-              </p>
           </Auth.emailPostField>
           <TextField
             name="authCode"

@@ -138,7 +138,8 @@ export const CertificationNumber = styled.div`
 
 export const emailNumberButton = styled.div`
   display: flex;
-  width: 100px;
+  min-width: 100px;
+  padding: 0 5px;
   height: 50px;
   background: ${color.Primary.Light};
   border-radius: 12px;
