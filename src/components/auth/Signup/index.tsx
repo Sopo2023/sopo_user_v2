@@ -6,6 +6,7 @@ import Logo from "src/assets/imgs/Signimg/signup.svg";
 import * as S from "./style";
 import SignupFirst from "./signupFirst";
 import SignupSecond from "./signupSecond";
+import SignupThird from "./signupThrid";
 import { SIGNUP_SECTION_NAME } from "src/constants/signup/signup.constants";
 
 const Signup = ({ setIsLogin }: Props) => {
@@ -16,7 +17,7 @@ const Signup = ({ setIsLogin }: Props) => {
       signupData={sign.signupData}
       handleSignupData={sign.handleSignupData}
       submitSignupDataFirst={sign.submitSignupDataFirst}
-      keydownButton={sign.firstHandleKeyDown}
+      keydownButton={sign.handleKeyDown}
       key="signupFirst"
     />,
     <SignupSecond
@@ -24,12 +25,20 @@ const Signup = ({ setIsLogin }: Props) => {
       signupData={sign.signupData}
       handleSignupData={sign.handleSignupData}
       submitSignupDataSecond={sign.submitSignupDataSecond}
-      keydownButton={sign.secondHandleKeyDown}
-      emailKeydownButton={sign.emailKeydownButton}
-      chckEmailAuthCode={sign.checkEmailAuthCode}
-      isWaiting={sign.isWaiting}
+      keydownButton={sign.handleKeyDown}
       key="signupSecond"
     />,
+    <SignupThird
+    setSection={sign.setSection}
+    signupData={sign.signupData}
+    handleSignupData={sign.handleSignupData}
+    SubmitSignupDataThird={sign.SubmitSignupDataThird}
+    keydownButton={sign.handleKeyDown}
+    emailKeydownButton={sign.emailKeydownButton}
+    chckEmailAuthCode={sign.checkEmailAuthCode}
+    isWaiting={sign.isWaiting}
+    key="signupthird"
+    />
   ];
 
   return (
