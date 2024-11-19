@@ -4,7 +4,8 @@ import TextField from "src/components/textFields";
 import * as Auth from "../style";
 import Button from "src/components/button";
 import arrowLeft from "src/assets/imgs/Signimg/arrow-left.svg";
-
+import CodeTextField from "src/components/codeTextField";
+import * as S from "./style";
 interface Props {
     setSection: Dispatch<SetStateAction<string>>;
     signupData: Sign;
@@ -41,7 +42,7 @@ return(
           <span>
             이메일<p>*</p>
           </span>
-          <Auth.emailTextField>
+          <S.emailTextField>
             <TextField
               name="memberEmail"
               value={signupData.memberEmail}
@@ -51,29 +52,29 @@ return(
               onKeyDown={emailKeydownButton}
               style={{ width: "70%" }}
             />
-            <Auth.emailNumberButton onClick={chckEmailAuthCode}>
+            <S.emailNumberButton onClick={chckEmailAuthCode}>
               <span>{isWaiting === "전송중" ? "이메일 전송중": isWaiting === "전송성공"
               ? "이메일 전송성공"
               : "인증하기" }</span>
-            </Auth.emailNumberButton>
-          </Auth.emailTextField>
+            </S.emailNumberButton>
+          </S.emailTextField>
         </Auth.InputText>
         <Auth.InputText>
-          <Auth.emailPostField>
+          <S.emailPostField>
             <span>
               {" "}
               이메일 인증번호<p>*</p>
             </span>
-          </Auth.emailPostField>
-          <TextField
-            name="authCode"
-            value={signupData.authCode.toUpperCase()}
-            type="text"
-            onChange={handleSignupData}
-            placeholder="인증번호를 입력해주세요"
-            onKeyDown={keydownButton}
-            style={{}}
+          </S.emailPostField>
+          <S.authCodeBox>
+            <div>
+          <CodeTextField 
+          codeValue={signupData.authCode.toUpperCase()}
+          onChange={handleSignupData}
           />
+          </div>
+          </S.authCodeBox>
+          
         </Auth.InputText>
     </Auth.InputContainer>
         <Button text="회원가입" style={{}} onClick={SubmitSignupDataThird} />

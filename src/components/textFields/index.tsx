@@ -35,9 +35,7 @@ const TextField = ({
       setInternalValue(e.target.value.toUpperCase());
     }else{
       setInternalValue(e.target.value);
-    }
-      
-            
+    }       
       if (onChange) {
         onChange(e);
       }
