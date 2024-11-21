@@ -5,7 +5,7 @@ import { useSignUpMutation, useEmailNumber } from "src/queries/auth/queries";
 import { AxiosError } from "axios";
 import { SIGNUP_DATA } from "src/constants/signup/signup.constants";
 import errorHandler from "src/utils/error/errorHandler";
-
+import { WAITINGENUM } from "src/constants/authWaitingEnum/authWaitingEnum";
 
 export const useSignup = () => {
   const SignUpMutation = useSignUpMutation();
@@ -59,7 +59,7 @@ export const useSignup = () => {
   const [isWaiting, setIsWaiting] = useState<string>("");
 
   const checkEmailAuthCode = () => {
-    setIsWaiting("전송중");
+    setIsWaiting(WAITINGENUM.spend);
     const { memberEmail, memberSchool } = signupData;
     const domain = memberEmail.split("@")[1];
     if (memberEmail === "") {
@@ -99,7 +99,7 @@ export const useSignup = () => {
     EmailMutation.mutate(email, {
       onSuccess: () => {
         setTimeout(function() {
-          setIsWaiting("전송성공");
+          setIsWaiting(WAITINGENUM.success);
          }, 3000);
         
       },

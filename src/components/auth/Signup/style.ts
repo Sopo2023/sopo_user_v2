@@ -8,7 +8,7 @@ export const InputContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 40%;
-
+  gap: 5px;
 `;
 export const InputText = styled.div`
   display: flex;

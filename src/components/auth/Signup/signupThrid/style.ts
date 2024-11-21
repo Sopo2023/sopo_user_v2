@@ -24,7 +24,7 @@ export const emailNumberButton = styled.div`
   align-items: center;
   cursor: pointer;
   span {
-    color: #fff;
+    color: #fff !important;
   }
 `;
 

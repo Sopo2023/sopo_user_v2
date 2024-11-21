@@ -31,11 +31,7 @@ const TextField = ({
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-    if(name==="authCode"){
-      setInternalValue(e.target.value.toUpperCase());
-    }else{
-      setInternalValue(e.target.value);
-    }       
+    setInternalValue(e.target.value);      
       if (onChange) {
         onChange(e);
       }

@@ -43,7 +43,7 @@ class ErrorHandler {
         case  500:
           return  "서버 에러";
         default:
-          return "이메일 전송 싫패";
+          return "이메일 전송 실패";
       }
   }
 

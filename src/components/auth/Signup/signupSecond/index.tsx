@@ -26,7 +26,7 @@ const SignupSecond = ({
     <>
       <Auth.InputContainer>
         <Auth.SignBack onClick={() => setSection("first")}>
-          <img src={arrowLeft} alt="돌아가라 어리석은것" />
+          <img src={arrowLeft} alt="imgError" />
           <span>돌아가기</span>
         </Auth.SignBack>
         <Auth.InputText>

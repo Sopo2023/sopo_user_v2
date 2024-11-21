@@ -2,13 +2,12 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import color from 'src/styles/color';
 interface CodeTextFieldProps {
-  codeValue: string;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
 }
 
-const CodeTextField = ({ codeValue, onChange }:CodeTextFieldProps) => {
+const CodeTextField = ({ onChange }:CodeTextFieldProps) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const [inputValues, setInputValues] = useState<string[]>(Array(6).fill(''));
 
@@ -53,6 +52,7 @@ const CodeTextField = ({ codeValue, onChange }:CodeTextFieldProps) => {
           onKeyDown={(e) => handleKeyDown(e, index)}
           ref={(el) => (inputRefs.current[index] = el)}
           maxLength={1}
+        
         />
       ))}
     </>
