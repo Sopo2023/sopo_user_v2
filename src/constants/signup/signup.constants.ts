@@ -1,8 +1,13 @@
 export const SIGNUP_SECTION_NAME = [
     {
-      title: "first",
+      title: "first"
     },
-    { title: "second" },
+    { 
+      title: "second" 
+    },
+    { 
+      title: "third" 
+    }
   ] as const;
 
 

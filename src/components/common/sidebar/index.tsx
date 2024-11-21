@@ -9,11 +9,11 @@ import MentorIcon from "src/assets/imgs/sidebar/metometi.svg";
 import PortfolioIcon from "src/assets/imgs/sidebar/portfolio.svg";
 import CompetitionIcon from "src/assets/imgs/sidebar/competition.svg";
 import LogoutIcon from "src/assets/imgs/sidebar/logouticon.svg";
-
+import useLogout from 'src/hooks/auth/useLogout';
 const Index = () => {
   const navigate = useNavigate();
   const activeItem = useSidebar();
-
+  const {logOut}= useLogout();
   const handleMenuItemClick = (item: string, path: string) => {
     navigate(path);
   };
@@ -55,7 +55,7 @@ const Index = () => {
             <S.MenuText>대회</S.MenuText>
           </S.MenuItem>
         </S.Menu>
-        <S.Logout>
+        <S.Logout onClick={logOut}>
           <S.LogoutIconImg src={LogoutIcon} alt='error' />
           <S.LogoutText>로그아웃</S.LogoutText>
         </S.Logout>
