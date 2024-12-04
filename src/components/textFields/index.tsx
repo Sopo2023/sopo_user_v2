@@ -31,7 +31,7 @@ const TextField = ({
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setInternalValue(e.target.value);
+    setInternalValue(e.target.value);      
       if (onChange) {
         onChange(e);
       }
@@ -45,7 +45,6 @@ const TextField = ({
       onChange({ target: { name, value: "" } } as React.ChangeEvent<HTMLInputElement>);
     }
   }, [onChange, name]);
-
 
   return (
     <Text_Field_Main style={style} $isActive={textBox}>

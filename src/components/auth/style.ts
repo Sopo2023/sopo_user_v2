@@ -20,9 +20,15 @@ position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  justify-content: space-around;
+  @media only screen and (min-width: 800px){
+    align-items: center;
+    min-width: 485px;
+  }
+  width: 90%;
   padding: 36px;
-  min-width: 350px;
+  max-width: 480px;
+
   min-height: 541px;
   @media only screen and (min-width: 800px){
     min-width: 480px;
@@ -85,7 +91,6 @@ export const LogoView = styled.div`
   @media only screen and (max-width: 800px){
     display: none;
   }
- 
   img {
     width: 531px;
     height: 455px;

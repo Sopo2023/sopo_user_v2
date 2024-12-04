@@ -13,7 +13,7 @@ import useLogout from 'src/hooks/auth/useLogout';
 const Index = () => {
   const navigate = useNavigate();
   const activeItem = useSidebar();
-  const { logOut } = useLogout();
+  const {logOut}= useLogout();
   const handleMenuItemClick = (item: string, path: string) => {
     navigate(path);
   };
@@ -55,7 +55,7 @@ const Index = () => {
             <S.MenuText>대회</S.MenuText>
           </S.MenuItem>
         </S.Menu>
-        <S.Logout>
+        <S.Logout onClick={logOut}>
           <S.LogoutIconImg src={LogoutIcon} alt='error' />
           <S.LogoutText onClick={logOut}>로그아웃</S.LogoutText>
         </S.Logout>

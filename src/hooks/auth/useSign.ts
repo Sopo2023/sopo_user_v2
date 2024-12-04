@@ -5,6 +5,7 @@ import { useSignUpMutation, useEmailNumber } from "src/queries/auth/queries";
 import { AxiosError } from "axios";
 import { SIGNUP_DATA } from "src/constants/signup/signup.constants";
 import errorHandler from "src/utils/error/errorHandler";
+import { WAITINGENUM } from "src/constants/authWaitingEnum/authWaitingEnum";
 
 export const useSignup = () => {
   const SignUpMutation = useSignUpMutation();
@@ -16,23 +17,25 @@ export const useSignup = () => {
   const handleSignupData = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
       const { name, value } = e.target;
-      
-      setsignupData((prev) => ({ ...prev, [name]: value }));
-      
+      setsignupData((prev) => ({
+        ...prev,
+        [name]: name === "authCode" ? value.toUpperCase() : value,
+      }));
     },
-    [signupData]
+    [] 
   );
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      if(section === "first"){
+        submitSignupDataFirst();
+      }else if(section === "second"){
+        submitSignupDataSecond();
+      }else if(section === "third"){
+        SubmitSignupDataThird();
+      }
+    }
+  };
 
-  const firstHandleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      submitSignupDataFirst();
-    }
-  };
-  const secondHandleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      submitSignupDataSecond();
-    }
-  };
   const submitSignupDataFirst = useCallback(async () => {
     const { memberId, memberPassword, memberChckPassword } = signupData;
 
@@ -48,6 +51,7 @@ export const useSignup = () => {
     }
     if (memberPassword !== memberChckPassword) {
       showToast("error", "비밀번호가 다릅니다");
+      return;
     }
     setSection("second");
   }, [signupData]);
@@ -55,19 +59,20 @@ export const useSignup = () => {
   const [isWaiting, setIsWaiting] = useState<string>("");
 
   const checkEmailAuthCode = () => {
-    setIsWaiting("전송중");
+    setIsWaiting(WAITINGENUM.spend);
     const { memberEmail, memberSchool } = signupData;
     const domain = memberEmail.split("@")[1];
     if (memberEmail === "") {
       showToast("error", "이메일을 작성해주세요");
-    } else if (
-      domain !== "dgsw.hs.kr" &&
-      memberSchool !== "대구소프트웨어마이스터고"
-    ) {
-      showToast("error", "학교이메일이 다릅니다");
-      setIsWaiting("전송실패");
-      return;
     } 
+    // else if (
+    //   domain !== "dgsw.hs.kr" &&
+    //   memberSchool !== "대구소프트웨어마이스터고"
+    // ) {
+    //   showToast("error", "학교이메일이 다릅니다");
+    //   setIsWaiting("전송실패");
+    //   return;
+    // } 
     // else if (
     //   domain !== "bssm.hs.kr" &&
     //   memberSchool !== "부산소프트웨어마이스터고"
@@ -93,7 +98,10 @@ export const useSignup = () => {
     const email = memberEmail;
     EmailMutation.mutate(email, {
       onSuccess: () => {
-        setIsWaiting("전송성공");
+        setTimeout(function() {
+          setIsWaiting(WAITINGENUM.success);
+         }, 3000);
+        
       },
       onError: (error) => {
         setIsWaiting("");
@@ -118,16 +126,24 @@ export const useSignup = () => {
     ) {
       showToast("error", "형식이 비어있습니다");
       return;
-    }else if(   memberEmail === "" ){
-      showToast("error", "이메일이 비었습니다");
-      return;
-    }
-    else if(   authCode === "" ){
-      showToast("error", "인증코드가 비었습니다");
-      return;
     }
     else if(   memberSchool === ""){
       showToast("error", "학교가 비었습니다");
+      return;
+    }
+    setSection("third");
+  
+  }, [signupData]);
+
+  const SubmitSignupDataThird = useCallback(async()=>{
+    const {  memberEmail, authCode } = signupData;
+
+    if(memberEmail === "" ){
+      showToast("error", "이메일이 비었습니다");
+      return;
+    }
+    else if(authCode === "" ){
+      showToast("error", "인증코드가 비었습니다");
       return;
     }
 
@@ -141,20 +157,19 @@ export const useSignup = () => {
         showToast("error", errorHandler.signupError(errorCode.response?.status!));
       },
     });
-  }, [signupData]);
-
+  },[signupData])
   return {
     isWaiting,
     signupData,
     section,
+    handleKeyDown,
     emailKeydownButton,
-    secondHandleKeyDown,
     checkEmailAuthCode,
     setSection,
     submitSignupDataSecond,
     handleSignupData,
-    firstHandleKeyDown,
     submitSignupDataFirst,
+    SubmitSignupDataThird,
   };
 };
 

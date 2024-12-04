@@ -1,8 +1,8 @@
 import { LoginResponse } from "src/types/auth/login.types";
 import { 
   AuthRepository, 
-  NewAccessTokenResponse, 
-  LoginParmas, 
+  NewAccessTokenResponse,
+  LoginParmas,
   SignUpParams, 
   emailRespose 
 } from "./authRepository";
