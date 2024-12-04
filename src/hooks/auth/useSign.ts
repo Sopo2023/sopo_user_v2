@@ -12,7 +12,7 @@ export const useSignup = () => {
   const EmailMutation = useEmailNumber();
   const [section, setSection] = useState("first");
 
-  const [signupData, setsignupData] = useState<Sign>(SIGNUP_DATA);
+  const [signupData, setsignupData] = useState(SIGNUP_DATA);
 
   const handleSignupData = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {

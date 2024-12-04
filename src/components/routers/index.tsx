@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Sign from "src/pages/auth/page";
 import Main from "src/pages/main/page";
 import Write from "src/pages/wirte/page";
+import PorfolioWrite from "src/components/home/portfolio/write/index"
 import Seniortojunior from "src/pages/seniortojunior/page";
 import Portfolio from "src/pages/portfolio/page";
 import Competition from "src/pages/competition/page";
@@ -17,7 +18,7 @@ const Router = () => {
       <Route path="/seniortojunior/write" element={<Write />} />
 
       <Route path="/portfolio" element={<Portfolio />} />
-      <Route path="/portfolio/write" element={<Write />} />
+      <Route path="/portfolio/write" element={<PorfolioWrite />} />
 
       <Route path="/competition" element={<Competition />} />
       <Route path="/competition/write" element={<Write />} />

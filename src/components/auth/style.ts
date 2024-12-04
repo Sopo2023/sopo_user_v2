@@ -28,7 +28,11 @@ position: relative;
   width: 90%;
   padding: 36px;
   max-width: 480px;
+
   min-height: 541px;
+  @media only screen and (min-width: 800px){
+    min-width: 480px;
+  }
   background-color: ${color.Background.Normal.Alternative};
   border-radius: 25px;
 
@@ -67,7 +71,8 @@ export const vector3 = styled.img`
 
 export const mainView = styled.div`
   display: flex;
-  width: 1000px;
+  width: 1000px; 
+  
   height: 565px;
   gap: 10px;
   z-index: 5;

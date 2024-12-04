@@ -5,5 +5,8 @@ export const sopoQueryKey={
     profile:{
         getProfile:"/member",
       
+    },
+    competition:{
+        getCompetition:"/contest"
     }
 }

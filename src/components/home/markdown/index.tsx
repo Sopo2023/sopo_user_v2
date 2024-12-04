@@ -28,9 +28,7 @@ const MarkdownEditor = () => {
 
     const handleBackArrowClick = () => {
         const path = location.pathname.split('/')[1];
-        if (path === 'portfolio') {
-            navigate('/portfolio');
-        } else if (path === 'seniortojunior') {
+        if (path === 'seniortojunior') {
             navigate('/seniortojunior');
         } else if (path === 'contest') {
             navigate('/contest');
@@ -55,8 +53,6 @@ const MarkdownEditor = () => {
     const getPageTitle = () => {
         const path = location.pathname.split('/')[1];
         switch (path) {
-            case 'portfolio':
-                return '포트폴리오';
             case 'seniortojunior':
                 return '선배가 후배에게';
             case 'contest':
@@ -69,8 +65,6 @@ const MarkdownEditor = () => {
     const getPageIcon = () => {
         const path = location.pathname.split('/')[1];
         switch (path) {
-            case 'portfolio':
-                return Portfolio;
             case 'seniortojunior':
                 return MentoMenti;
             case 'contest':
