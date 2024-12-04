@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as S from 'src/components/home/seniortojunior/index.style';
 import PostHeader from 'src/components/common/postHeader/index';
 import PostItem from 'src/components/post/senior-to-junior/index';
+import Pagination from 'src/components/common/pageNation/index';
 import posts from 'src/constants/postDummyData/index'; 
 
 const ITEMS_PER_PAGE = 6;
@@ -18,10 +19,6 @@ const Seniortojunior = () => {
     const displayTotalPages = Math.min(totalPages, MAX_PAGES);
 
     const handlePageChange = (page: number) => {
-        setCurrentPage(page);
-    };
-
-    const handlePageClick = (page: number) => {
         setCurrentPage(page);
     };
 
@@ -42,11 +39,11 @@ const Seniortojunior = () => {
                         />
                     ))}
                 </S.PostsGrid>
-                <S.Pagination>
-                    <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
-                    <span>Page {currentPage} of {displayTotalPages}</span>
-                    <button onClick={handleNextPage} disabled={currentPage === displayTotalPages}>Next</button>
-                </S.Pagination>
+                <Pagination 
+                    currentPage={currentPage} 
+                    totalPages={displayTotalPages} 
+                    onPageChange={handlePageChange} 
+                />
             </S.Container>
         </S.ContainerParents>
     );

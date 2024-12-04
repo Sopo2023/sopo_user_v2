@@ -3,7 +3,6 @@ import Router from "../../routers/index";
 import PageTemplate from "../pageTemplate";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
-import { ReactQueryDevtools } from "react-query-devtools";
 import AuthCheck from "../HOF/authcheck";
 const queryClient = new QueryClient({
   defaultOptions: {
