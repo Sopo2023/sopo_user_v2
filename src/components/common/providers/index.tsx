@@ -7,10 +7,7 @@ import AuthCheck from "../HOF/authcheck";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: false,
-      retryOnMount: false,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
+      useErrorBoundary: true,
     },
   },
 });

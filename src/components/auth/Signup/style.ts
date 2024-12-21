@@ -38,14 +38,12 @@ export const ButtonBx = styled.div`
   align-items: center;
   span {
     color: ${color.Label.Disable};
-    font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: 130%;
     strong {
       color: ${color.Primary.Light};
-      font-family: Pretendard;
       font-size: 14px;
       font-style: normal;
       font-weight: 600;
@@ -63,14 +61,12 @@ export const buttonBox = styled.div`
   align-items: center;
   span {
     color: ${color.Label.Disable};
-    font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: 130%;
     strong {
       color: ${color.Primary.Light};
-      font-family: Pretendard;
       font-size: 14px;
       font-style: normal;
       font-weight: 600;
@@ -117,7 +113,6 @@ export const selectButton = styled.select`
   background-size: 24px 24px;
   color: ${color.Label.Disable};
 
-  font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

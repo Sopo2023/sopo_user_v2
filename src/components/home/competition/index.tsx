@@ -3,25 +3,28 @@ import * as S from "./style";
 import { useGetcompetitionList } from "src/queries/competition/competition.query";
 import PostItem from "src/components/post/competition";
 import PostHeader from "src/components/common/postHeader";
-import ErrorBoundary from "src/components/common/ErrorBoundary";
-import SkeletonComponent from "src/components/common/skeleton";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "src/components/common/ErrorBoundary";
+import PostSkeleton from "src/components/common/skeleton/postSkeleton";
 const Competition=()=>{
     const  pageParms={
         page:1,
         size:6
     }
-    const {data} = useGetcompetitionList(pageParms );
+    
+      const {data:competitionData} = useGetcompetitionList(pageParms );
+
 
     return(
         <S.Container>
         <S.competitionVeiw>
             <PostHeader/>
             <S.PostsGrid>
-                <ErrorBoundary fallback={<><h2>데이터를 불러오지 못했습니다.</h2></>}>
-                <Suspense fallback={<SkeletonComponent height={100}/>}>
+                <ErrorBoundary FallbackComponent={ErrorFallback}>
+                <Suspense fallback={<PostSkeleton/>}>
 
                 {
-                    data?.data.map((post, index)=>(
+                    competitionData?.data.map((post, index)=>(
                         <PostItem
                             key={index}
                             contestTitle={post.contestTitle}
