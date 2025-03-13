@@ -1,34 +1,43 @@
-import { Component, ErrorInfo, ReactNode } from "react";
+import styled from "styled-components";
+import { FallbackProps } from "react-error-boundary";
+import color from "src/styles/color";
+const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
+  return (
+    <Container>
+      <ErrorComment>오류가 발생했습니다.</ErrorComment>
+      <RefetchButton onClick={() => resetErrorBoundary()}>
+        다시 시도
+      </RefetchButton>
+    </Container>
+  );
+};
 
-interface Props {
-  children: ReactNode;
-  fallback: ReactNode;
-}
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 10px;
+`;
 
-interface State {
-  hasError: boolean;
-}
+export const ErrorComment = styled.p`
+  font-size: 14px;
+  color: black;
+`;
 
-class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false,
-  };
+export const RefetchButton = styled.button`
+  width: 80px;
+  height: 26px;
+  border: 1px solid black;
+  background-color: ${color.Background.Normal};
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: ${color.Primary.Light};
+`;
 
-  public static getDerivedStateFromError(_: Error): State {
-    return { hasError: true };
-  }
-
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("Uncaught error:", error, errorInfo);
-  }
-
-  public render() {
-    if (this.state.hasError) {
-      return this.props.fallback;
-    }
-
-    return this.props.children;
-  }
-}
-
-export default ErrorBoundary;
+export default ErrorFallback;

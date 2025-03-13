@@ -1,16 +1,12 @@
 import GlobalStyles from "src/styles/global";
 import Router from "../../routers/index";
-import PageTemplate from "../pageTemplate";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import AuthCheck from "../HOF/authcheck";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: false,
-      retryOnMount: false,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
+      useErrorBoundary: true,
     },
   },
 });
@@ -21,10 +17,8 @@ const Provider = () => {
       <GlobalStyles />
       <BrowserRouter>
       <AuthCheck>
-        <PageTemplate>
           <Router />
-        </PageTemplate>
-        </AuthCheck>
+      </AuthCheck>
       </BrowserRouter>
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
