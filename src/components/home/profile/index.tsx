@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Profile from "src/components/home/profile/profile";
 import ProfileEdit from "src/components/home/profile/profileEdit";
 import ProfileSetting from "src/components/home/profile/profileSetting";
-import Layout from "src/components/common/layout/layout";
 
 const MainProfile: React.FC = () => {
     const [isEditing, setIsEditing] = useState(false);
@@ -19,7 +18,7 @@ const MainProfile: React.FC = () => {
     };
 
     return (
-        <Layout>
+        <>
             {isEditing ? (
                 <ProfileEdit onCancel={handleEditToggle} />
             ) : isSetting ? (
@@ -27,7 +26,7 @@ const MainProfile: React.FC = () => {
             ) : (
                 <Profile onEdit={handleEditToggle} onSetting={handleSettingToggle} />
             )}
-        </Layout>
+        </>
     );
 };
 

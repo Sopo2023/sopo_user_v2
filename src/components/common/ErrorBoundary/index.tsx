@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FallbackProps } from "react-error-boundary";
-import color from "@src/styles/color";
+import color from "src/styles/color";
 const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => {
   return (
     <Container>

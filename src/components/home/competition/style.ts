@@ -51,3 +51,24 @@ export const PostsGrid = styled.div`
         grid-template-columns: 1fr;
     }
 `;
+
+export const Pagination = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+export const PageButton = styled.button<{isActive:boolean}>`
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  background-color: ${(props) => (props.isActive ? "#007BFF" : "#fff")};
+  color: ${(props) => (props.isActive ? "#fff" : "#000")};
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+`;
