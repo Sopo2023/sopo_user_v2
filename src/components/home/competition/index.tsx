@@ -17,7 +17,7 @@ const Competition = () => {
     size: pageSize,
   };
 
-  const { data: competitionData } = useGetcompetitionList(pageParams);
+
 
   const handlePageChange = (page:number) => {
     setCurrentPage(page);
@@ -30,21 +30,13 @@ const Competition = () => {
         <S.PostsGrid>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Suspense fallback={<PostSkeleton />}>
-              {competitionData?.data.map((post, index) => (
-                <PostItem
-                  key={index}
-                  contestTitle={post.contestTitle}
-                  contestContent={post.contestContent}
-                  memberName={post.memberName}
-                  style={{}}
-                />
-              ))}
+                <PostItem/>
             </Suspense>
           </ErrorBoundary>
         </S.PostsGrid>
 
         {/* 페이지네이션 */}
-        <S.Pagination>
+        {/* <S.Pagination>
           {Array.from({ length: totalPages }, (_, index) => (
             <S.PageButton
               key={index}
@@ -54,7 +46,7 @@ const Competition = () => {
               {index + 1}
             </S.PageButton>
           ))}
-        </S.Pagination>
+        </S.Pagination> */}
       </S.competitionVeiw>
     </S.Container>
   );

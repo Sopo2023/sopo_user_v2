@@ -2,18 +2,18 @@ import styled from "styled-components";
 
 export const Container = styled.main`
    background: #F7FFF3;
-    padding-top: 48px;
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
  
 `
 export const competitionVeiw = styled.div`
-width: 90%;
+    width: 90%;
     max-width: 1100px;
-    height: auto;
-    min-height: 90%;
+    height: 80%;
+    
     border-radius: 13px;
     background: #FFF;
     box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);

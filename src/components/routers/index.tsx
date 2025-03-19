@@ -14,18 +14,18 @@ const Router = () => {
     <Routes>
       <Route path="/sign" element={<Sign />} />
         <Route path="/" element={<PageTemplate />}>
-        <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main />} />
         
-        <Route path="/seniortojunior" element={<Seniortojunior />} />
-        <Route path="/seniortojunior/write" element={<Write />} />
+          <Route path="/seniortojunior" element={<Seniortojunior />} />
+          <Route path="/seniortojunior/write" element={<Write />} />
 
-        <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/portfolio/write" element={<PorfolioWrite />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/portfolio/write" element={<PorfolioWrite />} />
 
-        <Route path="/competition" element={<Competition />} />
-        <Route path="/competition/write" element={<Write />} />
+          <Route path="/competition" element={<Competition />} />
+          <Route path="/competition/write" element={<Write />} />
 
-        <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
