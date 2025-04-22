@@ -1,5 +1,6 @@
-import React, {FormEvent, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import * as Sentry from "@sentry/react";
 import { showToast } from "src/libs/toast/swal";
 import { useLoginMutation } from "src/queries/auth/queries";
 import token from "src/libs/token/token";
@@ -63,6 +64,7 @@ export const useLogin = () => {
         onError: (error) => {
           const errorCode = error as AxiosError;
           showToast("error", errorHandler.loginError(errorCode.response?.status!));
+          Sentry.captureException(`이러한 문제로 로그인 실패 ${error}`);
         },
       }
     );

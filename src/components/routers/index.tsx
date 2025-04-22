@@ -14,7 +14,7 @@ const Router = () => {
     <Routes>
       <Route path="/sign" element={<Sign />} />
         <Route path="/" element={<PageTemplate />}>
-          <Route path="/" element={<Main />} />
+          <Route index element={<Main />} />
         
           <Route path="/seniortojunior" element={<Seniortojunior />} />
           <Route path="/seniortojunior/write" element={<Write />} />

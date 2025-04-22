@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Sign } from "src/types/auth/signup.type";
+import * as Sentry from "@sentry/react";
 import { showToast } from "src/libs/toast/swal";
 import { useSignUpMutation, useEmailNumber } from "src/queries/auth/queries";
 import { AxiosError } from "axios";
@@ -155,6 +155,7 @@ export const useSignup = () => {
       onError: (error) => {
         const errorCode = error as AxiosError;
         showToast("error", errorHandler.signupError(errorCode.response?.status!));
+        Sentry.captureException(`이러한 문제로 회원가입 실패 ${error}`);
       },
     });
   },[signupData])
