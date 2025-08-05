@@ -42,7 +42,6 @@ export const ContainerParents = styled.div`
     padding-top: 48px;
     height: calc(100vh - 48px);
     width: 100%;
-    justify-content: center;
     align-items: center;
     display: flex;
     overflow-x: auto; 

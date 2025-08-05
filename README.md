@@ -1,46 +1,124 @@
-# Getting Started with Create React App
+# 소포 (SOPO) - 선배가 후배에게
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+선배가 후배를 위한 블로그 플랫폼입니다. 대회 모집, 포트폴리오 관리, 멘토링 기능을 제공합니다.
 
-## Available Scripts
+## 🚀 주요 기능
 
-In the project directory, you can run:
+- **선배가 후배에게**: 경험과 조언을 공유하는 블로그 기능
+- **대회 모집**: 대회 참가자를 모집하고 관리
+- **포트폴리오**: 간편한 포트폴리오 작성 및 관리
+- **사용자 인증**: 로그인/회원가입 시스템
 
-### `yarn start`
+## 🛠 기술 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Frontend**: React 18, TypeScript
+- **상태 관리**: React Query, Jotai
+- **스타일링**: Styled Components
+- **라우팅**: React Router DOM
+- **HTTP 클라이언트**: Axios
+- **에러 추적**: Sentry
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 📁 프로젝트 구조
 
-### `yarn test`
+```
+src/
+├── components/          # React 컴포넌트
+│   ├── auth/           # 인증 관련 컴포넌트
+│   ├── common/         # 공통 컴포넌트
+│   ├── home/           # 홈 페이지 컴포넌트
+│   └── post/           # 게시글 관련 컴포넌트
+├── hooks/              # 커스텀 훅
+├── queries/            # React Query 훅
+├── repositories/       # API 레이어
+├── types/              # TypeScript 타입 정의
+├── utils/              # 유틸리티 함수
+├── constants/          # 상수 정의
+├── styles/             # 스타일 관련
+└── libs/               # 외부 라이브러리 설정
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 시작하기
 
-### `yarn build`
+### 설치
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# 의존성 설치
+yarn install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 개발 서버 실행
+yarn start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 빌드
+yarn build
+```
 
-### `yarn eject`
+### 환경 설정
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`.env` 파일을 생성하고 다음 환경변수를 설정하세요:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```env
+REACT_APP_API_URL=your_api_url
+REACT_APP_SENTRY_DSN=your_sentry_dsn
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📝 코드 컨벤션
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 타입 안전성
+- `any` 타입 사용 금지
+- 모든 함수와 변수에 명시적 타입 지정
+- 인터페이스와 타입 별칭 적극 활용
+- `React.FC` 사용 금지 (children 타입 추론 문제)
 
-## Learn More
+### 컴포넌트 구조
+- 함수형 컴포넌트 사용
+- Props 인터페이스 정의
+- 명시적 반환 타입 지정
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 상태 관리
+- React Query: 서버 상태 관리
+- Jotai: 클라이언트 상태 관리
+- 커스텀 훅으로 로직 분리
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 에러 처리
+- 일관된 에러 바운더리 사용
+- 사용자 친화적인 에러 메시지
+- 개발 환경에서 상세한 에러 정보 제공
+
+## 🔧 주요 개선사항
+
+### 1. 타입 안전성 강화
+- 모든 컴포넌트에 명시적 타입 지정
+- API 응답 타입 정의 개선
+- 유틸리티 함수 타입 안전성 확보
+- `React.FC` 제거로 children 타입 추론 문제 해결
+
+### 2. 코드 구조 개선
+- 관심사 분리 (Separation of Concerns)
+- 재사용 가능한 컴포넌트 설계
+- 일관된 네이밍 컨벤션
+
+### 3. 성능 최적화
+- React Query 캐싱 전략 개선
+- 불필요한 리렌더링 방지
+- 메모이제이션 활용
+
+### 4. 사용자 경험 개선
+- 로딩 상태 표시
+- 에러 처리 강화
+- 접근성 개선
+
+## 🤝 기여하기
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 라이선스
+
+이 프로젝트는 MIT 라이선스 하에 배포됩니다.
+
+## 📞 문의
+
+프로젝트에 대한 문의사항이 있으시면 이슈를 생성해주세요.

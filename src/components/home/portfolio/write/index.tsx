@@ -6,7 +6,7 @@ import BackArrow from 'src/assets/imgs/markdown/GotoBack.svg';
 import Portfolio from 'src/assets/imgs/sidebar/portfolio.svg';
 import GoOut from 'src/assets/imgs/sidebar/logouticon.svg';
 import DeleteButton from 'src/assets/imgs/markdown/deletetbn.svg';
-import { SepLine } from '../../markdown/index.style';
+import { SepLine } from '../../markdown/style';
 
 const MarkdownEditor = () => {
     const navigate = useNavigate();

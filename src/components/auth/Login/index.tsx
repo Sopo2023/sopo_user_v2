@@ -1,3 +1,4 @@
+import React from "react";
 import { useLogin } from "src/hooks/auth/useLogin";
 import TextField from "src/components/textFields/index";
 import * as S from "./style";
@@ -7,11 +8,12 @@ import Button from "src/components/button/index";
 import { Props } from "src/types/auth/login.types";
 
 const LoginComponent = ({ setIsLogin }: Props) => {
-  const { ...auth } = useLogin();
+  const { loginData, handleLoginDataChange, handleKeyDown, handleLogin, isLoading } = useLogin();
+
   return (
     <>
       <LogoView>
-        <img src={Logo} alt="난 실패작이야.." />
+        <img src={Logo} alt="소포 로고" />
       </LogoView>
       <SignMain>
         <Header>
@@ -24,11 +26,11 @@ const LoginComponent = ({ setIsLogin }: Props) => {
             </span>
             <TextField
               name="memberId"
-              value={auth.LoginData.memberId}
+              value={loginData.memberId}
               type="text"
-              onChange={auth.handleSignUpData}
+              onChange={handleLoginDataChange}
               placeholder="아이디를 입력해주세요"
-              onKeyDown={auth.handleKeyDown}
+              onKeyDown={handleKeyDown}
               style={{}}
             />
           </S.Inputtext>
@@ -38,18 +40,22 @@ const LoginComponent = ({ setIsLogin }: Props) => {
             </span>
             <TextField
               name="memberPassword"
-              value={auth.LoginData.memberPassword}
-              type={"password"}
-              onChange={auth.handleSignUpData}
+              value={loginData.memberPassword}
+              type="password"
+              onChange={handleLoginDataChange}
               placeholder="비밀번호를 입력해주세요"
-              onKeyDown={auth.handleKeyDown}
+              onKeyDown={handleKeyDown}
               style={{}}
             />
           </S.Inputtext>
         </S.Input>
 
         <S.buttonBox>
-          <Button text="로그인" style={{}} onClick={auth.handleLogin} />
+          <Button 
+            text={isLoading ? "로그인 중..." : "로그인"} 
+            onClick={handleLogin}
+            style={{}}
+          />
           <span>
             계정이 없으시다면?{" "}
             <strong onClick={() => setIsLogin(false)}>회원가입</strong>

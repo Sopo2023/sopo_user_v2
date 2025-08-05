@@ -2,10 +2,19 @@ import React from "react";
 import * as S from "./style";
 import Alarm from "./alarm/index";
 import SeniortojuniorPost from "./seniortojuniorPost";
-import { UseMain } from "src/hooks/main/useMain";
+import { useMain } from "src/hooks/main/useMain";
 
 const Main = () => {
-const {...Main}= UseMain();
+  const { data, isLoading, error } = useMain();
+
+  if (isLoading) {
+    return <div>로딩 중...</div>;
+  }
+
+  if (error) {
+    return <div>데이터를 불러오는데 실패했습니다.</div>;
+  }
+
   return (
     <S.mainView>
       <S.mainArticle>
@@ -13,7 +22,7 @@ const {...Main}= UseMain();
         <S.cardMain></S.cardMain>
       </S.mainArticle>
       <S.mainArticle>
-        <SeniortojuniorPost post={Main.data} />
+        <SeniortojuniorPost post={data} />
       </S.mainArticle>
     </S.mainView>
   );

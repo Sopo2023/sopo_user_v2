@@ -4,7 +4,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useMarkdownEditor } from 'src/hooks/markdowneditor/useMarkdownEditor';
 import { useNavigate, useLocation } from 'react-router-dom';
-import * as S from 'src/components/home/markdown/index.style';
+import * as S from './style';
 
 import H1 from 'src/assets/imgs/markdown/H1.svg';
 import H2 from 'src/assets/imgs/markdown/H2.svg';

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as S from 'src/components/home/seniortojunior/index.style';
+import * as S from './style';
 import PostHeader from 'src/components/common/postHeader/index';
 import PostItem from 'src/components/post/senior-to-junior/index';
 import Pagination from 'src/components/common/pageNation/index';
