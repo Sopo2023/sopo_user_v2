@@ -9,7 +9,7 @@ const useSidebar = () => {
     const path = location.pathname;
     if (path === '/') {
       setActiveItem('home');
-    } else if (path === '/seniortojunior') {
+    } else if (path.startsWith('/seniortojunior')) {
       setActiveItem('mentor');
     } else if (path.startsWith('/portfolio')) {
       setActiveItem('portfolio');
